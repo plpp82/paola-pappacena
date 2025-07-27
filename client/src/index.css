@@ -1,0 +1,143 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: hsl(0, 0%, 100%);
+  --foreground: hsl(20, 14.3%, 4.1%);
+  --muted: hsl(60, 4.8%, 95.9%);
+  --muted-foreground: hsl(25, 5.3%, 44.7%);
+  --popover: hsl(0, 0%, 100%);
+  --popover-foreground: hsl(20, 14.3%, 4.1%);
+  --card: hsl(0, 0%, 100%);
+  --card-foreground: hsl(20, 14.3%, 4.1%);
+  --border: hsl(20, 5.9%, 90%);
+  --input: hsl(20, 5.9%, 90%);
+  --primary: hsl(207, 90%, 54%);
+  --primary-foreground: hsl(211, 100%, 99%);
+  --secondary: hsl(60, 4.8%, 95.9%);
+  --secondary-foreground: hsl(24, 9.8%, 10%);
+  --accent: hsl(60, 4.8%, 95.9%);
+  --accent-foreground: hsl(24, 9.8%, 10%);
+  --destructive: hsl(0, 84.2%, 60.2%);
+  --destructive-foreground: hsl(60, 9.1%, 97.8%);
+  --ring: hsl(20, 14.3%, 4.1%);
+  --radius: 0.5rem;
+  
+  /* Custom colors for Paola's website */
+  --warm-brown: hsl(30, 30%, 42%);
+  --sage-green: hsl(89, 30%, 66%);
+  --terracotta: hsl(20, 70%, 58%);
+  --cream: hsl(49, 44%, 95%);
+  --dark-brown: hsl(20, 25%, 18%);
+}
+
+.dark {
+  --background: hsl(240, 10%, 3.9%);
+  --foreground: hsl(0, 0%, 98%);
+  --muted: hsl(240, 3.7%, 15.9%);
+  --muted-foreground: hsl(240, 5%, 64.9%);
+  --popover: hsl(240, 10%, 3.9%);
+  --popover-foreground: hsl(0, 0%, 98%);
+  --card: hsl(240, 10%, 3.9%);
+  --card-foreground: hsl(0, 0%, 98%);
+  --border: hsl(240, 3.7%, 15.9%);
+  --input: hsl(240, 3.7%, 15.9%);
+  --primary: hsl(207, 90%, 54%);
+  --primary-foreground: hsl(211, 100%, 99%);
+  --secondary: hsl(240, 3.7%, 15.9%);
+  --secondary-foreground: hsl(0, 0%, 98%);
+  --accent: hsl(240, 3.7%, 15.9%);
+  --accent-foreground: hsl(0, 0%, 98%);
+  --destructive: hsl(0, 62.8%, 30.6%);
+  --destructive-foreground: hsl(0, 0%, 98%);
+  --ring: hsl(240, 4.9%, 83.9%);
+  --radius: 0.5rem;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-serif antialiased text-foreground;
+    background-color: hsl(var(--cream));
+    font-family: 'Merriweather', serif;
+    color: hsl(var(--dark-brown));
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Montserrat', sans-serif;
+  }
+}
+
+@layer utilities {
+  .font-serif {
+    font-family: 'Merriweather', serif;
+  }
+  
+  .font-sans {
+    font-family: 'Montserrat', sans-serif;
+  }
+  
+  .text-warm-brown {
+    color: hsl(var(--warm-brown));
+  }
+  
+  .text-sage-green {
+    color: hsl(var(--sage-green));
+  }
+  
+  .text-terracotta {
+    color: hsl(var(--terracotta));
+  }
+  
+  .text-cream {
+    color: hsl(var(--cream));
+  }
+  
+  .text-dark-brown {
+    color: hsl(var(--dark-brown));
+  }
+  
+  .bg-warm-brown {
+    background-color: hsl(var(--warm-brown));
+  }
+  
+  .bg-sage-green {
+    background-color: hsl(var(--sage-green));
+  }
+  
+  .bg-terracotta {
+    background-color: hsl(var(--terracotta));
+  }
+  
+  .bg-cream {
+    background-color: hsl(var(--cream));
+  }
+  
+  .bg-dark-brown {
+    background-color: hsl(var(--dark-brown));
+  }
+  
+  .border-sage-green {
+    border-color: hsl(var(--sage-green));
+  }
+  
+  .border-terracotta {
+    border-color: hsl(var(--terracotta));
+  }
+  
+  .border-warm-brown {
+    border-color: hsl(var(--warm-brown));
+  }
+  
+  .hover\:bg-terracotta:hover {
+    background-color: hsl(var(--terracotta));
+  }
+  
+  .hover\:text-terracotta:hover {
+    color: hsl(var(--terracotta));
+  }
+}
