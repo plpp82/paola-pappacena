@@ -1,113 +1,84 @@
-import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import { Link } from "wouter";
 
-const categories = [
-  { id: "all", label: "Tutti" },
-  { id: "natura", label: "Natura" },
-  { id: "infanzia", label: "Infanzia" },
-  { id: "educativo", label: "Educativo" },
-  { id: "libri", label: "Libri" },
-];
-
-const portfolioItems = [
+const portfolioCategories = [
   {
-    id: 1,
-    category: "infanzia",
-    image: "https://images.unsplash.com/photo-1542273917363-3b1817f69a2d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&h=400",
-    alt: "Bambini che giocano tra le foglie autunnali"
+    id: "natura",
+    title: "Natura & Animali",
+    description: "Illustrazioni che celebrano il mondo naturale",
+    count: 12,
+    image: "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&h=300",
+    alt: "Categria natura e animali"
   },
   {
-    id: 2,
-    category: "natura",
-    image: "https://pixabay.com/get/g3737d22ad184bed06bc53b02c1c9a26da10a73b4f7950dcd8bf6c97bdfdd6358f71be8c71be97ac26dddf3d5a1d03456678c4657f0a197ebf8462b9ac6662039_1280.jpg",
-    alt: "Animali del bosco che fanno merenda"
+    id: "infanzia",
+    title: "Infanzia & Gioco",
+    description: "Il mondo magico dell'infanzia",
+    count: 8,
+    image: "https://images.unsplash.com/photo-1542273917363-3b1817f69a2d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&h=300",
+    alt: "Categoria infanzia e gioco"
   },
   {
-    id: 3,
-    category: "educativo",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&h=400",
-    alt: "Bambini che leggono sotto un albero magico"
+    id: "educativo",
+    title: "Educativo",
+    description: "Imparare divertendosi",
+    count: 7,
+    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&h=300",
+    alt: "Categoria educativo"
   },
   {
-    id: 4,
-    category: "educativo",
-    image: "https://images.unsplash.com/photo-1583212292454-1fe6229603b7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&h=400",
-    alt: "Vita marina educativa per bambini"
-  },
-  {
-    id: 5,
-    category: "natura",
-    image: "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&h=400",
-    alt: "Orto didattico con bambini che imparano"
-  },
-  {
-    id: 6,
-    category: "educativo",
-    image: "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&h=400",
-    alt: "Ciclo delle stagioni illustrato per bambini"
-  },
-  {
-    id: 7,
-    category: "natura",
-    image: "https://images.unsplash.com/photo-1564349683136-77e08dba1ef7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&h=400",
-    alt: "Animali nel loro habitat naturale"
-  },
-  {
-    id: 8,
-    category: "libri",
-    image: "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=600&h=400",
-    alt: "Copertina libro per bambini tema avventura"
-  },
+    id: "fantastico",
+    title: "Fantastico",
+    description: "Mondi magici e creature fantastiche",
+    count: 5,
+    image: "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&h=300",
+    alt: "Categoria fantastico"
+  }
 ];
 
 export default function Portfolio() {
-  const [activeCategory, setActiveCategory] = useState("all");
-
-  const filteredItems = activeCategory === "all" 
-    ? portfolioItems 
-    : portfolioItems.filter(item => item.category === activeCategory);
-
   return (
     <section id="portfolio" className="py-16 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h2 className="font-sans font-bold text-3xl sm:text-4xl text-dark-brown mb-4">
-            Portfolio Completo
+            Portfolio
           </h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Esplora la mia collezione completa di illustrazioni, organizzata per temi e progetti
+            Esplora le diverse categorie del mio lavoro, dalla natura all'educazione, 
+            dal fantastico all'infanzia
           </p>
         </div>
         
-        {/* Portfolio Categories */}
-        <div className="flex flex-wrap justify-center gap-4 mb-8">
-          {categories.map((category) => (
-            <Button
-              key={category.id}
-              onClick={() => setActiveCategory(category.id)}
-              variant={activeCategory === category.id ? "default" : "outline"}
-              className={
-                activeCategory === category.id
-                  ? "bg-sage-green text-white hover:bg-green-600"
-                  : "bg-gray-200 text-dark-brown hover:bg-sage-green hover:text-white"
-              }
-            >
-              {category.label}
-            </Button>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {portfolioCategories.map((category) => (
+            <Link key={category.id} href="/portfolio">
+              <div className="group cursor-pointer bg-cream rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-all duration-300">
+                <img
+                  src={category.image}
+                  alt={category.alt}
+                  className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                />
+                <div className="p-6">
+                  <h3 className="font-sans font-semibold text-lg text-dark-brown mb-2 group-hover:text-terracotta transition-colors">
+                    {category.title}
+                  </h3>
+                  <p className="text-gray-600 text-sm mb-3">{category.description}</p>
+                  <span className="text-terracotta font-medium text-sm">
+                    {category.count} opere
+                  </span>
+                </div>
+              </div>
+            </Link>
           ))}
         </div>
-
-        {/* Portfolio Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {filteredItems.map((item) => (
-            <div key={item.id} className="group cursor-pointer">
-              <img
-                src={item.image}
-                alt={item.alt}
-                className="w-full h-48 object-cover rounded-lg shadow-md group-hover:shadow-xl transition-all duration-300 transform group-hover:scale-105"
-              />
-            </div>
-          ))}
+        
+        <div className="text-center mt-12">
+          <Link href="/portfolio">
+            <Button className="bg-sage-green hover:bg-green-600 text-white font-sans font-semibold px-8 py-4">
+              Visualizza Portfolio Completo
+            </Button>
+          </Link>
         </div>
       </div>
     </section>

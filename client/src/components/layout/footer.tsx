@@ -1,13 +1,14 @@
 import { Instagram, Facebook } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Link } from "wouter";
 
 const quickLinks = [
-  { href: "#portfolio", label: "Portfolio" },
-  { href: "#libri", label: "Libri" },
-  { href: "#laboratori", label: "Laboratori" },
-  { href: "#blog", label: "Blog" },
-  { href: "#contatti", label: "Contatti" },
+  { href: "/portfolio", label: "Portfolio", type: "link" },
+  { href: "/libri", label: "Libri", type: "link" },
+  { href: "/illustrazioni", label: "Illustrazioni", type: "link" },
+  { href: "/news", label: "News & Ideas", type: "link" },
+  { href: "#contatti", label: "Contatti", type: "scroll" },
 ];
 
 export default function Footer() {
@@ -49,12 +50,20 @@ export default function Footer() {
             <ul className="space-y-2">
               {quickLinks.map((link) => (
                 <li key={link.href}>
-                  <button
-                    onClick={() => scrollToSection(link.href)}
-                    className="text-gray-300 hover:text-sage-green transition-colors duration-300"
-                  >
-                    {link.label}
-                  </button>
+                  {link.type === "link" ? (
+                    <Link href={link.href}>
+                      <button className="text-gray-300 hover:text-sage-green transition-colors duration-300">
+                        {link.label}
+                      </button>
+                    </Link>
+                  ) : (
+                    <button
+                      onClick={() => scrollToSection(link.href)}
+                      className="text-gray-300 hover:text-sage-green transition-colors duration-300"
+                    >
+                      {link.label}
+                    </button>
+                  )}
                 </li>
               ))}
             </ul>

@@ -1,10 +1,20 @@
 # Overview
 
-This is a React-based portfolio website for Paola Pappacena, an illustrator specializing in nature, education, and children's content. The application is built as a modern full-stack web application with a React frontend and Express.js backend, using TypeScript throughout.
+This is a React-based portfolio website for Paola Pappacena, an illustrator specializing in nature, education, and children's content. The application features a multi-page architecture with dedicated sections for portfolio, books, illustrations (e-commerce), and news & ideas. Built as a modern full-stack web application with React frontend and Express.js backend.
 
 # User Preferences
 
 Preferred communication style: Simple, everyday language.
+
+# Recent Changes (January 27, 2025)
+
+✓ Implemented multi-page architecture with dedicated routing for portfolio, books, illustrations
+✓ Created "News & Ideas" section (renamed from Blog) with categorized content 
+✓ Added e-commerce functionality for illustrations with pricing and purchase options
+✓ Built comprehensive libri (books) section with purchase capabilities
+✓ Implemented nested site structure with extensive portfolio categorization
+✓ Updated navigation system for multi-page routing with active states
+→ Testing the complete site functionality and deployment readiness
 
 # System Architecture
 

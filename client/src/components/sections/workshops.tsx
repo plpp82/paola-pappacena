@@ -1,38 +1,37 @@
-import { Calendar, MapPin, Users, Palette } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Users, Clock, MapPin, Calendar } from "lucide-react";
 
-const upcomingWorkshops = [
+const workshops = [
   {
     id: 1,
-    title: "Storie dal Bosco",
-    description: "Workshop di narrazione e illustrazione",
-    schedule: "Ogni secondo sabato del mese"
+    title: "Disegnare la Natura",
+    description: "Un laboratorio per bambini per imparare a osservare e disegnare il mondo naturale",
+    duration: "2 ore",
+    participants: "6-12 anni",
+    location: "Studio Paola Pappacena",
+    nextDate: "15 Febbraio 2025",
+    price: 25,
+    image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&h=300",
+    alt: "Workshop disegnare la natura"
   },
   {
     id: 2,
-    title: "Il Mio Primo Libro",
-    description: "Laboratorio di auto-illustrazione per bambini",
-    schedule: "Workshop mensile su prenotazione"
-  },
-  {
-    id: 3,
-    title: "Natura e Colori",
-    description: "Laboratorio per famiglie all'aria aperta",
-    schedule: "Eventi stagionali nei parchi cittadini"
+    title: "Raccontare con i Colori",
+    description: "Laboratorio di illustrazione per adulti: tecniche base di acquerello e narrazione visiva",
+    duration: "3 ore",
+    participants: "Adulti",
+    location: "Biblioteca Comunale",
+    nextDate: "22 Febbraio 2025",
+    price: 40,
+    image: "https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=400&h=300",
+    alt: "Workshop raccontare con i colori"
   }
 ];
 
 export default function Workshops() {
-  const handleBookWorkshop = () => {
-    // TODO: Implement workshop booking logic
-    console.log("Book workshop");
-  };
-
-  const scrollToContact = () => {
-    const element = document.querySelector("#contatti");
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
+  const handleBookWorkshop = (workshopId: number, title: string) => {
+    // TODO: Implement booking logic
+    console.log(`Book workshop ${workshopId}: ${title}`);
   };
 
   return (
@@ -40,62 +39,69 @@ export default function Workshops() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h2 className="font-sans font-bold text-3xl sm:text-4xl text-dark-brown mb-4">
-            Laboratori e Workshop
+            Workshop e Laboratori
           </h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Condivido la mia passione attraverso laboratori creativi per bambini, famiglie e educatori
+            Condivido la mia passione per l'illustrazione attraverso laboratori creativi 
+            per bambini e adulti
           </p>
         </div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
-          <div className="bg-gradient-to-br from-sage-green to-green-400 rounded-lg p-8 text-white">
-            <div className="flex items-center mb-4">
-              <Palette className="h-8 w-8 mr-4" />
-              <h3 className="font-sans font-bold text-2xl">Prossimo Workshop</h3>
+        
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {workshops.map((workshop) => (
+            <div key={workshop.id} className="bg-cream rounded-lg shadow-lg overflow-hidden group hover:shadow-xl transition-all duration-300">
+              <img
+                src={workshop.image}
+                alt={workshop.alt}
+                className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+              />
+              <div className="p-6">
+                <h3 className="font-sans font-bold text-xl text-dark-brown mb-3">{workshop.title}</h3>
+                <p className="text-gray-600 mb-4">{workshop.description}</p>
+                
+                <div className="space-y-2 mb-6">
+                  <div className="flex items-center text-sm text-gray-600">
+                    <Clock className="h-4 w-4 mr-2 text-sage-green" />
+                    <span>Durata: {workshop.duration}</span>
+                  </div>
+                  <div className="flex items-center text-sm text-gray-600">
+                    <Users className="h-4 w-4 mr-2 text-sage-green" />
+                    <span>Età: {workshop.participants}</span>
+                  </div>
+                  <div className="flex items-center text-sm text-gray-600">
+                    <MapPin className="h-4 w-4 mr-2 text-sage-green" />
+                    <span>{workshop.location}</span>
+                  </div>
+                  <div className="flex items-center text-sm text-gray-600">
+                    <Calendar className="h-4 w-4 mr-2 text-sage-green" />
+                    <span>Prossima data: {workshop.nextDate}</span>
+                  </div>
+                </div>
+                
+                <div className="flex items-center justify-between">
+                  <span className="text-2xl font-bold text-terracotta">€{workshop.price}</span>
+                  <Button
+                    onClick={() => handleBookWorkshop(workshop.id, workshop.title)}
+                    className="bg-sage-green hover:bg-green-600 text-white"
+                  >
+                    Prenota Posto
+                  </Button>
+                </div>
+              </div>
             </div>
-            <h4 className="font-sans font-semibold text-xl mb-2">"Dipingere la Natura"</h4>
-            <p className="mb-4">
-              Un laboratorio per scoprire come catturare i colori e le forme della natura attraverso l'acquerello.
-            </p>
-            <div className="space-y-2 mb-6">
-              <div className="flex items-center">
-                <Calendar className="h-4 w-4 mr-2" />
-                <span>15 Marzo 2025, ore 15:00-17:00</span>
-              </div>
-              <div className="flex items-center">
-                <MapPin className="h-4 w-4 mr-2" />
-                <span>Biblioteca Comunale di Firenze</span>
-              </div>
-              <div className="flex items-center">
-                <Users className="h-4 w-4 mr-2" />
-                <span>Età: 6-12 anni</span>
-              </div>
-            </div>
-            <Button
-              onClick={handleBookWorkshop}
-              className="bg-white text-sage-green hover:bg-gray-100 font-sans font-semibold"
-            >
-              Prenota Posto
-            </Button>
-          </div>
-
-          <div className="space-y-6">
-            {upcomingWorkshops.map((workshop) => (
-              <div key={workshop.id} className="bg-cream rounded-lg p-6 border-l-4 border-terracotta">
-                <h4 className="font-sans font-semibold text-lg text-dark-brown mb-2">"{workshop.title}"</h4>
-                <p className="text-gray-600 text-sm mb-2">{workshop.description}</p>
-                <p className="text-gray-500 text-sm">{workshop.schedule}</p>
-              </div>
-            ))}
-          </div>
+          ))}
         </div>
-
-        <div className="text-center">
-          <Button
-            onClick={scrollToContact}
-            className="bg-warm-brown hover:bg-opacity-80 text-white font-sans font-semibold px-8 py-4 rounded-full"
-          >
-            Organizza un Workshop
+        
+        <div className="mt-12 bg-sage-green text-white rounded-lg p-8 text-center">
+          <h3 className="font-sans font-bold text-xl mb-4">
+            Workshop Personalizzati
+          </h3>
+          <p className="mb-6 max-w-2xl mx-auto">
+            Organizzo anche laboratori su misura per scuole, biblioteche e eventi privati. 
+            Contattami per discutere le tue esigenze specifiche.
+          </p>
+          <Button className="bg-white text-sage-green hover:bg-gray-100">
+            Richiedi un Workshop Personalizzato
           </Button>
         </div>
       </div>
