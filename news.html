@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>News | Paola Pappacena</title>
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/gallery.css">
+</head>
+<body>
+  <header><h1>News</h1></header>
+  <main>
+    <section class="news-feed">
+      <!-- Esempio news-card -->
+      <article class="news-card" onclick="openNews('news-1')">
+        <img src="assets/images/news/laboratorio-maggio.jpg" alt="">
+        <div class="news-preview">
+          <time datetime="2024-05-15">15 Maggio 2024</time>
+          <h3>Nuovo laboratorio a Milano</h3>
+          <p>Un percorso creativo ispirato alle stagioni...</p>
+        </div>
+      </article>
+    </section>
+
+    <div id="news-1" class="news-detail">
+      <div class="news-content">
+        <h2>Nuovo laboratorio a Milano</h2>
+        <time datetime="2024-05-15">15 Maggio 2024</time>
+        <img src="assets/images/news/laboratorio-detail.jpg" alt="">
+        <p>Testo completo della notizia...</p>
+        <button class="close-btn" onclick="closeNews()">Chiudi</button>
+      </div>
+    </div>
+  </main>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
