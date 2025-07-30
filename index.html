@@ -1,10 +1,54 @@
 <!DOCTYPE html>
-<html>
+<html lang="it">
 <head>
-  <title>Sito in costruzione</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Paola Pappacena | Homepage</title>
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/home.css">
 </head>
 <body>
-  <h1>Benvenuto!</h1>
-  <p>Sito in fase di sviluppo</p>
+  <!-- Hero Slider -->
+  <div class="hero-slider">
+    <img src="assets/images/home/slide1.jpg" alt="Paola al lavoro">
+    <img src="assets/images/home/slide2.jpg" alt="Laboratorio bambini">
+    <img src="assets/images/home/slide3.jpg" alt="Illustrazione naturalistica">
+  </div>
+
+  <!-- Opere in evidenza -->
+  <section class="featured-works">
+    <h2>Opere in evidenza</h2>
+    <div class="grid works-grid">
+      <!-- Esempio card -->
+      <div class="work-card">
+        <img src="assets/images/portfolio/forest.jpg" alt="Foresta in città">
+        <h3>Foresta in città</h3>
+      </div>
+    </div>
+  </section>
+
+  <!-- Link Sezioni Principali -->
+  <section class="quick-links">
+    <a class="card" href="portfolio.html">Portfolio</a>
+    <a class="card" href="books.html">Libri</a>
+    <a class="card" href="workshops.html">Laboratori</a>
+  </section>
+
+  <!-- Ultime News -->
+  <section class="latest-news">
+    <h2>Ultime News</h2>
+    <div class="news-preview-grid">
+      <article>
+        <a href="news.html#news-1">
+          <img src="assets/images/news/laboratorio-maggio.jpg" alt="">
+          <time datetime="2024-05-15">15 Maggio 2024</time>
+          <h3>Nuovo laboratorio a Milano</h3>
+        </a>
+      </article>
+    </div>
+  </section>
+
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/lightbox.js"></script>
 </body>
 </html>
