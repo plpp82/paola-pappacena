@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Laboratori | Paola Pappacena</title>
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/gallery.css">
+</head>
+<body>
+  <header><h1>Laboratori e Didattica</h1></header>
+  <main>
+    <div class="gallery">
+      <!-- Esempio workshop -->
+      <div class="gallery-item" onclick="openDetail('workshop-abc')">
+        <img src="assets/images/workshops/abc.jpg" alt="Workshop ABC">
+        <h3>Workshop ABC</h3>
+        <p>Data: 10 Giugno 2024</p>
+      </div>
+    </div>
+
+    <div id="workshop-abc" class="item-detail">
+      <div class="detail-content">
+        <h2>Workshop ABC</h2>
+        <p>Dettagli del laboratorio...</p>
+        <button class="close-btn" onclick="closeDetail()">Chiudi</button>
+      </div>
+    </div>
+  </main>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
