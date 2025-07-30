@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio | Paola Pappacena</title>
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/gallery.css">
+</head>
+<body>
+  <header><h1>Portfolio Opere</h1></header>
+  <main>
+    <div class="filters">
+      <button onclick="filterWorks('all')">Tutti</button>
+      <button onclick="filterWorks('illustrations')">Illustrazioni</button>
+      <button onclick="filterWorks('books')">Libri</button>
+    </div>
+    <div class="gallery">
+      <!-- Esempio item -->
+      <div class="gallery-item" data-category="illustrations" onclick="openDetail('forest-book')">
+        <img src="assets/images/portfolio/forest.jpg" alt="Foresta in città">
+        <h3>Foresta in città</h3>
+        <p>Libro illustrato, 2018</p>
+      </div>
+    </div>
+
+    <!-- Dettaglio Opera -->
+    <div id="forest-book" class="item-detail">
+      <div class="detail-content">
+        <h2>Foresta in città</h2>
+        <p><strong>Editore:</strong> NoBorders edizioni</p>
+        <p>Un viaggio illustrato tra natura e urbanizzazione...</p>
+        <div class="gallery">
+          <img src="assets/images/books/forest/pagina1.jpg" alt="Pagina 1">
+          <img src="assets/images/books/forest/pagina2.jpg" alt="Pagina 2">
+        </div>
+        <button class="close-btn" onclick="closeDetail()">Chiudi</button>
+      </div>
+    </div>
+  </main>
+  <script src="assets/js/filters.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
