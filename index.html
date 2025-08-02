@@ -1,50 +1,97 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Paola Pappacena - Illustratrice</title>
-  <link rel="stylesheet" href="style.css">
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Open+Sans&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blues Pictures</title>
+    <style>
+        body {
+            background-color: white;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+        }
+        
+        .image-container {
+            max-width: 800px;
+            margin: 0 auto 40px auto;
+        }
+        
+        .image-row {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .blues-image {
+            width: 300px;
+            height: 200px;
+            border: 2px solid #2c3e50;
+            border-radius: 8px;
+            object-fit: cover;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+        }
+        
+        .blues-image:hover {
+            transform: scale(1.05);
+        }
+        
+        .description {
+            max-width: 700px;
+            margin: 0 auto;
+            text-align: justify;
+            line-height: 1.6;
+            font-size: 1.1em;
+            color: #2c3e50;
+            padding: 20px;
+            background-color: #f8f9fa;
+            border-radius: 10px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        @media (max-width: 600px) {
+            .image-row {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .blues-image {
+                width: 280px;
+                height: 180px;
+            }
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <div class="container">
-      <h1 class="logo">Paola Pappacena</h1>
-      <nav>
-        <ul class="nav-links">
-          <li><a href="index.html">Home</a></li>
-          <li><a href="about.html">Chi Sono</a></li>
-          <li><a href="portfolio.html">Opere</a></li>
-          <li><a href="books.html">Libri</a></li>
-          <li><a href="workshops.html">Laboratori</a></li>
-          <li><a href="collaborations.html">Collaborazioni</a></li>
-          <li><a href="contact.html">Contatti</a></li>
-        </ul>
-      </nav>
+    <h1>Blues Pictures</h1>
+    
+    <div class="image-container">
+        <div class="image-row">
+            <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Img1.jpg" alt="Blues Image 1" class="blues-image">
+            <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Img2.jpg" alt="Blues Image 2" class="blues-image">
+        </div>
+        
+        <div class="image-row">
+            <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Img3.jpg" alt="Blues Image 3" class="blues-image">
+            <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Img4.jpg" alt="Blues Image 4" class="blues-image">
+        </div>
     </div>
-  </header>
-
-  <main>
-    <section class="hero">
-      <div class="container">
-        <h2>Illustrazione, Natura e Infanzia</h2>
-        <p>Benvenuti nel mondo creativo di Paola Pappacena, illustratrice per l'infanzia, formatrice e narratrice visiva.</p>
-      </div>
-    </section>
-
-    <section class="intro">
-      <div class="container">
-        <h3>Opere che parlano ai bambini, ispirate dalla natura</h3>
-        <p>Con una lunga esperienza tra libri illustrati, scenografie teatrali e laboratori didattici, Paola crea immagini che raccontano storie, educano e incantano.</p>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="container">
-      <p>&copy; 2025 Paola Pappacena. Tutti i diritti riservati.</p>
+    
+    <div class="description">
+        <h2>Il Blues: L'Anima della Musica Americana</h2>
+        <p>Il blues è un genere musicale nato alla fine del XIX secolo nelle comunità afroamericane del Sud degli Stati Uniti. Caratterizzato da una struttura armonica distintiva basata sulla progressione di dodici battute e dall'uso della scala pentatonica con le "blue notes", il blues esprime sentimenti di malinconia, sofferenza ma anche speranza e resilienza.</p>
+        
+        <p>Questo genere ha profondamente influenzato lo sviluppo di molti altri stili musicali, dal jazz al rock and roll, diventando una delle fondamenta della musica popolare moderna. I grandi maestri come B.B. King, Muddy Waters, Robert Johnson e Bessie Smith hanno lasciato un'eredità musicale inestimabile che continua a ispirare musicisti di tutto il mondo.</p>
     </div>
-  </footer>
 </body>
 </html>
