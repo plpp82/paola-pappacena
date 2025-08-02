@@ -37,7 +37,7 @@
         .navbar-left {
             display: flex;
             align-items: center;
-            gap: 15px;
+            gap: 20px;
         }
         
         .logo {
@@ -82,6 +82,7 @@
             cursor: pointer;
             padding: 5px;
             gap: 4px;
+            flex-shrink: 0;
         }
         
         .hamburger span {
@@ -293,16 +294,34 @@
             .navbar {
                 padding: 10px 15px;
                 height: 60px;
+                display: grid;
+                grid-template-columns: 1fr 2fr 1fr;
+                align-items: center;
+                gap: 10px;
             }
             
             .navbar-left {
+                display: flex;
+                align-items: center;
                 gap: 10px;
-                flex: 1;
+                min-width: 0;
+            }
+            
+            .logo {
+                height: 35px;
+                flex-shrink: 0;
+            }
+            
+            .artist-name {
+                height: 24px;
+                flex-shrink: 1;
+                min-width: 0;
+                max-width: 100%;
             }
             
             .navbar-right {
-                justify-content: flex-end;
-                min-width: 40px;
+                justify-self: end;
+                gap: 0;
             }
             
             .navbar-right .nav-button,
@@ -312,6 +331,7 @@
             
             .hamburger {
                 display: flex;
+                margin-left: auto;
             }
             
             body {
@@ -343,14 +363,22 @@
         }
         
         @media (max-width: 480px) {
-            .navbar-right {
-                flex-direction: column;
-                gap: 10px;
+            .navbar {
+                padding: 10px 12px;
+                grid-template-columns: auto 1fr auto;
+                gap: 8px;
             }
             
-            .social-links {
-                margin-left: 0;
-                margin-top: 5px;
+            .navbar-left {
+                gap: 8px;
+            }
+            
+            .logo {
+                height: 30px;
+            }
+            
+            .artist-name {
+                height: 20px;
             }
             
             .footer-social {
