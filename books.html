@@ -1,157 +1,548 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Books - Paola Pappacena</title>
-  <!-- Tutto il CSS resta invariato -->
-  <style>
-    /* ... Tutto lo stile rimane esattamente come nel file originale ... */
-    /* Copia esattamente lo stesso CSS incluso nel file che mi hai fornito */
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paola Pappacena</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background-color: white;
+            font-family: Arial, sans-serif;
+            padding-top: 60px;
+        }
+        
+        /* Barra di navigazione trasparente */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background-color: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            height: 60px;
+        }
+        
+        .navbar-left {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .logo {
+            height: 45px;
+            width: auto;
+        }
+        
+        .artist-name {
+            height: 32px;
+            width: auto;
+        }
+        
+        .navbar-right {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+        
+        .nav-button {
+            color: #2c3e50;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        
+        .nav-button:hover {
+            background-color: rgba(52, 73, 94, 0.1);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 10px;
+            margin-left: 15px;
+        }
+        
+        /* Menu hamburger - nascosto su desktop */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 5px;
+            gap: 4px;
+            flex-shrink: 0;
+        }
+        
+        .hamburger span {
+            width: 25px;
+            height: 2px;
+            background-color: #2c3e50;
+            transition: all 0.3s ease;
+            border-radius: 1px;
+        }
+        
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(6px, 6px);
+        }
+        
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
+        }
+        
+        /* Menu mobile */
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 60px;
+            left: 0;
+            right: 0;
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            z-index: 999;
+        }
+        
+        .mobile-menu.active {
+            display: block;
+        }
+        
+        .mobile-nav-links {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .mobile-nav-links .nav-button {
+            text-align: center;
+            padding: 12px 20px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        
+        .mobile-social {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        
+        .social-button {
+            width: 32px;
+            height: 32px;
+            border-radius: 2px;
+            background-color: #707070;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 10px;
+            font-weight: 600;
+            font-family: 'Arial', sans-serif;
+            letter-spacing: 0.5px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            border: 1px solid #606060;
+        }
+        
+        .social-button:hover {
+            background-color: #505050;
+            transform: scale(1.03);
+        }
+        
+        /* Sfondo header con Img13 - DISABILITATO */
+        /*
+        .header-background {
+            width: 100%;
+            height: 10cm;
+            background-image: url('https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Img13.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: relative;
+        }
+        
+        .header-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.1));
+        }
+        */
+        
+        /* Griglia delle immagini */
+        .gallery-container {
+            padding: 0;
+            margin: 0;
+        }
+        
+        .image-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 5px;
+            width: 100%;
+        }
+        
+        .column {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        
+        .image-item {
+            cursor: pointer;
+            overflow: hidden;
+        }
+        
+        .gallery-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.3s ease;
+            border-radius: 3px;
+            background-color: #f5f5f5;
+            border: 1px solid #e8e8e8;
+        }
+        
+        .gallery-image:hover {
+            transform: scale(1.02);
+        }
+        
+        /* Modal per l'ingrandimento */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            cursor: pointer;
+        }
+        
+        .modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            max-width: 95%;
+            max-height: 95%;
+            border-radius: 10px;
+        }
+        
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 25px;
+            color: white;
+            font-size: 35px;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 2001;
+        }
+        
+        /* Footer */
+        .footer {
+            background-color: #f8f9fa;
+            padding: 40px 20px;
+            text-align: center;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            margin-top: 40px;
+        }
+        
+        .footer-copyright {
+            color: #2c3e50;
+            font-size: 1.2em;
+            font-weight: 500;
+            margin-bottom: 20px;
+            letter-spacing: 0.5px;
+        }
+        
+        .footer-social {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .footer-social .social-button {
+            width: 40px;
+            height: 40px;
+            font-size: 16px;
+        }
+        
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 10px 15px;
+                height: 60px;
+                display: grid;
+                grid-template-columns: 1fr 2fr 1fr;
+                align-items: center;
+                gap: 10px;
+            }
+            
+            .navbar-left {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                min-width: 0;
+            }
+            
+            .logo {
+                height: 35px;
+                flex-shrink: 0;
+            }
+            
+            .artist-name {
+                height: 24px;
+                flex-shrink: 1;
+                min-width: 0;
+                max-width: 100%;
+            }
+            
+            .navbar-right {
+                justify-self: end;
+                gap: 0;
+            }
+            
+            .navbar-right .nav-button,
+            .navbar-right .social-links {
+                display: none;
+            }
+            
+            .hamburger {
+                display: flex;
+                margin-left: auto;
+            }
+            
+            body {
+                padding-top: 60px;
+            }
+            
+            .image-grid {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+            
+            .column {
+                gap: 10px;
+            }
+            
+            .footer {
+                padding: 30px 15px;
+            }
+            
+            .footer-copyright {
+                font-size: 1.1em;
+            }
+            
+            .footer-social .social-button {
+                width: 35px;
+                height: 35px;
+                font-size: 9px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .navbar {
+                padding: 10px 12px;
+                grid-template-columns: auto 1fr auto;
+                gap: 8px;
+            }
+            
+            .navbar-left {
+                gap: 8px;
+            }
+            
+            .logo {
+                height: 30px;
+            }
+            
+            .artist-name {
+                height: 20px;
+            }
+            
+            .footer-social {
+                gap: 12px;
+            }
+        }
+    </style>
 </head>
 <body>
-  <!-- Barra di navigazione -->
-  <nav class="navbar">
-    <div class="navbar-left">
-      <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Sigla.png" alt="Logo" class="logo">
-      <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Sigla_2.png" alt="Paola Pappacena" class="artist-name">
-    </div>
-    <div class="navbar-right">
-      <a href="https://paolapappacena.com" class="nav-button">Work</a>
-      <a href="Book.html" class="nav-button">Books</a>
-      <a href="#" class="nav-button">WorkShop</a>
-      <a href="#" class="nav-button">About</a>
-      <a href="#" class="nav-button">Shop</a>
-      <a href="#" class="nav-button">Contacts</a>
-      <div class="social-links">
-        <a href="#" class="social-button instagram" title="Instagram">IG</a>
-        <a href="#" class="social-button facebook" title="Facebook">FB</a>
-        <a href="#" class="social-button linkedin" title="LinkedIn">IN</a>
-      </div>
-      <div class="hamburger" onclick="toggleMobileMenu()">
-        <span></span><span></span><span></span>
-      </div>
-    </div>
-  </nav>
+    <!-- Barra di navigazione -->
+    <nav class="navbar">
+        <div class="navbar-left">
+            <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Sigla.png" alt="Logo" class="logo">
+            <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Sigla_2.png" alt="Paola Pappacena" class="artist-name">
+        </div>
+        <div class="navbar-right">
+            <a href="https://paolapappacena.com" class="nav-button">Work</a>
+            <a href="/books.html" class="nav-button">Books</a>
+            <a href="#" class="nav-button">WorkShop</a>
+            <a href="#" class="nav-button">About</a>
+            <a href="#" class="nav-button">Shop</a>
+            <a href="#" class="nav-button">Contacts</a>
+            <div class="social-links">
+                <a href="#" class="social-button instagram" title="Instagram">IG</a>
+                <a href="#" class="social-button facebook" title="Facebook">FB</a>
+                <a href="#" class="social-button linkedin" title="LinkedIn">IN</a>
+            </div>
+            <div class="hamburger" onclick="toggleMobileMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
 
-  <!-- Menu mobile -->
-  <div class="mobile-menu" id="mobileMenu">
-    <div class="mobile-nav-links">
-      <a href="https://paolapappacena.com" class="nav-button">Work</a>
-      <a href="Book.html" class="nav-button">Books</a>
-      <a href="#" class="nav-button">WorkShop</a>
-      <a href="#" class="nav-button">About</a>
-      <a href="#" class="nav-button">Shop</a>
-      <a href="#" class="nav-button">Contacts</a>
+    <!-- Menu mobile -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-nav-links">
+            <a href="https://paolapappacena.com" class="nav-button">Work</a>
+            <a href="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/books.html" class="nav-button">Books</a>
+            <a href="#" class="nav-button">WorkShop</a>
+            <a href="#" class="nav-button">About</a>
+            <a href="#" class="nav-button">Shop</a>
+            <a href="#" class="nav-button">Contacts</a>
+        </div>
+        <div class="mobile-social">
+            <a href="#" class="social-button instagram" title="Instagram">IG</a>
+            <a href="#" class="social-button facebook" title="Facebook">FB</a>
+            <a href="#" class="social-button linkedin" title="LinkedIn">IN</a>
+        </div>
     </div>
-    <div class="mobile-social">
-      <a href="#" class="social-button instagram" title="Instagram">IG</a>
-      <a href="#" class="social-button facebook" title="Facebook">FB</a>
-      <a href="#" class="social-button linkedin" title="LinkedIn">IN</a>
-    </div>
-  </div>
 
-  <!-- Galleria Libri -->
-  <div class="gallery-container">
+    <!-- Sfondo header con Img13 - DISABILITATO -->
+    <!--
+    <div class="header-background">
+        <div class="header-overlay"></div>
+    </div>
+    -->
+
+    <!-- Griglia delle immagini -->
+    <div class="gallery-container">
     <div class="image-grid">
-      <!-- Colonna 1 -->
-      <div class="column">
-        <div class="image-item" onclick="openModal('https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Book_01.jpg')">
-          <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Book_01.jpg" alt="Book 1" class="gallery-image" loading="lazy" decoding="async">
+        <!-- Colonna 1 -->
+        <div class="column">
+            <div class="image-item" onclick="openModal('https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Book_01.jpg')">
+                <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Book_01.jpg" alt="Book 01" class="gallery-image" loading="lazy" decoding="async">
+            </div>
+            <div class="image-item" onclick="openModal('https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Book_04.jpg')">
+                <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Book_04.jpg" alt="Book 04" class="gallery-image" loading="lazy" decoding="async">
+            </div>
+            <div class="image-item" onclick="openModal('https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Book_07.jpg')">
+                <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Book_07.jpg" alt="Book 07" class="gallery-image" loading="lazy" decoding="async">
+            </div>
+            <div class="image-item" onclick="openModal('https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Book_10.jpg')">
+                <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Book_10.jpg" alt="Book 10" class="gallery-image" loading="lazy" decoding="async">
+            </div>
         </div>
-        <div class="image-item" onclick="openModal('https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Book_04.jpg')">
-          <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Book_04.jpg" alt="Book 4" class="gallery-image" loading="lazy" decoding="async">
+        
+        <!-- Colonna 2 -->
+        <div class="column">
+            <div class="image-item" onclick="openModal('https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Book_02.jpg')">
+                <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Book_02.jpg" alt="Book 02" class="gallery-image" loading="lazy" decoding="async">
+            </div>
+            <div class="image-item" onclick="openModal('https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Book_05.jpg')">
+                <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Book_05.jpg" alt="Book 05" class="gallery-image" loading="lazy" decoding="async">
+            </div>
+            <div class="image-item" onclick="openModal('https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Book_08.jpg')">
+                <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Book_08.jpg" alt="Book 08" class="gallery-image" loading="lazy" decoding="async">
+            </div>
+            <div class="image-item" onclick="openModal('https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Book_11.jpg')">
+                <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Book_11.jpg" alt="Book 11" class="gallery-image" loading="lazy" decoding="async">
+            </div>
         </div>
-        <div class="image-item" onclick="openModal('https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Book_07.jpg')">
-          <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Book_07.jpg" alt="Book 7" class="gallery-image" loading="lazy" decoding="async">
+        
+        <!-- Colonna 3 -->
+        <div class="column">
+            <div class="image-item" onclick="openModal('https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Book_03.jpg')">
+                <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Book_03.jpg" alt="Book 03" class="gallery-image" loading="lazy" decoding="async">
+            </div>
+            <div class="image-item" onclick="openModal('https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Book_06.jpg')">
+                <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Book_06.jpg" alt="Book 06" class="gallery-image" loading="lazy" decoding="async">
+            </div>
+            <div class="image-item" onclick="openModal('https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Book_09.jpg')">
+                <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Book_09.jpg" alt="Book 09" class="gallery-image" loading="lazy" decoding="async">
+            </div>
         </div>
-      </div>
-
-      <!-- Colonna 2 -->
-      <div class="column">
-        <div class="image-item" onclick="openModal('https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Book_02.jpg')">
-          <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Book_02.jpg" alt="Book 2" class="gallery-image" loading="lazy" decoding="async">
-        </div>
-        <div class="image-item" onclick="openModal('https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Book_05.jpg')">
-          <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Book_05.jpg" alt="Book 5" class="gallery-image" loading="lazy" decoding="async">
-        </div>
-        <div class="image-item" onclick="openModal('https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Book_08.jpg')">
-          <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Book_08.jpg" alt="Book 8" class="gallery-image" loading="lazy" decoding="async">
-        </div>
-      </div>
-
-      <!-- Colonna 3 -->
-      <div class="column">
-        <div class="image-item" onclick="openModal('https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Book_03.jpg')">
-          <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Book_03.jpg" alt="Book 3" class="gallery-image" loading="lazy" decoding="async">
-        </div>
-        <div class="image-item" onclick="openModal('https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Book_06.jpg')">
-          <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Book_06.jpg" alt="Book 6" class="gallery-image" loading="lazy" decoding="async">
-        </div>
-        <div class="image-item" onclick="openModal('https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Book_09.jpg')">
-          <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Book_09.jpg" alt="Book 9" class="gallery-image" loading="lazy" decoding="async">
-        </div>
-        <div class="image-item" onclick="openModal('https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Book_10.jpg')">
-          <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Book_10.jpg" alt="Book 10" class="gallery-image" loading="lazy" decoding="async">
-        </div>
-        <div class="image-item" onclick="openModal('https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Book_11.jpg')">
-          <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Book_11.jpg" alt="Book 11" class="gallery-image" loading="lazy" decoding="async">
-        </div>
-      </div>
     </div>
-  </div>
-
-  <!-- Modal per visualizzazione ingrandita -->
-  <div id="imageModal" class="modal" onclick="closeModal()">
-    <span class="close" onclick="closeModal()">&times;</span>
-    <img class="modal-content" id="modalImage">
-  </div>
-
-  <!-- Footer -->
-  <footer class="footer">
-    <div class="footer-copyright">@PaolaPappacena2025</div>
-    <div class="footer-social">
-      <a href="#" class="social-button instagram" title="Instagram">IG</a>
-      <a href="#" class="social-button facebook" title="Facebook">FB</a>
-      <a href="#" class="social-button linkedin" title="LinkedIn">IN</a>
+</div>
+    
+    <!-- Modal per visualizzazione ingrandita -->
+    <div id="imageModal" class="modal" onclick="closeModal()">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="modalImage">
     </div>
-  </footer>
 
-  <!-- Script JS -->
-  <script>
-    function openModal(imageSrc) {
-      const modal = document.getElementById('imageModal');
-      const modalImage = document.getElementById('modalImage');
-      modal.style.display = 'block';
-      modalImage.src = imageSrc;
-    }
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-copyright">@PaolaPappacena2025</div>
+        <div class="footer-social">
+            <a href="#" class="social-button instagram" title="Instagram">IG</a>
+            <a href="#" class="social-button facebook" title="Facebook">FB</a>
+            <a href="#" class="social-button linkedin" title="LinkedIn">IN</a>
+        </div>
+    </footer>
 
-    function closeModal() {
-      const modal = document.getElementById('imageModal');
-      modal.style.display = 'none';
-    }
-
-    function toggleMobileMenu() {
-      const mobileMenu = document.getElementById('mobileMenu');
-      const hamburger = document.querySelector('.hamburger');
-      mobileMenu.classList.toggle('active');
-      hamburger.classList.toggle('active');
-    }
-
-    document.addEventListener('keydown', function(event) {
-      if (event.key === 'Escape') closeModal();
-    });
-
-    document.addEventListener('click', function(event) {
-      const mobileMenu = document.getElementById('mobileMenu');
-      const hamburger = document.querySelector('.hamburger');
-      const navbar = document.querySelector('.navbar');
-      if (!navbar.contains(event.target) && !mobileMenu.contains(event.target)) {
-        mobileMenu.classList.remove('active');
-        hamburger.classList.remove('active');
-      }
-    });
-  </script>
+    <script>
+        function openModal(imageSrc) {
+            const modal = document.getElementById('imageModal');
+            const modalImage = document.getElementById('modalImage');
+            modal.style.display = 'block';
+            modalImage.src = imageSrc;
+        }
+        
+        function closeModal() {
+            const modal = document.getElementById('imageModal');
+            modal.style.display = 'none';
+        }
+        
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const hamburger = document.querySelector('.hamburger');
+            
+            mobileMenu.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        }
+        
+        // Chiudi modal con ESC
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeModal();
+            }
+        });
+        
+        // Chiudi menu mobile quando si clicca fuori
+        document.addEventListener('click', function(event) {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const hamburger = document.querySelector('.hamburger');
+            const navbar = document.querySelector('.navbar');
+            
+            if (!navbar.contains(event.target) && !mobileMenu.contains(event.target)) {
+                mobileMenu.classList.remove('active');
+                hamburger.classList.remove('active');
+            }
+        });
+    </script>
 </body>
 </html>
