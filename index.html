@@ -45,12 +45,9 @@
             width: auto;
         }
         
-        .site-status {
-            color: #2c3e50;
-            font-family: 'Georgia', serif;
-            font-size: 1.3em;
-            font-weight: 300;
-            letter-spacing: 1px;
+        .artist-name {
+            height: 35px;
+            width: auto;
         }
         
         .navbar-right {
@@ -79,27 +76,24 @@
         }
         
         .social-button {
-            width: 35px;
-            height: 35px;
-            border-radius: 50%;
-            background-color: #2c3e50;
+            width: 32px;
+            height: 32px;
+            border-radius: 4px;
+            background-color: #888888;
             color: white;
             display: flex;
             align-items: center;
             justify-content: center;
             text-decoration: none;
-            font-size: 16px;
+            font-size: 14px;
+            font-weight: bold;
             transition: background-color 0.3s ease, transform 0.2s ease;
         }
         
         .social-button:hover {
-            background-color: #34495e;
-            transform: scale(1.1);
+            background-color: #666666;
+            transform: scale(1.05);
         }
-        
-        .social-button.instagram:hover { background-color: #E4405F; }
-        .social-button.facebook:hover { background-color: #1877F2; }
-        .social-button.linkedin:hover { background-color: #0A66C2; }
         
         /* Sfondo header con Img13 */
         .header-background {
@@ -192,6 +186,35 @@
             z-index: 2001;
         }
         
+        /* Footer */
+        .footer {
+            background-color: #f8f9fa;
+            padding: 40px 20px;
+            text-align: center;
+            border-top: 1px solid rgba(0, 0, 0, 0.1);
+            margin-top: 40px;
+        }
+        
+        .footer-copyright {
+            color: #2c3e50;
+            font-size: 1.2em;
+            font-weight: 500;
+            margin-bottom: 20px;
+            letter-spacing: 0.5px;
+        }
+        
+        .footer-social {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+        
+        .footer-social .social-button {
+            width: 40px;
+            height: 40px;
+            font-size: 16px;
+        }
+        
         @media (max-width: 768px) {
             .navbar {
                 padding: 10px;
@@ -207,8 +230,8 @@
                 justify-content: center;
             }
             
-            .site-status {
-                font-size: 1.1em;
+            .artist-name {
+                height: 30px;
             }
             
             body {
@@ -225,13 +248,27 @@
             }
             
             .social-button {
-                width: 30px;
-                height: 30px;
-                font-size: 14px;
+                width: 28px;
+                height: 28px;
+                font-size: 12px;
             }
             
             .header-background {
                 height: 8cm;
+            }
+            
+            .footer {
+                padding: 30px 15px;
+            }
+            
+            .footer-copyright {
+                font-size: 1.1em;
+            }
+            
+            .footer-social .social-button {
+                width: 35px;
+                height: 35px;
+                font-size: 14px;
             }
         }
         
@@ -245,6 +282,10 @@
                 margin-left: 0;
                 margin-top: 5px;
             }
+            
+            .footer-social {
+                gap: 12px;
+            }
         }
     </style>
 </head>
@@ -253,19 +294,19 @@
     <nav class="navbar">
         <div class="navbar-left">
             <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Sigla.png" alt="Logo" class="logo">
-            <span class="site-status">Sito in Costruzione</span>
+            <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Sigla_2.png" alt="Paola Pappacena" class="artist-name">
         </div>
         <div class="navbar-right">
-            <a href="#" class="nav-button">Work</a>
+            <a href="https://paolapappacena.com" class="nav-button">Work</a>
             <a href="#" class="nav-button">Books</a>
             <a href="#" class="nav-button">WorkShop</a>
             <a href="#" class="nav-button">About</a>
             <a href="#" class="nav-button">Shop</a>
             <a href="#" class="nav-button">Contacts</a>
             <div class="social-links">
-                <a href="#" class="social-button instagram" title="Instagram">📷</a>
-                <a href="#" class="social-button facebook" title="Facebook">📘</a>
-                <a href="#" class="social-button linkedin" title="LinkedIn">💼</a>
+                <a href="#" class="social-button instagram" title="Instagram">IG</a>
+                <a href="#" class="social-button facebook" title="Facebook">FB</a>
+                <a href="#" class="social-button linkedin" title="LinkedIn">IN</a>
             </div>
         </div>
     </nav>
@@ -342,6 +383,16 @@
         <span class="close" onclick="closeModal()">&times;</span>
         <img class="modal-content" id="modalImage">
     </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-copyright">@PaolaPappacena2025</div>
+        <div class="footer-social">
+            <a href="#" class="social-button instagram" title="Instagram">IG</a>
+            <a href="#" class="social-button facebook" title="Facebook">FB</a>
+            <a href="#" class="social-button linkedin" title="LinkedIn">IN</a>
+        </div>
+    </footer>
 
     <script>
         function openModal(imageSrc) {
