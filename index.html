@@ -37,7 +37,7 @@
         .navbar-left {
             display: flex;
             align-items: center;
-            gap: 20px;
+            gap: 15px;
         }
         
         .logo {
@@ -291,8 +291,18 @@
         
         @media (max-width: 768px) {
             .navbar {
-                padding: 10px 20px;
+                padding: 10px 15px;
                 height: 60px;
+            }
+            
+            .navbar-left {
+                gap: 10px;
+                flex: 1;
+            }
+            
+            .navbar-right {
+                justify-content: flex-end;
+                min-width: 40px;
             }
             
             .navbar-right .nav-button,
