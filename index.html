@@ -14,7 +14,7 @@
         body {
             background-color: white;
             font-family: Arial, sans-serif;
-            padding-top: 80px;
+            padding-top: 60px;
         }
         
         /* Barra di navigazione trasparente */
@@ -101,55 +101,61 @@
         .social-button.facebook:hover { background-color: #1877F2; }
         .social-button.linkedin:hover { background-color: #0A66C2; }
         
-        /* Contenuto principale */
-        .main-content {
-            padding: 20px;
-            text-align: center;
+        /* Sfondo header con Img13 */
+        .header-background {
+            width: 100%;
+            height: 10cm;
+            background-image: url('https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Img13.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: relative;
         }
         
-        h1 {
-            color: #2c3e50;
-            margin-bottom: 30px;
-            font-size: 2.5em;
+        /* Overlay per migliorare la leggibilità se necessario */
+        .header-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.1));
         }
         
+        /* Griglia delle immagini */
         .gallery-container {
-            max-width: 1200px;
-            margin: 0 auto 40px auto;
+            padding: 0;
+            margin: 0;
         }
         
         .image-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 15px;
-            padding: 20px;
+            gap: 5px;
+            width: 100%;
+        }
+        
+        .column {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
         }
         
         .image-item {
-            position: relative;
             cursor: pointer;
-            margin-bottom: 15px;
+            overflow: hidden;
         }
         
         .gallery-image {
             width: 100%;
             height: auto;
-            border: 2px solid #2c3e50;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            display: block;
             transition: transform 0.3s ease;
+            border-radius: 3px;
         }
         
         .gallery-image:hover {
             transform: scale(1.02);
-        }
-        
-        .gallery-video {
-            width: 100%;
-            height: auto;
-            border: 2px solid #2c3e50;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
         }
         
         /* Modal per l'ingrandimento */
@@ -170,8 +176,8 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            max-width: 90%;
-            max-height: 90%;
+            max-width: 95%;
+            max-height: 95%;
             border-radius: 10px;
         }
         
@@ -184,19 +190,6 @@
             font-weight: bold;
             cursor: pointer;
             z-index: 2001;
-        }
-        
-        .description {
-            max-width: 700px;
-            margin: 0 auto;
-            text-align: justify;
-            line-height: 1.6;
-            font-size: 1.1em;
-            color: #2c3e50;
-            padding: 20px;
-            background-color: #f8f9fa;
-            border-radius: 10px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
         
         @media (max-width: 768px) {
@@ -224,14 +217,21 @@
             
             .image-grid {
                 grid-template-columns: 1fr;
-                gap: 15px;
-                padding: 10px;
+                gap: 10px;
+            }
+            
+            .column {
+                gap: 10px;
             }
             
             .social-button {
                 width: 30px;
                 height: 30px;
                 font-size: 14px;
+            }
+            
+            .header-background {
+                height: 8cm;
             }
         }
         
@@ -270,92 +270,77 @@
         </div>
     </nav>
 
-    <!-- Contenuto principale -->
-    <div class="main-content">
-        <h1>Test Gallery</h1>
-        
-        <div class="gallery-container">
-            <div class="image-grid">
-                <!-- Colonna 1 -->
-                <div class="column">
-                    <div class="image-item" onclick="openModal('https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Img1.jpg')">
-                        <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Img1.jpg" alt="Test Image 1" class="gallery-image">
-                    </div>
-                    <div class="image-item" onclick="openModal('https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Img4.jpg')">
-                        <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Img4.jpg" alt="Test Image 4" class="gallery-image">
-                    </div>
-                    <div class="image-item" onclick="openModal('https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Img7.jpg')">
-                        <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Img7.jpg" alt="Test Image 7" class="gallery-image">
-                    </div>
-                    <div class="image-item" onclick="openModal('https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Img10.jpg')">
-                        <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Img10.jpg" alt="Test Image 10" class="gallery-image">
-                    </div>
-                    <div class="image-item" onclick="openModal('https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Img13.jpg')">
-                        <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Img13.jpg" alt="Test Image 13" class="gallery-image">
-                    </div>
-                    <div class="image-item" onclick="openModal('https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Img16.jpg')">
-                        <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Img16.jpg" alt="Test Image 16" class="gallery-image">
-                    </div>
+    <!-- Sfondo header con Img13 -->
+    <div class="header-background">
+        <div class="header-overlay"></div>
+    </div>
+
+    <!-- Griglia delle immagini -->
+    <div class="gallery-container">
+        <div class="image-grid">
+            <!-- Colonna 1 -->
+            <div class="column">
+                <div class="image-item" onclick="openModal('https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Img1.jpg')">
+                    <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Img1.jpg" alt="Gallery Image 1" class="gallery-image">
                 </div>
-                
-                <!-- Colonna 2 -->
-                <div class="column">
-                    <div class="image-item" onclick="openModal('https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Img2.jpg')">
-                        <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Img2.jpg" alt="Test Image 2" class="gallery-image">
-                    </div>
-                    <div class="image-item" onclick="openModal('https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Img5.jpg')">
-                        <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Img5.jpg" alt="Test Image 5" class="gallery-image">
-                    </div>
-                    <div class="image-item" onclick="openModal('https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Img8.jpg')">
-                        <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Img8.jpg" alt="Test Image 8" class="gallery-image">
-                    </div>
-                    <div class="image-item" onclick="openModal('https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Img11.jpg')">
-                        <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Img11.jpg" alt="Test Image 11" class="gallery-image">
-                    </div>
-                    <div class="image-item" onclick="openModal('https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Img14.jpg')">
-                        <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Img14.jpg" alt="Test Image 14" class="gallery-image">
-                    </div>
-                    <div class="image-item">
-                        <video controls class="gallery-video">
-                            <source src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Vid1.mp4" type="video/mp4">
-                            Il tuo browser non supporta il tag video.
-                        </video>
-                    </div>
+                <div class="image-item" onclick="openModal('https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Img4.jpg')">
+                    <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Img4.jpg" alt="Gallery Image 4" class="gallery-image">
                 </div>
-                
-                <!-- Colonna 3 -->
-                <div class="column">
-                    <div class="image-item" onclick="openModal('https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Img3.jpg')">
-                        <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Img3.jpg" alt="Test Image 3" class="gallery-image">
-                    </div>
-                    <div class="image-item" onclick="openModal('https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Img6.jpg')">
-                        <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Img6.jpg" alt="Test Image 6" class="gallery-image">
-                    </div>
-                    <div class="image-item" onclick="openModal('https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Img9.jpg')">
-                        <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Img9.jpg" alt="Test Image 9" class="gallery-image">
-                    </div>
-                    <div class="image-item" onclick="openModal('https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Img12.jpg')">
-                        <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Img12.jpg" alt="Test Image 12" class="gallery-image">
-                    </div>
-                    <div class="image-item" onclick="openModal('https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Img15.jpg')">
-                        <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Img15.jpg" alt="Test Image 15" class="gallery-image">
-                    </div>
+                <div class="image-item" onclick="openModal('https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Img7.jpg')">
+                    <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Img7.jpg" alt="Gallery Image 7" class="gallery-image">
+                </div>
+                <div class="image-item" onclick="openModal('https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Img10.jpg')">
+                    <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Img10.jpg" alt="Gallery Image 10" class="gallery-image">
+                </div>
+                <div class="image-item" onclick="openModal('https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Img16.jpg')">
+                    <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Img16.jpg" alt="Gallery Image 16" class="gallery-image">
+                </div>
+            </div>
+            
+            <!-- Colonna 2 -->
+            <div class="column">
+                <div class="image-item" onclick="openModal('https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Img2.jpg')">
+                    <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Img2.jpg" alt="Gallery Image 2" class="gallery-image">
+                </div>
+                <div class="image-item" onclick="openModal('https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Img5.jpg')">
+                    <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Img5.jpg" alt="Gallery Image 5" class="gallery-image">
+                </div>
+                <div class="image-item" onclick="openModal('https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Img8.jpg')">
+                    <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Img8.jpg" alt="Gallery Image 8" class="gallery-image">
+                </div>
+                <div class="image-item" onclick="openModal('https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Img11.jpg')">
+                    <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Img11.jpg" alt="Gallery Image 11" class="gallery-image">
+                </div>
+                <div class="image-item" onclick="openModal('https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Img14.jpg')">
+                    <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Img14.jpg" alt="Gallery Image 14" class="gallery-image">
+                </div>
+            </div>
+            
+            <!-- Colonna 3 -->
+            <div class="column">
+                <div class="image-item" onclick="openModal('https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Img3.jpg')">
+                    <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Img3.jpg" alt="Gallery Image 3" class="gallery-image">
+                </div>
+                <div class="image-item" onclick="openModal('https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Img6.jpg')">
+                    <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Img6.jpg" alt="Gallery Image 6" class="gallery-image">
+                </div>
+                <div class="image-item" onclick="openModal('https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Img9.jpg')">
+                    <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Img9.jpg" alt="Gallery Image 9" class="gallery-image">
+                </div>
+                <div class="image-item" onclick="openModal('https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Img12.jpg')">
+                    <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Img12.jpg" alt="Gallery Image 12" class="gallery-image">
+                </div>
+                <div class="image-item" onclick="openModal('https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Img15.jpg')">
+                    <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Img15.jpg" alt="Gallery Image 15" class="gallery-image">
                 </div>
             </div>
         </div>
-        
-        <!-- Modal per visualizzazione ingrandita -->
-        <div id="imageModal" class="modal" onclick="closeModal()">
-            <span class="close" onclick="closeModal()">&times;</span>
-            <img class="modal-content" id="modalImage">
-        </div>
-        
-        <div class="description">
-            <h2>Galleria di Test</h2>
-            <p>Questa è una galleria di test per verificare il funzionamento del layout e della visualizzazione delle immagini. Le immagini sono disposte in tre colonne mantenendo le proporzioni originali, adattandosi automaticamente in base alle dimensioni naturali di ciascuna immagine.</p>
-            
-            <p>Clicca su qualsiasi immagine per visualizzarla ingrandita in una finestra modale. La navigazione è completamente responsive e include anche contenuti video. Il layout si adatta perfettamente a schermi di diverse dimensioni, dai desktop ai dispositivi mobili.</p>
-        </div>
+    </div>
+    
+    <!-- Modal per visualizzazione ingrandita -->
+    <div id="imageModal" class="modal" onclick="closeModal()">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <img class="modal-content" id="modalImage">
     </div>
 
     <script>
