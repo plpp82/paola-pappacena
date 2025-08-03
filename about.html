@@ -58,16 +58,56 @@
         .mobile-social { display: flex; justify-content: center; gap: 15px; padding-top: 15px; border-top: 1px solid rgba(0,0,0,0.05); }
         
         /* Sezione About */
-        .about-container { max-width: 900px; margin: 0 auto; padding: 40px 20px; }
-        .about-header { text-align: center; margin-bottom: 30px; }
-        .about-header h1 { font-size: 2.5em; color: #2c3e50; }
-        .about-header p { font-size: 1.2em; color: #555; margin-top: 10px; }
-        .about-content img { display: block; max-width: 300px; width: 100%; border-radius: 5px; margin: 20px auto; }
-        .about-content h2 { font-size: 1.8em; margin-top: 30px; color: #2c3e50; }
-        .about-content p { margin-top: 15px; }
+        .about-container { 
+            max-width: 1100px; 
+            margin: 0 auto; 
+            padding: 40px 20px; 
+        }
+        
+        .about-header { 
+            text-align: center; 
+            margin-bottom: 50px; 
+        }
+        
+        .about-header h1 { 
+            font-size: 2.5em; 
+            color: #2c3e50; 
+        }
+        
+        .about-main {
+            display: flex;
+            gap: 50px;
+            align-items: flex-start;
+        }
+        
+        .about-image {
+            flex: 0 0 350px;
+        }
+        
+        .about-image img {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        .about-text p {
+            margin-bottom: 20px;
+            font-size: 1.1em;
+            text-align: justify;
+        }
+        
+        .about-text p:first-child {
+            font-size: 1.2em;
+            font-weight: 500;
+            color: #2c3e50;
+        }
         
         /* Footer */
-        .footer { background-color: #f8f9fa; padding: 40px 20px; text-align: center; border-top: 1px solid rgba(0,0,0,0.1); margin-top: 40px; }
+        .footer { background-color: #f8f9fa; padding: 40px 20px; text-align: center; border-top: 1px solid rgba(0,0,0,0.1); margin-top: 60px; }
         .footer-social { display: flex; justify-content: center; gap: 15px; margin-top: 15px; }
         .footer-social .social-button { width: 40px; height: 40px; font-size: 16px; }
         
@@ -78,9 +118,32 @@
             .navbar-right .nav-button, .navbar-right .social-links { display: none; }
             .hamburger { display: flex; }
             .about-header h1 { font-size: 2em; }
+            
+            .about-main {
+                flex-direction: column;
+                gap: 30px;
+                align-items: center;
+            }
+            
+            .about-image {
+                flex: none;
+                max-width: 300px;
+            }
+            
+            .about-text p {
+                text-align: left;
+                font-size: 1em;
+            }
         }
+        
         @media (max-width: 480px) {
             .about-header h1 { font-size: 1.8em; }
+            .about-container { padding: 30px 15px; }
+            .about-header { margin-bottom: 30px; }
+            
+            .about-image {
+                max-width: 250px;
+            }
         }
     </style>
 </head>
@@ -131,14 +194,20 @@
         <div class="about-header">
             <h1>Paola Pappacena</h1>
         </div>
-        <div class="about-content">
-            <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Portrait.jpg" alt="Paola Pappacena">
-            <p>Mi chiamo Paola Pappacena e sono illustratrice e narratrice, appassionata di natura e didattica.</p>
-            <p>Mi sono diplomata in illustrazione per l’infanzia presso la Scuola del Fumetto di Milano, e nel tempo ho collaborato come illustratrice con case editrici come Gribaudo, La Maison est en carton, NoBorders, Terre di Mezzo e Fulmino.</p>
-            <p>Il mio lavoro si intreccia da anni con quello di artisti, musicisti, pedagogisti e teatranti, accomunati dall’interesse per la didattica rivolta alla primissima infanzia. Insieme abbiamo ideato laboratori e materiali illustrati dedicati a bambini, genitori ed educatori.</p>
-            <p>Conduco laboratori di illustrazione per adulti e bambini e organizzo camminate in natura, dove si sperimentano pratiche artistiche all’aria aperta.</p>
-            <p>Collaboro con scuole e biblioteche per ideare percorsi educativi e progetti di formazione, accompagnando insegnanti ed educatori nella scoperta di nuove pratiche creative.</p>
-            <p>Amo la montagna, il disegno <em>en plein air</em> e le storie da raccontare.</p>
+        
+        <div class="about-main">
+            <div class="about-image">
+                <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Portrait.jpg" alt="Paola Pappacena">
+            </div>
+            
+            <div class="about-text">
+                <p>Mi chiamo Paola Pappacena e sono illustratrice e narratrice, appassionata di natura e didattica.</p>
+                <p>Mi sono diplomata in illustrazione per l'infanzia presso la Scuola del Fumetto di Milano, e nel tempo ho collaborato come illustratrice con case editrici come Gribaudo, La Maison est en carton, NoBorders, Terre di Mezzo e Fulmino.</p>
+                <p>Il mio lavoro si intreccia da anni con quello di artisti, musicisti, pedagogisti e teatranti, accomunati dall'interesse per la didattica rivolta alla primissima infanzia. Insieme abbiamo ideato laboratori e materiali illustrati dedicati a bambini, genitori ed educatori.</p>
+                <p>Conduco laboratori di illustrazione per adulti e bambini e organizzo camminate in natura, dove si sperimentano pratiche artistiche all'aria aperta.</p>
+                <p>Collaboro con scuole e biblioteche per ideare percorsi educativi e progetti di formazione, accompagnando insegnanti ed educatori nella scoperta di nuove pratiche creative.</p>
+                <p>Amo la montagna, il disegno <em>en plein air</em> e le storie da raccontare.</p>
+            </div>
         </div>
     </div>
 
