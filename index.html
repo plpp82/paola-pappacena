@@ -5,469 +5,295 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Paola Pappacena</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
         body {
             background-color: white;
             font-family: Arial, sans-serif;
             padding-top: 60px;
         }
-        
+
+        /* ── Navbar ── */
         .navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            background-color: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-            padding: 10px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 1000;
-            height: 60px;
+            position: fixed; top: 0; left: 0; right: 0;
+            background-color: rgba(255,255,255,0.93);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(0,0,0,0.08);
+            padding: 0 24px;
+            display: flex; justify-content: space-between; align-items: center;
+            z-index: 1000; height: 60px;
         }
-        
-        .navbar-left {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-        
-        .logo {
-            height: 45px;
-            width: auto;
-        }
-        
-        .artist-name {
-            height: 32px;
-            width: auto;
-        }
-        
-        .navbar-right {
-            display: flex;
-            align-items: center;
-            gap: 25px;
-        }
-        
+        .navbar-left { display: flex; align-items: center; gap: 16px; }
+        .logo { height: 42px; width: auto; cursor: pointer; }
+        .artist-name { height: 28px; width: auto; cursor: pointer; }
+        .navbar-right { display: flex; align-items: center; gap: 4px; }
         .nav-button {
-            color: #2c3e50;
-            text-decoration: none;
-            font-weight: 500;
-            padding: 8px 15px;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
+            color: #2c3e50; text-decoration: none; font-weight: 500; font-size: 0.88em;
+            padding: 7px 11px; border-radius: 5px; letter-spacing: 0.3px;
+            transition: background-color 0.25s;
         }
-        
-        .nav-button:hover {
-            background-color: rgba(52, 73, 94, 0.1);
-        }
-        
-        .social-links {
-            display: flex;
-            gap: 10px;
-            margin-left: 15px;
-        }
-        
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-            padding: 5px;
-            gap: 4px;
+        .nav-button:hover, .nav-button.active { background-color: rgba(44,62,80,0.09); }
+        .social-links { display: flex; gap: 8px; margin-left: 14px; }
+
+        /* Social icon buttons using images */
+        .social-button {
+            width: 30px; height: 30px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            text-decoration: none; overflow: hidden;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
             flex-shrink: 0;
         }
-        
-        .hamburger span {
-            width: 25px;
-            height: 2px;
-            background-color: #2c3e50;
-            transition: all 0.3s ease;
-            border-radius: 1px;
-        }
-        
-        .hamburger.active span:nth-child(1) {
-            transform: rotate(45deg) translate(6px, 6px);
-        }
-        
-        .hamburger.active span:nth-child(2) {
-            opacity: 0;
-        }
-        
-        .hamburger.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(6px, -6px);
-        }
-        
+        .social-button:hover { transform: scale(1.1); box-shadow: 0 3px 10px rgba(0,0,0,0.22); }
+        .social-button img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+
+        /* Hamburger */
+        .hamburger { display: none; flex-direction: column; cursor: pointer; padding: 5px; gap: 5px; flex-shrink: 0; margin-left: 8px; }
+        .hamburger span { width: 24px; height: 2px; background-color: #2c3e50; border-radius: 1px; transition: all 0.3s; }
+        .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(7px,7px); }
+        .hamburger.active span:nth-child(2) { opacity: 0; }
+        .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(7px,-7px); }
+
+        /* Mobile menu */
         .mobile-menu {
-            display: none;
-            position: fixed;
-            top: 60px;
-            left: 0;
-            right: 0;
-            background-color: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            z-index: 999;
+            display: none; position: fixed; top: 60px; left: 0; right: 0;
+            background: rgba(255,255,255,0.97); backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(0,0,0,0.08); padding: 20px; z-index: 999;
         }
-        
-        .mobile-menu.active {
-            display: block;
-        }
-        
-        .mobile-nav-links {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            margin-bottom: 20px;
-        }
-        
-        .mobile-nav-links .nav-button {
-            text-align: center;
-            padding: 12px 20px;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-        }
-        
-        .mobile-social {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            padding-top: 15px;
-            border-top: 1px solid rgba(0, 0, 0, 0.05);
-        }
-        
-        /* Social buttons - refined style */
-        .social-button {
-            width: 34px;
-            height: 34px;
-            border-radius: 50%;
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-            font-size: 11px;
-            font-weight: 700;
-            font-family: 'Georgia', serif;
-            letter-spacing: 0.3px;
-            transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
-            border: none;
-        }
-        
-        .social-button:hover {
-            transform: scale(1.08);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.25);
-            opacity: 0.92;
-        }
+        .mobile-menu.active { display: block; }
+        .mobile-nav-links { display: flex; flex-direction: column; gap: 4px; margin-bottom: 20px; }
+        .mobile-nav-links .nav-button { text-align: center; padding: 11px 20px; border-bottom: 1px solid rgba(0,0,0,0.04); font-size: 0.95em; }
+        .mobile-social { display: flex; justify-content: center; gap: 16px; padding-top: 16px; border-top: 1px solid rgba(0,0,0,0.05); }
 
-        .social-button.instagram {
-            background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%);
+        /* ── Sticky Footer Bar ── */
+        .sticky-footer-bar {
+            position: fixed; bottom: 0; left: 0; right: 0;
+            background: rgba(255,255,255,0.93); backdrop-filter: blur(12px);
+            border-top: 1px solid rgba(0,0,0,0.08);
+            height: 40px; display: flex; align-items: center; justify-content: center;
+            gap: 12px; z-index: 900;
         }
+        .sticky-copyright {
+            font-size: 0.78em; color: #555; font-style: italic; letter-spacing: 0.3px;
+        }
+        .sticky-footer-bar .social-button { width: 24px; height: 24px; }
 
-        .social-button.facebook {
-            background: #1877F2;
-        }
-        
-        /* Gallery */
-        .gallery-container {
-            padding: 0;
-            margin: 0;
-        }
-        
+        body { padding-bottom: 40px; }
+
+        /* ── Gallery ── */
+        .gallery-container { padding: 0; margin: 0; }
         .image-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 5px;
-            width: 100%;
+            display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px;
         }
-        
-        .column {
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
-        }
-        
+        .column { display: flex; flex-direction: column; gap: 5px; }
         .image-item {
-            cursor: pointer;
-            overflow: hidden;
-            position: relative;
-            border-radius: 3px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(0, 0, 0, 0.08);
-            transition: box-shadow 0.3s ease;
+            cursor: pointer; overflow: hidden; position: relative; border-radius: 3px;
+            box-shadow: 0 3px 12px rgba(0,0,0,0.11), 0 1px 3px rgba(0,0,0,0.07);
+            transition: box-shadow 0.3s; user-select: none;
+        }
+        .image-item:hover { box-shadow: 0 7px 24px rgba(0,0,0,0.18), 0 2px 6px rgba(0,0,0,0.1); }
+        .gallery-image {
+            width: 100%; height: auto; display: block;
+            transition: transform 0.3s; border-radius: 3px;
+            background-color: #f0f0f0;
+            -webkit-user-drag: none; pointer-events: none;
+        }
+        .image-item:hover .gallery-image { transform: scale(1.02); }
+
+        /* Protection overlay */
+        .image-item::after {
+            content: ''; position: absolute; inset: 0;
+            z-index: 2; cursor: pointer;
+        }
+        /* Watermark overlay */
+        .image-item::before {
+            content: '© Paola Pappacena';
+            position: absolute; bottom: 8px; right: 10px;
+            font-size: 0.6em; color: rgba(255,255,255,0.55);
+            font-style: italic; z-index: 3; pointer-events: none;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.5); letter-spacing: 0.5px;
         }
 
-        .image-item:hover {
-            box-shadow: 0 8px 28px rgba(0, 0, 0, 0.2), 0 2px 8px rgba(0, 0, 0, 0.12);
-        }
-        
-        .gallery-image {
-            width: 100%;
-            height: auto;
-            display: block;
-            transition: transform 0.3s ease;
-            border-radius: 3px;
-            background-color: #f5f5f5;
-        }
-        
-        .gallery-image:hover {
-            transform: scale(1.02);
-        }
-        
-        /* Modal */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 2000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.9);
-            cursor: pointer;
-        }
-        
-        .modal-content {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            max-width: 95%;
-            max-height: 95%;
-            border-radius: 10px;
-        }
-        
-        .close {
-            position: absolute;
-            top: 15px;
-            right: 25px;
-            color: white;
-            font-size: 35px;
-            font-weight: bold;
-            cursor: pointer;
-            z-index: 2001;
-        }
-        
-        /* Footer */
+        /* ── Footer (page bottom, hidden behind sticky bar) ── */
         .footer {
-            background-color: #f8f9fa;
-            padding: 40px 20px;
-            text-align: center;
-            border-top: 1px solid rgba(0, 0, 0, 0.1);
-            margin-top: 40px;
+            background-color: #f8f9fa; padding: 30px 20px 50px;
+            text-align: center; border-top: 1px solid rgba(0,0,0,0.08);
+            margin-top: 30px;
         }
-        
-        .footer-copyright {
-            color: #2c3e50;
-            font-size: 1.2em;
-            font-weight: 500;
-            margin-bottom: 20px;
-            letter-spacing: 0.5px;
+        .footer-copyright { color: #555; font-size: 0.9em; font-style: italic; }
+
+        /* ── Responsive ── */
+        @media (max-width: 900px) {
+            .navbar-right .nav-button { font-size: 0.8em; padding: 6px 8px; }
         }
-        
-        .footer-social {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-        }
-        
-        .footer-social .social-button {
-            width: 42px;
-            height: 42px;
-            font-size: 12px;
-        }
-        
         @media (max-width: 768px) {
-            .navbar {
-                padding: 10px 15px;
-                height: 60px;
-                display: grid;
-                grid-template-columns: 1fr 2fr 1fr;
-                align-items: center;
-                gap: 10px;
-            }
-            
-            .navbar-left {
-                display: flex;
-                align-items: center;
-                gap: 10px;
-                min-width: 0;
-            }
-            
-            .logo { height: 35px; flex-shrink: 0; }
-            .artist-name { height: 24px; flex-shrink: 1; min-width: 0; max-width: 100%; }
-            
-            .navbar-right { justify-self: end; gap: 0; }
-            
-            .navbar-right .nav-button,
-            .navbar-right .social-links { display: none; }
-            
-            .hamburger { display: flex; margin-left: auto; }
-            
-            body { padding-top: 60px; }
-            
-            .image-grid { grid-template-columns: 1fr; gap: 10px; }
-            .column { gap: 10px; }
-            
-            .footer { padding: 30px 15px; }
-            .footer-copyright { font-size: 1.1em; }
-            .footer-social .social-button { width: 38px; height: 38px; }
+            .navbar { padding: 0 15px; display: grid; grid-template-columns: auto 1fr auto; gap: 10px; }
+            .navbar-left { gap: 10px; }
+            .logo { height: 35px; } .artist-name { height: 22px; }
+            .navbar-right .nav-button, .navbar-right .social-links { display: none; }
+            .hamburger { display: flex; }
+            .image-grid { grid-template-columns: 1fr; gap: 8px; }
+            .column { gap: 8px; }
         }
-        
         @media (max-width: 480px) {
-            .navbar {
-                padding: 10px 12px;
-                grid-template-columns: auto 1fr auto;
-                gap: 8px;
-            }
-            .navbar-left { gap: 8px; }
-            .logo { height: 30px; }
-            .artist-name { height: 20px; }
-            .footer-social { gap: 12px; }
+            .logo { height: 30px; } .artist-name { height: 18px; }
         }
     </style>
 </head>
 <body>
-    <!-- Navbar -->
-    <nav class="navbar">
-        <div class="navbar-left">
-            <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Sigla.png" alt="Logo" class="logo">
-            <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Sigla_2.png" alt="Paola Pappacena" class="artist-name">
-        </div>
-        <div class="navbar-right">
-            <a href="https://paolapappacena.com" class="nav-button">Portfolio</a>
-            <a href="#" class="nav-button">Shop</a>
-            <a href="#" class="nav-button">Workshop</a>
-            <a href="/about.html" class="nav-button">About</a>
-            <a href="/contacts.html" class="nav-button">Contacts</a>
-            <div class="social-links">
-                <a href="https://www.instagram.com/torteincielo/" class="social-button instagram" title="Instagram" target="_blank" rel="noopener">IG</a>
-                <a href="https://www.facebook.com/torte.incielo" class="social-button facebook" title="Facebook" target="_blank" rel="noopener">FB</a>
-            </div>
-            <div class="hamburger" onclick="toggleMobileMenu()">
-                <span></span><span></span><span></span>
-            </div>
-        </div>
-    </nav>
 
-    <!-- Menu mobile -->
-    <div class="mobile-menu" id="mobileMenu">
-        <div class="mobile-nav-links">
-            <a href="https://paolapappacena.com" class="nav-button">Portfolio</a>
-            <a href="#" class="nav-button">Shop</a>
-            <a href="#" class="nav-button">Workshop</a>
-            <a href="/about.html" class="nav-button">About</a>
-            <a href="/contacts.html" class="nav-button">Contacts</a>
+<nav class="navbar">
+    <div class="navbar-left">
+        <a href="/"><img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Sigla.png" alt="Logo" class="logo"></a>
+        <a href="/"><img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Sigla_2.png" alt="Paola Pappacena" class="artist-name"></a>
+    </div>
+    <div class="navbar-right">
+        <a href="index.html" class="nav-button active">Portfolio</a>
+        <a href="shop.html" class="nav-button">Shop</a>
+        <a href="workshop.html" class="nav-button">Workshop</a>
+        <a href="about.html" class="nav-button">About</a>
+        <a href="contacts.html" class="nav-button">Contacts</a>
+        <div class="social-links">
+            <a href="https://www.instagram.com/paola.pappacena/" class="social-button" title="Instagram" target="_blank" rel="noopener">
+                <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/IG_symbol.jpg" alt="Instagram">
+            </a>
+            <a href="https://www.facebook.com/torte.incielo" class="social-button" title="Facebook" target="_blank" rel="noopener">
+                <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/FB_symbol.jpg" alt="Facebook">
+            </a>
         </div>
-        <div class="mobile-social">
-            <a href="https://www.instagram.com/paola.pappacena/" class="social-button instagram" title="Instagram" target="_blank" rel="noopener">IG</a>
-            <a href="https://www.facebook.com/torte.incielo" class="social-button facebook" title="Facebook" target="_blank" rel="noopener">FB</a>
+        <div class="hamburger" id="hamburger" onclick="toggleMobileMenu()">
+            <span></span><span></span><span></span>
         </div>
     </div>
+</nav>
 
-    <!-- Gallery Grid -->
-    <div class="gallery-container">
-        <div class="image-grid">
-            <!-- Colonna 1 -->
-            <div class="column">
-                <div class="image-item" onclick="goToPortfolio(1)">
-                    <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Portfolio_1copertina.jpg" alt="Portfolio 1" class="gallery-image" loading="lazy" decoding="async">
-                </div>
-                <div class="image-item" onclick="goToPortfolio(4)">
-                    <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Portfolio_4copertina.jpg" alt="Portfolio 4" class="gallery-image" loading="lazy" decoding="async">
-                </div>
-                <div class="image-item" onclick="goToPortfolio(7)">
-                    <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Portfolio_7copertina.jpg" alt="Portfolio 7" class="gallery-image" loading="lazy" decoding="async">
-                </div>
-                <div class="image-item" onclick="goToPortfolio(10)">
-                    <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Portfolio_10copertina.jpg" alt="Portfolio 10" class="gallery-image" loading="lazy" decoding="async">
-                </div>
-                <div class="image-item" onclick="goToPortfolio(13)">
-                    <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Portfolio_13copertina.jpg" alt="Portfolio 13" class="gallery-image" loading="lazy" decoding="async">
-                </div>
+<div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-nav-links">
+        <a href="index.html" class="nav-button active">Portfolio</a>
+        <a href="shop.html" class="nav-button">Shop</a>
+        <a href="workshop.html" class="nav-button">Workshop</a>
+        <a href="about.html" class="nav-button">About</a>
+        <a href="contacts.html" class="nav-button">Contacts</a>
+    </div>
+    <div class="mobile-social">
+        <a href="https://www.instagram.com/paola.pappacena/" class="social-button" title="Instagram" target="_blank" rel="noopener">
+            <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/IG_symbol.jpg" alt="Instagram">
+        </a>
+        <a href="https://www.facebook.com/torte.incielo" class="social-button" title="Facebook" target="_blank" rel="noopener">
+            <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/FB_symbol.jpg" alt="Facebook">
+        </a>
+    </div>
+</div>
+
+<!-- Gallery -->
+<div class="gallery-container">
+    <div class="image-grid">
+        <!-- Colonna 1 -->
+        <div class="column">
+            <div class="image-item" onclick="goToPortfolio(1)">
+                <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Portfolio_1copertina.jpg" alt="Portfolio 1" class="gallery-image" loading="lazy" decoding="async">
             </div>
-            
-            <!-- Colonna 2 -->
-            <div class="column">
-                <div class="image-item" onclick="goToPortfolio(2)">
-                    <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Portfolio_2copertina.jpg" alt="Portfolio 2" class="gallery-image" loading="lazy" decoding="async">
-                </div>
-                <div class="image-item" onclick="goToPortfolio(5)">
-                    <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Portfolio_5copertina.jpg" alt="Portfolio 5" class="gallery-image" loading="lazy" decoding="async">
-                </div>
-                <div class="image-item" onclick="goToPortfolio(8)">
-                    <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Portfolio_8copertina.jpg" alt="Portfolio 8" class="gallery-image" loading="lazy" decoding="async">
-                </div>
-                <div class="image-item" onclick="goToPortfolio(11)">
-                    <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Portfolio_11copertina.jpg" alt="Portfolio 11" class="gallery-image" loading="lazy" decoding="async">
-                </div>
-                <div class="image-item" onclick="goToPortfolio(14)">
-                    <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Portfolio_14copertina.jpg" alt="Portfolio 14" class="gallery-image" loading="lazy" decoding="async">
-                </div>
+            <div class="image-item" onclick="goToPortfolio(4)">
+                <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Portfolio_4copertina.jpg" alt="Portfolio 4" class="gallery-image" loading="lazy" decoding="async">
             </div>
-            
-            <!-- Colonna 3 -->
-            <div class="column">
-                <div class="image-item" onclick="goToPortfolio(3)">
-                    <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Portfolio_3copertina.jpg" alt="Portfolio 3" class="gallery-image" loading="lazy" decoding="async">
-                </div>
-                <div class="image-item" onclick="goToPortfolio(6)">
-                    <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Portfolio_6copertina.jpg" alt="Portfolio 6" class="gallery-image" loading="lazy" decoding="async">
-                </div>
-                <div class="image-item" onclick="goToPortfolio(9)">
-                    <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Portfolio_9copertina.jpg" alt="Portfolio 9" class="gallery-image" loading="lazy" decoding="async">
-                </div>
-                <div class="image-item" onclick="goToPortfolio(12)">
-                    <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Portfolio_12copertina.jpg" alt="Portfolio 12" class="gallery-image" loading="lazy" decoding="async">
-                </div>
-                <div class="image-item" onclick="goToPortfolio(15)">
-                    <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Portfolio_15copertina.jpg" alt="Portfolio 15" class="gallery-image" loading="lazy" decoding="async">
-                </div>
+            <div class="image-item" onclick="goToPortfolio(7)">
+                <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Portfolio_7copertina.jpg" alt="Portfolio 7" class="gallery-image" loading="lazy" decoding="async">
+            </div>
+            <div class="image-item" onclick="goToPortfolio(10)">
+                <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Portfolio_10copertina.jpg" alt="Portfolio 10" class="gallery-image" loading="lazy" decoding="async">
+            </div>
+            <div class="image-item" onclick="goToPortfolio(13)">
+                <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Portfolio_13copertina.jpg" alt="Portfolio 13" class="gallery-image" loading="lazy" decoding="async">
+            </div>
+        </div>
+
+        <!-- Colonna 2 -->
+        <div class="column">
+            <div class="image-item" onclick="goToPortfolio(2)">
+                <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Portfolio_2copertina.jpg" alt="Portfolio 2" class="gallery-image" loading="lazy" decoding="async">
+            </div>
+            <div class="image-item" onclick="goToPortfolio(5)">
+                <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Portfolio_5copertina.jpg" alt="Portfolio 5" class="gallery-image" loading="lazy" decoding="async">
+            </div>
+            <div class="image-item" onclick="goToPortfolio(8)">
+                <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Portfolio_8copertina.jpg" alt="Portfolio 8" class="gallery-image" loading="lazy" decoding="async">
+            </div>
+            <div class="image-item" onclick="goToPortfolio(11)">
+                <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Portfolio_11copertina.jpg" alt="Portfolio 11" class="gallery-image" loading="lazy" decoding="async">
+            </div>
+            <div class="image-item" onclick="goToPortfolio(14)">
+                <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Portfolio_14copertina.jpg" alt="Portfolio 14" class="gallery-image" loading="lazy" decoding="async">
+            </div>
+        </div>
+
+        <!-- Colonna 3 -->
+        <div class="column">
+            <div class="image-item" onclick="goToPortfolio(3)">
+                <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Portfolio_3copertina.jpg" alt="Portfolio 3" class="gallery-image" loading="lazy" decoding="async">
+            </div>
+            <div class="image-item" onclick="goToPortfolio(6)">
+                <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Portfolio_6copertina.jpg" alt="Portfolio 6" class="gallery-image" loading="lazy" decoding="async">
+            </div>
+            <div class="image-item" onclick="goToPortfolio(9)">
+                <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Portfolio_9copertina.jpg" alt="Portfolio 9" class="gallery-image" loading="lazy" decoding="async">
+            </div>
+            <div class="image-item" onclick="goToPortfolio(12)">
+                <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Portfolio_12copertina.jpg" alt="Portfolio 12" class="gallery-image" loading="lazy" decoding="async">
+            </div>
+            <div class="image-item" onclick="goToPortfolio(15)">
+                <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Portfolio_15copertina.jpg" alt="Portfolio 15" class="gallery-image" loading="lazy" decoding="async">
+            </div>
+            <div class="image-item" onclick="goToPortfolio(16)">
+                <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Portfolio_16copertina.jpg" alt="Portfolio 16" class="gallery-image" loading="lazy" decoding="async">
             </div>
         </div>
     </div>
+</div>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-copyright">@PaolaPappacena2025</div>
-        <div class="footer-social">
-            <a href="https://www.instagram.com/paola.pappacena/" class="social-button instagram" title="Instagram" target="_blank" rel="noopener">IG</a>
-            <a href="https://www.facebook.com/torte.incielo" class="social-button facebook" title="Facebook" target="_blank" rel="noopener">FB</a>
-        </div>
-    </footer>
+<footer class="footer">
+    <div class="footer-copyright" id="footerCopyright"></div>
+</footer>
 
-    <script>
-        function goToPortfolio(num) {
-            window.location.href = `/portfolio.html?id=${num}`;
+<!-- Sticky footer bar (always visible) -->
+<div class="sticky-footer-bar">
+    <span class="sticky-copyright" id="stickyCopyright"></span>
+    <a href="https://www.instagram.com/paola.pappacena/" class="social-button" title="Instagram" target="_blank" rel="noopener">
+        <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/IG_symbol.jpg" alt="Instagram">
+    </a>
+    <a href="https://www.facebook.com/torte.incielo" class="social-button" title="Facebook" target="_blank" rel="noopener">
+        <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/FB_symbol.jpg" alt="Facebook">
+    </a>
+</div>
+
+<script>
+    // Auto year
+    const year = new Date().getFullYear();
+    const copyrightText = `© Paola Pappacena ${year}`;
+    document.getElementById('stickyCopyright').textContent = copyrightText;
+    document.getElementById('footerCopyright').textContent = copyrightText;
+
+    function goToPortfolio(n) { window.location.href = `portfolio.html?id=${n}`; }
+
+    function toggleMobileMenu() {
+        document.getElementById('mobileMenu').classList.toggle('active');
+        document.getElementById('hamburger').classList.toggle('active');
+    }
+    document.addEventListener('click', e => {
+        const mm = document.getElementById('mobileMenu');
+        const hb = document.getElementById('hamburger');
+        if (!document.querySelector('.navbar').contains(e.target) && !mm.contains(e.target)) {
+            mm.classList.remove('active'); hb.classList.remove('active');
         }
+    });
 
-        function toggleMobileMenu() {
-            const mobileMenu = document.getElementById('mobileMenu');
-            const hamburger = document.querySelector('.hamburger');
-            mobileMenu.classList.toggle('active');
-            hamburger.classList.toggle('active');
-        }
-        
-        document.addEventListener('keydown', function(event) {
-            if (event.key === 'Escape') {
-                const modal = document.getElementById('imageModal');
-                if (modal) modal.style.display = 'none';
-            }
-        });
-        
-        document.addEventListener('click', function(event) {
-            const mobileMenu = document.getElementById('mobileMenu');
-            const hamburger = document.querySelector('.hamburger');
-            const navbar = document.querySelector('.navbar');
-            if (!navbar.contains(event.target) && !mobileMenu.contains(event.target)) {
-                mobileMenu.classList.remove('active');
-                hamburger.classList.remove('active');
-            }
-        });
-    </script>
+    // ── Image protection ──
+    document.addEventListener('contextmenu', e => { if (e.target.tagName === 'IMG') e.preventDefault(); });
+    document.addEventListener('dragstart', e => { if (e.target.tagName === 'IMG') e.preventDefault(); });
+    document.addEventListener('keydown', e => {
+        // Block PrintScreen key hint (cannot truly block OS-level screenshot)
+        if (e.key === 'PrintScreen') { navigator.clipboard?.writeText(''); }
+        // Block Ctrl+S, Ctrl+U, Ctrl+P
+        if (e.ctrlKey && ['s','u','p','a'].includes(e.key.toLowerCase())) e.preventDefault();
+    });
+</script>
 </body>
 </html>
