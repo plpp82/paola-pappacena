@@ -8,16 +8,9 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { background: white; font-family: Arial, sans-serif; padding-top: 60px; padding-bottom: 40px; color: #333; }
 
-        /* ── Navbar ── */
-        .navbar {
-            position: fixed; top: 0; left: 0; right: 0;
-            background: rgba(255,255,255,0.93); backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(0,0,0,0.08);
-            padding: 0 24px; display: flex; justify-content: space-between; align-items: center;
-            z-index: 1000; height: 60px;
-        }
+        .navbar { position: fixed; top: 0; left: 0; right: 0; background: rgba(255,255,255,0.93); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(0,0,0,0.08); padding: 0 24px; display: flex; justify-content: space-between; align-items: center; z-index: 1000; height: 60px; }
         .navbar-left { display: flex; align-items: center; gap: 16px; }
-        .logo { height: 42px; cursor: pointer; }
+        .logo { height: 126px; cursor: pointer; }
         .artist-name { height: 28px; cursor: pointer; }
         .navbar-right { display: flex; align-items: center; gap: 4px; }
         .nav-button { color: #2c3e50; text-decoration: none; font-weight: 500; font-size: 0.88em; padding: 7px 11px; border-radius: 5px; letter-spacing: 0.3px; transition: background 0.25s; }
@@ -37,127 +30,46 @@
         .mobile-nav-links .nav-button { text-align: center; padding: 11px 20px; border-bottom: 1px solid rgba(0,0,0,0.04); font-size: 0.95em; }
         .mobile-social { display: flex; justify-content: center; gap: 16px; padding-top: 16px; border-top: 1px solid rgba(0,0,0,0.05); }
 
-        /* ── Sticky footer bar ── */
-        .sticky-footer-bar {
-            position: fixed; bottom: 0; left: 0; right: 0;
-            background: rgba(255,255,255,0.93); backdrop-filter: blur(12px);
-            border-top: 1px solid rgba(0,0,0,0.08);
-            height: 40px; display: flex; align-items: center; justify-content: center;
-            gap: 12px; z-index: 900;
-        }
+        .sticky-footer-bar { position: fixed; bottom: 0; left: 0; right: 0; background: rgba(255,255,255,0.93); backdrop-filter: blur(12px); border-top: 1px solid rgba(0,0,0,0.08); height: 40px; display: flex; align-items: center; justify-content: center; gap: 12px; z-index: 900; }
         .sticky-copyright { font-size: 0.78em; color: #555; font-style: italic; letter-spacing: 0.3px; }
         .sticky-footer-bar .social-button { width: 24px; height: 24px; }
 
-        /* ── Back link ── */
-        .back-link {
-            display: inline-flex; align-items: center; gap: 7px;
-            margin: 18px 22px 0; color: #2c3e50; text-decoration: none;
-            font-size: 0.87em; font-weight: 500; opacity: 0.65; transition: opacity 0.2s;
-        }
+        .back-link { display: inline-flex; align-items: center; gap: 7px; margin: 18px 22px 0; color: #2c3e50; text-decoration: none; font-size: 0.87em; font-weight: 500; opacity: 0.65; transition: opacity 0.2s; }
         .back-link:hover { opacity: 1; }
         .back-link svg { width: 15px; height: 15px; }
 
-        /* ── Layout ── */
-        .portfolio-page {
-            display: flex; gap: 28px; padding: 16px 22px 40px;
-            max-width: 1400px; margin: 0 auto; align-items: flex-start;
-        }
+        .portfolio-page { display: flex; gap: 28px; padding: 16px 22px 40px; max-width: 1400px; margin: 0 auto; align-items: flex-start; }
 
-        /* Description – right column, sticky */
         .portfolio-description { flex: 0 0 270px; order: 2; position: sticky; top: 78px; }
-        .description-box {
-            background: #fafafa; border-left: 3px solid #2c3e50;
-            padding: 20px 22px; border-radius: 0 6px 6px 0;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.07);
-        }
-        .description-title {
-            font-size: 0.98em; font-weight: 700; text-transform: uppercase;
-            color: #2c3e50; margin-bottom: 14px; letter-spacing: 0.5px;
-            line-height: 1.35;
-        }
-        .description-body {
-            font-size: 0.92em; line-height: 1.72; color: #444;
-            white-space: pre-wrap; word-break: break-word;
-        }
+        .description-box { background: #fafafa; border-left: 3px solid #2c3e50; padding: 20px 22px; border-radius: 0 6px 6px 0; box-shadow: 0 2px 12px rgba(0,0,0,0.07); }
+        .description-title { font-size: 0.98em; font-weight: 700; text-transform: uppercase; color: #2c3e50; margin-bottom: 14px; letter-spacing: 0.5px; line-height: 1.4; }
+        .description-body { font-size: 0.92em; line-height: 1.72; color: #444; white-space: pre-wrap; word-break: break-word; }
 
-        /* ── Gallery ── */
         .portfolio-gallery { flex: 1; order: 1; }
         .masonry-grid { column-count: 3; column-gap: 7px; }
-        .masonry-item {
-            break-inside: avoid; margin-bottom: 7px; cursor: pointer;
-            border-radius: 4px; overflow: hidden; position: relative;
-            box-shadow: 0 3px 14px rgba(0,0,0,0.11), 0 1px 3px rgba(0,0,0,0.07);
-            transition: box-shadow 0.3s; user-select: none;
-        }
+        .masonry-item { break-inside: avoid; margin-bottom: 7px; cursor: pointer; border-radius: 4px; overflow: hidden; position: relative; box-shadow: 0 3px 14px rgba(0,0,0,0.11), 0 1px 3px rgba(0,0,0,0.07); transition: box-shadow 0.3s; user-select: none; }
         .masonry-item:hover { box-shadow: 0 7px 26px rgba(0,0,0,0.18), 0 2px 6px rgba(0,0,0,0.1); }
-        .masonry-item img {
-            width: 100%; height: auto; display: block; transition: transform 0.3s;
-            border-radius: 4px; -webkit-user-drag: none; pointer-events: none;
-        }
+        .masonry-item img { width: 100%; height: auto; display: block; transition: transform 0.3s; border-radius: 4px; -webkit-user-drag: none; pointer-events: none; }
         .masonry-item:hover img { transform: scale(1.02); }
-        /* Watermark */
-        .masonry-item::before {
-            content: '© Paola Pappacena';
-            position: absolute; bottom: 7px; right: 9px;
-            font-size: 0.58em; color: rgba(255,255,255,0.5);
-            font-style: italic; z-index: 3; pointer-events: none;
-            text-shadow: 0 1px 3px rgba(0,0,0,0.5); letter-spacing: 0.4px;
-        }
-        /* Transparent click-capture overlay */
+        .masonry-item::before { content: '© Paola Pappacena'; position: absolute; bottom: 7px; right: 9px; font-size: 0.58em; color: rgba(255,255,255,0.5); font-style: italic; z-index: 3; pointer-events: none; text-shadow: 0 1px 3px rgba(0,0,0,0.5); }
         .masonry-item::after { content: ''; position: absolute; inset: 0; z-index: 2; cursor: pointer; }
-        /* Video items */
-        .masonry-item video { width: 100%; height: auto; display: block; border-radius: 4px; }
-        .video-badge {
-            position: absolute; top: 8px; left: 8px; z-index: 4;
-            background: rgba(0,0,0,0.55); color: white;
-            font-size: 0.65em; padding: 3px 7px; border-radius: 10px;
-            letter-spacing: 0.5px; pointer-events: none;
-        }
+        .masonry-item video { width: 100%; height: auto; display: block; border-radius: 4px; pointer-events: none; }
+        .video-badge { position: absolute; top: 8px; left: 8px; z-index: 4; background: rgba(0,0,0,0.55); color: white; font-size: 0.65em; padding: 3px 7px; border-radius: 10px; pointer-events: none; }
 
-        /* Loading */
-        .loading-wrap { padding: 60px 20px; text-align: center; color: #888; font-size: 1em; }
-        .loading-spinner {
-            width: 36px; height: 36px; border: 3px solid #e0e0e0;
-            border-top-color: #2c3e50; border-radius: 50%;
-            animation: spin 0.8s linear infinite; margin: 0 auto 14px;
-        }
-        @keyframes spin { to { transform: rotate(360deg); } }
-
-        /* ── Modal ── */
-        .modal {
-            display: none; position: fixed; z-index: 2000;
-            inset: 0; background: rgba(0,0,0,0.93); cursor: pointer;
-        }
-        .modal-close {
-            position: absolute; top: 14px; right: 22px; color: white;
-            font-size: 36px; font-weight: bold; cursor: pointer; z-index: 2001;
-            line-height: 1; text-shadow: 0 2px 6px rgba(0,0,0,0.4); opacity: 0.85;
-            transition: opacity 0.2s;
-        }
+        .modal { display: none; position: fixed; z-index: 2000; inset: 0; background: rgba(0,0,0,0.93); }
+        .modal-close { position: absolute; top: 14px; right: 22px; color: white; font-size: 36px; font-weight: bold; cursor: pointer; z-index: 2001; line-height: 1; opacity: 0.85; transition: opacity 0.2s; }
         .modal-close:hover { opacity: 1; }
-        .modal-inner {
-            position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
-            max-width: 93vw; max-height: 90vh; display: flex; align-items: center; justify-content: center;
-        }
-        .modal-inner img, .modal-inner video {
-            max-width: 100%; max-height: 88vh; border-radius: 6px; display: block;
-            pointer-events: auto;
-        }
-        .modal-nav {
-            position: absolute; top: 50%; transform: translateY(-50%);
-            color: rgba(255,255,255,0.8); font-size: 52px; font-weight: 300;
-            cursor: pointer; z-index: 2001; padding: 20px 16px; user-select: none;
-            transition: color 0.2s;
-        }
+        .modal-inner { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); max-width: 93vw; max-height: 90vh; display: flex; align-items: center; justify-content: center; }
+        .modal-inner img { max-width: 100%; max-height: 88vh; border-radius: 6px; display: block; }
+        .modal-inner video { max-width: 100%; max-height: 88vh; border-radius: 6px; display: block; }
+        .modal-nav { position: absolute; top: 50%; transform: translateY(-50%); color: rgba(255,255,255,0.8); font-size: 52px; font-weight: 300; cursor: pointer; z-index: 2001; padding: 20px 16px; user-select: none; transition: color 0.2s; }
         .modal-nav:hover { color: white; }
         .modal-prev { left: 6px; }
         .modal-next { right: 6px; }
 
-        /* ── Footer ── */
         .footer { background: #f8f9fa; padding: 28px 20px 50px; text-align: center; border-top: 1px solid rgba(0,0,0,0.08); margin-top: 20px; }
         .footer-copyright { color: #666; font-size: 0.88em; font-style: italic; }
 
-        /* ── Responsive ── */
         @media (max-width: 960px) {
             .portfolio-page { flex-direction: column; }
             .portfolio-description { flex: none; width: 100%; order: 1; position: static; }
@@ -165,15 +77,16 @@
             .masonry-grid { column-count: 2; }
         }
         @media (max-width: 768px) {
-            .navbar { padding: 0 15px; display: grid; grid-template-columns: auto 1fr auto; gap: 10px; }
-            .logo { height: 35px; } .artist-name { height: 22px; }
+            .navbar { padding: 0 15px; display: grid; grid-template-columns: auto 1fr auto; gap: 10px; height: 70px; }
+            body { padding-top: 70px; }
+            .logo { height: 64px; } .artist-name { height: 22px; }
             .navbar-right .nav-button, .navbar-right .social-links { display: none; }
             .hamburger { display: flex; }
             .portfolio-page { padding: 12px 14px 36px; }
         }
         @media (max-width: 480px) {
             .masonry-grid { column-count: 1; }
-            .logo { height: 30px; } .artist-name { height: 18px; }
+            .logo { height: 54px; }
         }
     </style>
 </head>
@@ -181,8 +94,8 @@
 
 <nav class="navbar">
     <div class="navbar-left">
-        <a href="/"><img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Sigla.png" alt="Logo" class="logo"></a>
-        <a href="/"><img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Sigla_2.png" alt="Paola Pappacena" class="artist-name"></a>
+        <a href="index.html"><img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Sigla.png" alt="Logo" class="logo"></a>
+        <a href="index.html"><img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Sigla_2.png" alt="Paola Pappacena" class="artist-name"></a>
     </div>
     <div class="navbar-right">
         <a href="index.html" class="nav-button active">Portfolio</a>
@@ -227,19 +140,13 @@
     Torna al Portfolio
 </a>
 
-<div class="portfolio-page" id="portfolioPage">
-    <div class="loading-wrap">
-        <div class="loading-spinner"></div>
-        Caricamento in corso…
-    </div>
-</div>
+<div class="portfolio-page" id="portfolioPage"></div>
 
-<!-- Modal -->
 <div id="imageModal" class="modal">
     <span class="modal-close" onclick="closeModal()">&times;</span>
     <span class="modal-nav modal-prev" onclick="navigateModal(-1)">&#8249;</span>
     <span class="modal-nav modal-next" onclick="navigateModal(1)">&#8250;</span>
-    <div class="modal-inner" id="modalInner" onclick="event.stopPropagation()">
+    <div class="modal-inner" id="modalInner">
         <img id="modalImage" src="" alt="" style="display:none;">
         <video id="modalVideo" controls style="display:none;"></video>
     </div>
@@ -260,112 +167,97 @@
 </div>
 
 <script>
-// ── Config ──
-const BASE = 'https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/';
+// ── Copyright ──
 const year = new Date().getFullYear();
-const copyrightText = `© Paola Pappacena ${year}`;
-document.getElementById('stickyCopyright').textContent = copyrightText;
-document.getElementById('footerCopyright').textContent = copyrightText;
+const cp = `© Paola Pappacena ${year}`;
+document.getElementById('stickyCopyright').textContent = cp;
+document.getElementById('footerCopyright').textContent = cp;
 
-// Known video files per portfolio (filename only)
-const KNOWN_VIDEOS = {
-    6: ['Portfolio_6.12.mp4']
+const BASE = 'https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/';
+
+// ── Helper builders ──
+function fi(p, n, ext) { return `Portfolio_${p}.${n}.${ext}`; }
+function imgs(p, count, ext) { return Array.from({length: count}, (_, i) => fi(p, i+1, ext)); }
+
+// ── Hardcoded portfolio definitions ──
+// To add future images: just increase the count in imgs() or add fi() entries
+// Images that 404 are silently hidden via onerror
+const PORTFOLIOS = {
+    1:  { images: imgs(1, 4, 'jpg') },
+    2:  { images: imgs(2, 20, 'jpg') },
+    3:  { images: [
+            fi(3,1,'jpg'), fi(3,2,'jpg'), fi(3,3,'jpeg'),
+            fi(3,4,'jpeg'), fi(3,5,'jpeg'), fi(3,6,'jpg')
+        ]},
+    4:  { images: imgs(4, 3, 'jpg') },
+    5:  { images: imgs(5, 5, 'jpg') },
+    6:  { images: [
+            fi(6,1,'jpg'), fi(6,2,'jpg'), fi(6,3,'jpg'),
+            fi(6,4,'jpg'), fi(6,5,'jpg'), fi(6,6,'png'),
+            fi(6,7,'jpg'), fi(6,8,'jpg'), fi(6,9,'jpg')
+        ], video: 'Portfolio_6.10.mp4' },
+    7:  { images: imgs(7, 8, 'jpg') },
+    8:  { images: imgs(8, 5, 'jpg') },
+    9:  { images: [fi(9,1,'jpg')] },
+    10: { images: imgs(10, 4, 'jpg') },
+    11: { images: [
+            fi(11,1,'jpg'),  fi(11,2,'jpg'),  fi(11,3,'jpg'),
+            fi(11,4,'jpg'),  fi(11,5,'jpg'),  fi(11,6,'jpg'),
+            fi(11,7,'jpg'),  fi(11,8,'jpg'),  fi(11,9,'jpg'),
+            fi(11,10,'jpg'), fi(11,11,'jpg'), fi(11,12,'jpg'),
+            fi(11,13,'jpeg'),fi(11,14,'jpg')
+        ]},
+    12: { images: imgs(12, 12, 'jpg') },
+    13: { images: imgs(13, 9, 'jpg') },
+    14: { images: imgs(14, 5, 'jpg') },
+    15: { images: imgs(15, 10, 'jpg') },
+    16: { images: imgs(16, 5, 'jpg') }
 };
 
-// ── Read URL param ──
+// ── State ──
+let mediaItems = [];
+let currentIndex = 0;
+
+// ── URL param ──
 const params = new URLSearchParams(window.location.search);
 const portfolioId = parseInt(params.get('id') || '1');
 document.title = `Portfolio ${portfolioId} – Paola Pappacena`;
 
-// ── Media state ──
-let mediaItems = [];   // { src, type: 'image'|'video' }
-let currentIndex = 0;
-let firstVideoPlay = true; // track first autoplay of video in modal
-
-// ── Auto-detect images via HEAD probing ──
-// Extensions to try in order for each index
-const IMG_EXTS = ['jpg', 'jpeg', 'JPG', 'JPEG'];
-
-async function probeUrl(url) {
+// ── Load description ──
+async function loadDescription(id) {
     try {
-        const r = await fetch(url, { method: 'HEAD', cache: 'no-store' });
-        return r.ok;
-    } catch { return false; }
-}
-
-async function findImage(portfolioNum, imgIndex) {
-    for (const ext of IMG_EXTS) {
-        const url = `${BASE}Portfolio_${portfolioNum}.${imgIndex}.${ext}`;
-        if (await probeUrl(url)) return { src: url, type: 'image' };
-    }
-    return null;
-}
-
-async function detectMedia(portfolioNum) {
-    const items = [];
-    let idx = 1;
-    // Probe images sequentially – stop at first miss (max 50 to be safe)
-    while (idx <= 50) {
-        const found = await findImage(portfolioNum, idx);
-        if (!found) break;
-        items.push(found);
-        idx++;
-    }
-    // Add known videos
-    const vids = KNOWN_VIDEOS[portfolioNum] || [];
-    for (const v of vids) {
-        items.push({ src: BASE + v, type: 'video' });
-    }
-    return items;
-}
-
-// ── Load description text ──
-async function loadDescription(portfolioNum) {
-    try {
-        const r = await fetch(BASE + `Portfolio_${portfolioNum}.txt`, { cache: 'no-store' });
+        const r = await fetch(BASE + `Portfolio_${id}.txt`);
         if (!r.ok) return null;
-        // Ensure proper UTF-8 decoding
         const buf = await r.arrayBuffer();
-        const decoder = new TextDecoder('utf-8');
-        return decoder.decode(buf);
+        return new TextDecoder('utf-8').decode(buf);
     } catch { return null; }
 }
 
-// ── Parse description: first line (quoted) = title, rest = body ──
+// ── Parse description: <<Titolo>> → bold uppercase; rest → plain pre-wrap ──
 function parseDescription(raw) {
-    if (!raw) return { title: '', body: '' };
-    const lines = raw.split('\n');
+    if (!raw || !raw.trim()) return { title: '', body: '' };
+    const match = raw.match(/<<(.+?)>>/s);
     let title = '';
-    let bodyStart = 0;
-
-    // First non-empty line is the title (strip surrounding quotes if present)
-    for (let i = 0; i < lines.length; i++) {
-        const trimmed = lines[i].trim();
-        if (trimmed) {
-            title = trimmed.replace(/^["«""]|["»""]$/g, '');
-            bodyStart = i + 1;
-            break;
-        }
+    let body = raw;
+    if (match) {
+        title = match[1].trim();
+        body = raw.replace(match[0], '').replace(/^\s*\n/, '').trim();
     }
-
-    // Rest is body – preserve line breaks and all characters
-    const body = lines.slice(bodyStart).join('\n').replace(/^\n+/, '');
     return { title, body };
 }
 
 // ── Build page ──
 async function init() {
-    const [media, rawText] = await Promise.all([
-        detectMedia(portfolioId),
-        loadDescription(portfolioId)
-    ]);
+    const def = PORTFOLIOS[portfolioId];
+    if (!def) return;
 
-    mediaItems = media;
+    // Build media list
+    mediaItems = def.images.map(f => ({ src: BASE + f, type: 'image' }));
+    if (def.video) mediaItems.push({ src: BASE + def.video, type: 'video' });
 
     const page = document.getElementById('portfolioPage');
-    page.innerHTML = '';
 
-    // ── Gallery ──
+    // Gallery
     const galleryDiv = document.createElement('div');
     galleryDiv.className = 'portfolio-gallery';
     const grid = document.createElement('div');
@@ -384,15 +276,19 @@ async function init() {
 
             const vid = document.createElement('video');
             vid.src = item.src;
-            vid.muted = true; vid.loop = true; vid.autoplay = true; vid.playsInline = true;
+            vid.muted = true;
+            vid.loop = true;
+            vid.autoplay = true;
+            vid.playsInline = true;
             vid.setAttribute('playsinline', '');
-            vid.style.pointerEvents = 'none';
             cell.appendChild(vid);
         } else {
             const img = document.createElement('img');
             img.src = item.src;
-            img.alt = `Portfolio ${portfolioId} – immagine ${idx + 1}`;
-            img.loading = 'lazy'; img.decoding = 'async';
+            img.alt = `Portfolio ${portfolioId} – ${idx + 1}`;
+            img.loading = 'lazy';
+            img.decoding = 'async';
+            img.onerror = () => { cell.style.display = 'none'; };
             cell.appendChild(img);
         }
         grid.appendChild(cell);
@@ -400,27 +296,26 @@ async function init() {
 
     galleryDiv.appendChild(grid);
 
-    // ── Description ──
+    // Description
     const descDiv = document.createElement('div');
     descDiv.className = 'portfolio-description';
-
+    const rawText = await loadDescription(portfolioId);
     const { title, body } = parseDescription(rawText);
 
     if (title || body) {
         const box = document.createElement('div');
         box.className = 'description-box';
-
         if (title) {
-            const h = document.createElement('div');
-            h.className = 'description-title';
-            h.textContent = title;
-            box.appendChild(h);
+            const t = document.createElement('div');
+            t.className = 'description-title';
+            t.textContent = title;
+            box.appendChild(t);
         }
         if (body) {
-            const p = document.createElement('div');
-            p.className = 'description-body';
-            p.textContent = body; // textContent preserves \n in pre-wrap
-            box.appendChild(p);
+            const b = document.createElement('div');
+            b.className = 'description-body';
+            b.textContent = body;
+            box.appendChild(b);
         }
         descDiv.appendChild(box);
     }
@@ -432,28 +327,31 @@ async function init() {
 // ── Modal ──
 function openModal(idx) {
     currentIndex = idx;
-    firstVideoPlay = true;
-    renderModal();
+    renderModal(true);
     document.getElementById('imageModal').style.display = 'block';
 }
 
-function renderModal() {
+function renderModal(isFirstOpen) {
     const item = mediaItems[currentIndex];
     const img = document.getElementById('modalImage');
     const vid = document.getElementById('modalVideo');
 
     if (item.type === 'video') {
         img.style.display = 'none';
+        img.src = '';
         vid.style.display = 'block';
         vid.src = item.src;
-        if (firstVideoPlay) {
-            vid.autoplay = true;
+        vid.load();
+        if (isFirstOpen) {
             vid.muted = false;
-            firstVideoPlay = false;
-            vid.play().catch(() => { vid.muted = true; vid.play(); });
+            const p = vid.play();
+            if (p !== undefined) p.catch(() => { vid.muted = true; vid.play(); });
         }
+        // When navigating to video (not first open): controls visible, user presses play
     } else {
         vid.pause();
+        vid.removeAttribute('src');
+        vid.load();
         vid.style.display = 'none';
         img.style.display = 'block';
         img.src = item.src;
@@ -462,22 +360,21 @@ function renderModal() {
 
 function navigateModal(dir) {
     currentIndex = (currentIndex + dir + mediaItems.length) % mediaItems.length;
-    firstVideoPlay = false; // subsequent video runs require play
-    renderModal();
+    renderModal(false);
 }
 
 function closeModal() {
     document.getElementById('imageModal').style.display = 'none';
     const vid = document.getElementById('modalVideo');
-    vid.pause(); vid.src = '';
-    firstVideoPlay = true;
+    vid.pause();
+    vid.removeAttribute('src');
+    vid.load();
 }
 
 document.getElementById('imageModal').addEventListener('click', function(e) {
     if (e.target === this) closeModal();
 });
 
-// ── Keyboard ──
 document.addEventListener('keydown', e => {
     const modal = document.getElementById('imageModal');
     if (modal.style.display === 'block') {
@@ -489,11 +386,9 @@ document.addEventListener('keydown', e => {
     if (e.key === 'PrintScreen') navigator.clipboard?.writeText('');
 });
 
-// ── Image protection ──
 document.addEventListener('contextmenu', e => { if (e.target.tagName === 'IMG') e.preventDefault(); });
 document.addEventListener('dragstart', e => { if (e.target.tagName === 'IMG') e.preventDefault(); });
 
-// ── Mobile menu ──
 function toggleMobileMenu() {
     document.getElementById('mobileMenu').classList.toggle('active');
     document.getElementById('hamburger').classList.toggle('active');
@@ -506,7 +401,6 @@ document.addEventListener('click', e => {
     }
 });
 
-// ── Run ──
 init();
 </script>
 </body>
