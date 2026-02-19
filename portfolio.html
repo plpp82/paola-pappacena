@@ -6,512 +6,508 @@
     <title>Portfolio – Paola Pappacena</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-
-        body {
-            background-color: white;
-            font-family: Arial, sans-serif;
-            padding-top: 60px;
-        }
+        body { background: white; font-family: Arial, sans-serif; padding-top: 60px; padding-bottom: 40px; color: #333; }
 
         /* ── Navbar ── */
         .navbar {
-            position: fixed;
-            top: 0; left: 0; right: 0;
-            background-color: rgba(255,255,255,0.92);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(0,0,0,0.1);
-            padding: 10px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            z-index: 1000;
-            height: 60px;
+            position: fixed; top: 0; left: 0; right: 0;
+            background: rgba(255,255,255,0.93); backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(0,0,0,0.08);
+            padding: 0 24px; display: flex; justify-content: space-between; align-items: center;
+            z-index: 1000; height: 60px;
         }
-        .navbar-left { display: flex; align-items: center; gap: 20px; }
-        .logo { height: 45px; width: auto; }
-        .artist-name { height: 32px; width: auto; }
-        .navbar-right { display: flex; align-items: center; gap: 25px; }
-        .nav-button {
-            color: #2c3e50; text-decoration: none; font-weight: 500;
-            padding: 8px 15px; border-radius: 5px;
-            transition: background-color 0.3s ease;
-        }
-        .nav-button:hover { background-color: rgba(52,73,94,0.1); }
-        .social-links { display: flex; gap: 10px; margin-left: 15px; }
-        .social-button {
-            width: 34px; height: 34px; border-radius: 50%;
-            color: white; display: flex; align-items: center; justify-content: center;
-            text-decoration: none; font-size: 11px; font-weight: 700;
-            font-family: 'Georgia', serif; letter-spacing: 0.3px;
-            transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
-            border: none;
-        }
-        .social-button:hover { transform: scale(1.08); box-shadow: 0 4px 12px rgba(0,0,0,0.25); opacity: 0.92; }
-        .social-button.instagram { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%); }
-        .social-button.facebook { background: #1877F2; }
-
-        .hamburger {
-            display: none; flex-direction: column; cursor: pointer;
-            padding: 5px; gap: 4px; flex-shrink: 0;
-        }
-        .hamburger span { width: 25px; height: 2px; background-color: #2c3e50; transition: all 0.3s ease; border-radius: 1px; }
-        .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(6px,6px); }
+        .navbar-left { display: flex; align-items: center; gap: 16px; }
+        .logo { height: 42px; cursor: pointer; }
+        .artist-name { height: 28px; cursor: pointer; }
+        .navbar-right { display: flex; align-items: center; gap: 4px; }
+        .nav-button { color: #2c3e50; text-decoration: none; font-weight: 500; font-size: 0.88em; padding: 7px 11px; border-radius: 5px; letter-spacing: 0.3px; transition: background 0.25s; }
+        .nav-button:hover, .nav-button.active { background: rgba(44,62,80,0.09); }
+        .social-links { display: flex; gap: 8px; margin-left: 14px; }
+        .social-button { width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; overflow: hidden; transition: transform 0.2s, box-shadow 0.2s; flex-shrink: 0; }
+        .social-button:hover { transform: scale(1.1); box-shadow: 0 3px 10px rgba(0,0,0,0.22); }
+        .social-button img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+        .hamburger { display: none; flex-direction: column; cursor: pointer; padding: 5px; gap: 5px; flex-shrink: 0; margin-left: 8px; }
+        .hamburger span { width: 24px; height: 2px; background: #2c3e50; border-radius: 1px; transition: all 0.3s; }
+        .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(7px,7px); }
         .hamburger.active span:nth-child(2) { opacity: 0; }
-        .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(6px,-6px); }
-
-        .mobile-menu {
-            display: none; position: fixed; top: 60px; left: 0; right: 0;
-            background-color: rgba(255,255,255,0.95); backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(0,0,0,0.1); padding: 20px; z-index: 999;
-        }
+        .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(7px,-7px); }
+        .mobile-menu { display: none; position: fixed; top: 60px; left: 0; right: 0; background: rgba(255,255,255,0.97); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(0,0,0,0.08); padding: 20px; z-index: 999; }
         .mobile-menu.active { display: block; }
-        .mobile-nav-links { display: flex; flex-direction: column; gap: 15px; margin-bottom: 20px; }
-        .mobile-nav-links .nav-button { text-align: center; padding: 12px 20px; border-bottom: 1px solid rgba(0,0,0,0.05); }
-        .mobile-social { display: flex; justify-content: center; gap: 15px; padding-top: 15px; border-top: 1px solid rgba(0,0,0,0.05); }
+        .mobile-nav-links { display: flex; flex-direction: column; gap: 4px; margin-bottom: 20px; }
+        .mobile-nav-links .nav-button { text-align: center; padding: 11px 20px; border-bottom: 1px solid rgba(0,0,0,0.04); font-size: 0.95em; }
+        .mobile-social { display: flex; justify-content: center; gap: 16px; padding-top: 16px; border-top: 1px solid rgba(0,0,0,0.05); }
+
+        /* ── Sticky footer bar ── */
+        .sticky-footer-bar {
+            position: fixed; bottom: 0; left: 0; right: 0;
+            background: rgba(255,255,255,0.93); backdrop-filter: blur(12px);
+            border-top: 1px solid rgba(0,0,0,0.08);
+            height: 40px; display: flex; align-items: center; justify-content: center;
+            gap: 12px; z-index: 900;
+        }
+        .sticky-copyright { font-size: 0.78em; color: #555; font-style: italic; letter-spacing: 0.3px; }
+        .sticky-footer-bar .social-button { width: 24px; height: 24px; }
 
         /* ── Back link ── */
         .back-link {
-            display: inline-flex; align-items: center; gap: 8px;
-            margin: 20px 20px 0;
-            color: #2c3e50; text-decoration: none; font-size: 0.9em; font-weight: 500;
-            opacity: 0.7; transition: opacity 0.2s;
+            display: inline-flex; align-items: center; gap: 7px;
+            margin: 18px 22px 0; color: #2c3e50; text-decoration: none;
+            font-size: 0.87em; font-weight: 500; opacity: 0.65; transition: opacity 0.2s;
         }
         .back-link:hover { opacity: 1; }
-        .back-link svg { width: 16px; height: 16px; }
+        .back-link svg { width: 15px; height: 15px; }
 
         /* ── Layout ── */
         .portfolio-page {
-            display: flex;
-            gap: 30px;
-            padding: 20px 20px 40px;
-            max-width: 1400px;
-            margin: 0 auto;
-            align-items: flex-start;
+            display: flex; gap: 28px; padding: 16px 22px 40px;
+            max-width: 1400px; margin: 0 auto; align-items: flex-start;
         }
 
-        /* Description – top right */
-        .portfolio-description {
-            flex: 0 0 280px;
-            order: 2;
-            position: sticky;
-            top: 80px;
-        }
-
+        /* Description – right column, sticky */
+        .portfolio-description { flex: 0 0 270px; order: 2; position: sticky; top: 78px; }
         .description-box {
-            background: #fafafa;
-            border-left: 3px solid #2c3e50;
-            padding: 20px 22px;
-            border-radius: 0 6px 6px 0;
+            background: #fafafa; border-left: 3px solid #2c3e50;
+            padding: 20px 22px; border-radius: 0 6px 6px 0;
             box-shadow: 0 2px 12px rgba(0,0,0,0.07);
         }
-
-        .description-box h2 {
-            font-size: 1em;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            color: #2c3e50;
-            margin-bottom: 12px;
-            opacity: 0.6;
+        .description-title {
+            font-size: 0.98em; font-weight: 700; text-transform: uppercase;
+            color: #2c3e50; margin-bottom: 14px; letter-spacing: 0.5px;
+            line-height: 1.35;
+        }
+        .description-body {
+            font-size: 0.92em; line-height: 1.72; color: #444;
+            white-space: pre-wrap; word-break: break-word;
         }
 
-        .description-text {
-            font-size: 0.95em;
-            line-height: 1.7;
-            color: #444;
-            white-space: pre-wrap;
-        }
-
-        /* Gallery */
-        .portfolio-gallery {
-            flex: 1;
-            order: 1;
-        }
-
-        .masonry-grid {
-            column-count: 3;
-            column-gap: 8px;
-        }
-
+        /* ── Gallery ── */
+        .portfolio-gallery { flex: 1; order: 1; }
+        .masonry-grid { column-count: 3; column-gap: 7px; }
         .masonry-item {
-            break-inside: avoid;
-            margin-bottom: 8px;
-            cursor: pointer;
-            border-radius: 4px;
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.12), 0 1px 4px rgba(0,0,0,0.08);
-            transition: box-shadow 0.3s ease;
+            break-inside: avoid; margin-bottom: 7px; cursor: pointer;
+            border-radius: 4px; overflow: hidden; position: relative;
+            box-shadow: 0 3px 14px rgba(0,0,0,0.11), 0 1px 3px rgba(0,0,0,0.07);
+            transition: box-shadow 0.3s; user-select: none;
         }
-
-        .masonry-item:hover {
-            box-shadow: 0 8px 28px rgba(0,0,0,0.2), 0 2px 8px rgba(0,0,0,0.12);
-        }
-
+        .masonry-item:hover { box-shadow: 0 7px 26px rgba(0,0,0,0.18), 0 2px 6px rgba(0,0,0,0.1); }
         .masonry-item img {
-            width: 100%;
-            height: auto;
-            display: block;
-            transition: transform 0.3s ease;
-            border-radius: 4px;
+            width: 100%; height: auto; display: block; transition: transform 0.3s;
+            border-radius: 4px; -webkit-user-drag: none; pointer-events: none;
         }
-
         .masonry-item:hover img { transform: scale(1.02); }
-
-        /* Video item */
-        .masonry-item video {
-            width: 100%;
-            height: auto;
-            display: block;
-            border-radius: 4px;
+        /* Watermark */
+        .masonry-item::before {
+            content: '© Paola Pappacena';
+            position: absolute; bottom: 7px; right: 9px;
+            font-size: 0.58em; color: rgba(255,255,255,0.5);
+            font-style: italic; z-index: 3; pointer-events: none;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.5); letter-spacing: 0.4px;
+        }
+        /* Transparent click-capture overlay */
+        .masonry-item::after { content: ''; position: absolute; inset: 0; z-index: 2; cursor: pointer; }
+        /* Video items */
+        .masonry-item video { width: 100%; height: auto; display: block; border-radius: 4px; }
+        .video-badge {
+            position: absolute; top: 8px; left: 8px; z-index: 4;
+            background: rgba(0,0,0,0.55); color: white;
+            font-size: 0.65em; padding: 3px 7px; border-radius: 10px;
+            letter-spacing: 0.5px; pointer-events: none;
         }
 
-        /* Loading / error state */
-        .status-msg {
-            padding: 40px;
-            text-align: center;
-            color: #666;
-            font-size: 1.1em;
+        /* Loading */
+        .loading-wrap { padding: 60px 20px; text-align: center; color: #888; font-size: 1em; }
+        .loading-spinner {
+            width: 36px; height: 36px; border: 3px solid #e0e0e0;
+            border-top-color: #2c3e50; border-radius: 50%;
+            animation: spin 0.8s linear infinite; margin: 0 auto 14px;
         }
+        @keyframes spin { to { transform: rotate(360deg); } }
 
         /* ── Modal ── */
         .modal {
             display: none; position: fixed; z-index: 2000;
-            left: 0; top: 0; width: 100%; height: 100%;
-            background-color: rgba(0,0,0,0.92); cursor: pointer;
-        }
-        .modal-inner {
-            position: absolute; top: 50%; left: 50%;
-            transform: translate(-50%,-50%);
-            max-width: 95%; max-height: 95%;
-            display: flex; flex-direction: column; align-items: center;
-        }
-        .modal-inner img, .modal-inner video {
-            max-width: 100%; max-height: 90vh;
-            border-radius: 8px; display: block;
+            inset: 0; background: rgba(0,0,0,0.93); cursor: pointer;
         }
         .modal-close {
-            position: absolute; top: 15px; right: 25px;
-            color: white; font-size: 38px; font-weight: bold;
-            cursor: pointer; z-index: 2001; line-height: 1;
-            text-shadow: 0 2px 6px rgba(0,0,0,0.5);
+            position: absolute; top: 14px; right: 22px; color: white;
+            font-size: 36px; font-weight: bold; cursor: pointer; z-index: 2001;
+            line-height: 1; text-shadow: 0 2px 6px rgba(0,0,0,0.4); opacity: 0.85;
+            transition: opacity 0.2s;
+        }
+        .modal-close:hover { opacity: 1; }
+        .modal-inner {
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+            max-width: 93vw; max-height: 90vh; display: flex; align-items: center; justify-content: center;
+        }
+        .modal-inner img, .modal-inner video {
+            max-width: 100%; max-height: 88vh; border-radius: 6px; display: block;
+            pointer-events: auto;
         }
         .modal-nav {
             position: absolute; top: 50%; transform: translateY(-50%);
-            color: white; font-size: 48px; font-weight: bold;
-            cursor: pointer; z-index: 2001;
-            text-shadow: 0 2px 8px rgba(0,0,0,0.6);
-            padding: 20px; user-select: none;
+            color: rgba(255,255,255,0.8); font-size: 52px; font-weight: 300;
+            cursor: pointer; z-index: 2001; padding: 20px 16px; user-select: none;
+            transition: color 0.2s;
         }
-        .modal-prev { left: 10px; }
-        .modal-next { right: 10px; }
-        .modal-nav:hover { opacity: 0.7; }
+        .modal-nav:hover { color: white; }
+        .modal-prev { left: 6px; }
+        .modal-next { right: 6px; }
 
         /* ── Footer ── */
-        .footer {
-            background-color: #f8f9fa; padding: 40px 20px;
-            text-align: center; border-top: 1px solid rgba(0,0,0,0.1); margin-top: 20px;
-        }
-        .footer-copyright { color: #2c3e50; font-size: 1.2em; font-weight: 500; margin-bottom: 20px; letter-spacing: 0.5px; }
-        .footer-social { display: flex; justify-content: center; gap: 15px; }
-        .footer-social .social-button { width: 42px; height: 42px; font-size: 12px; }
+        .footer { background: #f8f9fa; padding: 28px 20px 50px; text-align: center; border-top: 1px solid rgba(0,0,0,0.08); margin-top: 20px; }
+        .footer-copyright { color: #666; font-size: 0.88em; font-style: italic; }
 
         /* ── Responsive ── */
-        @media (max-width: 900px) {
+        @media (max-width: 960px) {
             .portfolio-page { flex-direction: column; }
             .portfolio-description { flex: none; width: 100%; order: 1; position: static; }
             .portfolio-gallery { order: 2; width: 100%; }
             .masonry-grid { column-count: 2; }
         }
-
         @media (max-width: 768px) {
-            .navbar {
-                padding: 10px 15px; height: 60px;
-                display: grid; grid-template-columns: 1fr 2fr 1fr;
-                align-items: center; gap: 10px;
-            }
-            .navbar-left { display: flex; align-items: center; gap: 10px; min-width: 0; }
-            .logo { height: 35px; flex-shrink: 0; }
-            .artist-name { height: 24px; flex-shrink: 1; min-width: 0; max-width: 100%; }
-            .navbar-right { justify-self: end; gap: 0; }
+            .navbar { padding: 0 15px; display: grid; grid-template-columns: auto 1fr auto; gap: 10px; }
+            .logo { height: 35px; } .artist-name { height: 22px; }
             .navbar-right .nav-button, .navbar-right .social-links { display: none; }
-            .hamburger { display: flex; margin-left: auto; }
+            .hamburger { display: flex; }
+            .portfolio-page { padding: 12px 14px 36px; }
         }
-
         @media (max-width: 480px) {
             .masonry-grid { column-count: 1; }
-            .navbar { padding: 10px 12px; grid-template-columns: auto 1fr auto; gap: 8px; }
-            .navbar-left { gap: 8px; }
-            .logo { height: 30px; }
-            .artist-name { height: 20px; }
+            .logo { height: 30px; } .artist-name { height: 18px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Navbar -->
-    <nav class="navbar">
-        <div class="navbar-left">
-            <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Sigla.png" alt="Logo" class="logo">
-            <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Sigla_2.png" alt="Paola Pappacena" class="artist-name">
+<nav class="navbar">
+    <div class="navbar-left">
+        <a href="/"><img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Sigla.png" alt="Logo" class="logo"></a>
+        <a href="/"><img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Sigla_2.png" alt="Paola Pappacena" class="artist-name"></a>
+    </div>
+    <div class="navbar-right">
+        <a href="index.html" class="nav-button active">Portfolio</a>
+        <a href="shop.html" class="nav-button">Shop</a>
+        <a href="workshop.html" class="nav-button">Workshop</a>
+        <a href="about.html" class="nav-button">About</a>
+        <a href="contacts.html" class="nav-button">Contacts</a>
+        <div class="social-links">
+            <a href="https://www.instagram.com/paola.pappacena/" class="social-button" title="Instagram" target="_blank" rel="noopener">
+                <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/IG_symbol.jpg" alt="Instagram">
+            </a>
+            <a href="https://www.facebook.com/torte.incielo" class="social-button" title="Facebook" target="_blank" rel="noopener">
+                <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/FB_symbol.jpg" alt="Facebook">
+            </a>
         </div>
-        <div class="navbar-right">
-            <a href="/" class="nav-button">Portfolio</a>
-            <a href="#" class="nav-button">Shop</a>
-            <a href="#" class="nav-button">Workshop</a>
-            <a href="/about.html" class="nav-button">About</a>
-            <a href="/contacts.html" class="nav-button">Contacts</a>
-            <div class="social-links">
-                <a href="https://www.instagram.com/paola.pappacena/" class="social-button instagram" title="Instagram" target="_blank" rel="noopener">IG</a>
-                <a href="https://www.facebook.com/torte.incielo" class="social-button facebook" title="Facebook" target="_blank" rel="noopener">FB</a>
-            </div>
-            <div class="hamburger" onclick="toggleMobileMenu()">
-                <span></span><span></span><span></span>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Menu mobile -->
-    <div class="mobile-menu" id="mobileMenu">
-        <div class="mobile-nav-links">
-            <a href="/" class="nav-button">Portfolio</a>
-            <a href="#" class="nav-button">Shop</a>
-            <a href="#" class="nav-button">Workshop</a>
-            <a href="/about.html" class="nav-button">About</a>
-            <a href="/contacts.html" class="nav-button">Contacts</a>
-        </div>
-        <div class="mobile-social">
-            <a href="https://www.instagram.com/paola.pappacena/" class="social-button instagram" title="Instagram" target="_blank" rel="noopener">IG</a>
-            <a href="https://www.facebook.com/torte.incielo" class="social-button facebook" title="Facebook" target="_blank" rel="noopener">FB</a>
+        <div class="hamburger" id="hamburger" onclick="toggleMobileMenu()">
+            <span></span><span></span><span></span>
         </div>
     </div>
+</nav>
 
-    <a href="/" class="back-link">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
-        Torna al Portfolio
+<div class="mobile-menu" id="mobileMenu">
+    <div class="mobile-nav-links">
+        <a href="index.html" class="nav-button active">Portfolio</a>
+        <a href="shop.html" class="nav-button">Shop</a>
+        <a href="workshop.html" class="nav-button">Workshop</a>
+        <a href="about.html" class="nav-button">About</a>
+        <a href="contacts.html" class="nav-button">Contacts</a>
+    </div>
+    <div class="mobile-social">
+        <a href="https://www.instagram.com/paola.pappacena/" class="social-button" title="Instagram" target="_blank" rel="noopener">
+            <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/IG_symbol.jpg" alt="Instagram">
+        </a>
+        <a href="https://www.facebook.com/torte.incielo" class="social-button" title="Facebook" target="_blank" rel="noopener">
+            <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/FB_symbol.jpg" alt="Facebook">
+        </a>
+    </div>
+</div>
+
+<a href="index.html" class="back-link">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+    Torna al Portfolio
+</a>
+
+<div class="portfolio-page" id="portfolioPage">
+    <div class="loading-wrap">
+        <div class="loading-spinner"></div>
+        Caricamento in corso…
+    </div>
+</div>
+
+<!-- Modal -->
+<div id="imageModal" class="modal">
+    <span class="modal-close" onclick="closeModal()">&times;</span>
+    <span class="modal-nav modal-prev" onclick="navigateModal(-1)">&#8249;</span>
+    <span class="modal-nav modal-next" onclick="navigateModal(1)">&#8250;</span>
+    <div class="modal-inner" id="modalInner" onclick="event.stopPropagation()">
+        <img id="modalImage" src="" alt="" style="display:none;">
+        <video id="modalVideo" controls style="display:none;"></video>
+    </div>
+</div>
+
+<footer class="footer">
+    <div class="footer-copyright" id="footerCopyright"></div>
+</footer>
+
+<div class="sticky-footer-bar">
+    <span class="sticky-copyright" id="stickyCopyright"></span>
+    <a href="https://www.instagram.com/paola.pappacena/" class="social-button" title="Instagram" target="_blank" rel="noopener">
+        <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/IG_symbol.jpg" alt="Instagram">
     </a>
+    <a href="https://www.facebook.com/torte.incielo" class="social-button" title="Facebook" target="_blank" rel="noopener">
+        <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/FB_symbol.jpg" alt="Facebook">
+    </a>
+</div>
 
-    <div class="portfolio-page" id="portfolioPage">
-        <div class="status-msg" id="statusMsg">Caricamento...</div>
-    </div>
+<script>
+// ── Config ──
+const BASE = 'https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/';
+const year = new Date().getFullYear();
+const copyrightText = `© Paola Pappacena ${year}`;
+document.getElementById('stickyCopyright').textContent = copyrightText;
+document.getElementById('footerCopyright').textContent = copyrightText;
 
-    <!-- Modal -->
-    <div id="imageModal" class="modal" onclick="handleModalClick(event)">
-        <span class="modal-close" onclick="closeModal()">&times;</span>
-        <span class="modal-nav modal-prev" onclick="navigateModal(-1); event.stopPropagation();">&#8249;</span>
-        <span class="modal-nav modal-next" onclick="navigateModal(1); event.stopPropagation();">&#8250;</span>
-        <div class="modal-inner" onclick="event.stopPropagation()">
-            <img id="modalImage" src="" alt="" style="display:none;">
-            <video id="modalVideo" controls style="display:none;"></video>
-        </div>
-    </div>
+// Known video files per portfolio (filename only)
+const KNOWN_VIDEOS = {
+    6: ['Portfolio_6.12.mp4']
+};
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-copyright">@PaolaPappacena2025</div>
-        <div class="footer-social">
-            <a href="https://www.instagram.com/paola.pappacena/" class="social-button instagram" title="Instagram" target="_blank" rel="noopener">IG</a>
-            <a href="https://www.facebook.com/torte.incielo" class="social-button facebook" title="Facebook" target="_blank" rel="noopener">FB</a>
-        </div>
-    </footer>
+// ── Read URL param ──
+const params = new URLSearchParams(window.location.search);
+const portfolioId = parseInt(params.get('id') || '1');
+document.title = `Portfolio ${portfolioId} – Paola Pappacena`;
 
-    <script>
-        const BASE = 'https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/';
+// ── Media state ──
+let mediaItems = [];   // { src, type: 'image'|'video' }
+let currentIndex = 0;
+let firstVideoPlay = true; // track first autoplay of video in modal
 
-        // Portfolio definitions
-        // images: array of filenames inside each portfolio
-        const portfolios = {
-            1:  { images: buildImgs(1, 4, 'jpg') },
-            2:  { images: buildImgs(2, 20, 'jpg') },
-            3:  { images: buildImgsCustom(3, [
-                    {n:1,ext:'jpg'},{n:2,ext:'jpg'},{n:3,ext:'jpeg'},
-                    {n:4,ext:'jpeg'},{n:5,ext:'jpeg'},{n:6,ext:'jpg'}
-                ]) },
-            4:  { images: buildImgs(4, 3, 'jpg') },
-            5:  { images: buildImgs(5, 5, 'jpg') },
-            6:  { images: buildImgs(6, 11, 'jpg'), video: `Portfolio_6.12.mp4` },
-            7:  { images: buildImgs(7, 8, 'jpg') },
-            8:  { images: buildImgs(8, 5, 'jpg') },
-            9:  { images: buildImgs(9, 1, 'jpg') },
-            10: { images: buildImgs(10, 4, 'jpg') },
-            11: { images: buildImgsCustom(11, [
-                    ...Array.from({length:12}, (_,i) => ({n:i+1,ext:'jpg'})),
-                    {n:13,ext:'jpeg'},
-                    {n:14,ext:'jpg'}
-                ]) },
-            12: { images: buildImgs(12, 12, 'jpg') },
-            13: { images: buildImgs(13, 9, 'jpg') },
-            14: { images: buildImgsCustom(14, [
-                    {n:1,ext:'jpg'},{n:2,ext:'jpg'},{n:3,ext:'jpg'},
-                    {n:4,ext:'jpg'},{n:5,ext:'jpg'}
-                ]) },
-            15: { images: buildImgs(15, 10, 'jpg') }
-        };
+// ── Auto-detect images via HEAD probing ──
+// Extensions to try in order for each index
+const IMG_EXTS = ['jpg', 'jpeg', 'JPG', 'JPEG'];
 
-        function buildImgs(portfolioNum, count, ext) {
-            return Array.from({length: count}, (_, i) =>
-                `Portfolio_${portfolioNum}.${i+1}.${ext}`
-            );
+async function probeUrl(url) {
+    try {
+        const r = await fetch(url, { method: 'HEAD', cache: 'no-store' });
+        return r.ok;
+    } catch { return false; }
+}
+
+async function findImage(portfolioNum, imgIndex) {
+    for (const ext of IMG_EXTS) {
+        const url = `${BASE}Portfolio_${portfolioNum}.${imgIndex}.${ext}`;
+        if (await probeUrl(url)) return { src: url, type: 'image' };
+    }
+    return null;
+}
+
+async function detectMedia(portfolioNum) {
+    const items = [];
+    let idx = 1;
+    // Probe images sequentially – stop at first miss (max 50 to be safe)
+    while (idx <= 50) {
+        const found = await findImage(portfolioNum, idx);
+        if (!found) break;
+        items.push(found);
+        idx++;
+    }
+    // Add known videos
+    const vids = KNOWN_VIDEOS[portfolioNum] || [];
+    for (const v of vids) {
+        items.push({ src: BASE + v, type: 'video' });
+    }
+    return items;
+}
+
+// ── Load description text ──
+async function loadDescription(portfolioNum) {
+    try {
+        const r = await fetch(BASE + `Portfolio_${portfolioNum}.txt`, { cache: 'no-store' });
+        if (!r.ok) return null;
+        // Ensure proper UTF-8 decoding
+        const buf = await r.arrayBuffer();
+        const decoder = new TextDecoder('utf-8');
+        return decoder.decode(buf);
+    } catch { return null; }
+}
+
+// ── Parse description: first line (quoted) = title, rest = body ──
+function parseDescription(raw) {
+    if (!raw) return { title: '', body: '' };
+    const lines = raw.split('\n');
+    let title = '';
+    let bodyStart = 0;
+
+    // First non-empty line is the title (strip surrounding quotes if present)
+    for (let i = 0; i < lines.length; i++) {
+        const trimmed = lines[i].trim();
+        if (trimmed) {
+            title = trimmed.replace(/^["«""]|["»""]$/g, '');
+            bodyStart = i + 1;
+            break;
         }
+    }
 
-        function buildImgsCustom(portfolioNum, items) {
-            return items.map(item => `Portfolio_${portfolioNum}.${item.n}.${item.ext}`);
+    // Rest is body – preserve line breaks and all characters
+    const body = lines.slice(bodyStart).join('\n').replace(/^\n+/, '');
+    return { title, body };
+}
+
+// ── Build page ──
+async function init() {
+    const [media, rawText] = await Promise.all([
+        detectMedia(portfolioId),
+        loadDescription(portfolioId)
+    ]);
+
+    mediaItems = media;
+
+    const page = document.getElementById('portfolioPage');
+    page.innerHTML = '';
+
+    // ── Gallery ──
+    const galleryDiv = document.createElement('div');
+    galleryDiv.className = 'portfolio-gallery';
+    const grid = document.createElement('div');
+    grid.className = 'masonry-grid';
+
+    mediaItems.forEach((item, idx) => {
+        const cell = document.createElement('div');
+        cell.className = 'masonry-item';
+        cell.addEventListener('click', () => openModal(idx));
+
+        if (item.type === 'video') {
+            const badge = document.createElement('span');
+            badge.className = 'video-badge';
+            badge.textContent = '▶ VIDEO';
+            cell.appendChild(badge);
+
+            const vid = document.createElement('video');
+            vid.src = item.src;
+            vid.muted = true; vid.loop = true; vid.autoplay = true; vid.playsInline = true;
+            vid.setAttribute('playsinline', '');
+            vid.style.pointerEvents = 'none';
+            cell.appendChild(vid);
+        } else {
+            const img = document.createElement('img');
+            img.src = item.src;
+            img.alt = `Portfolio ${portfolioId} – immagine ${idx + 1}`;
+            img.loading = 'lazy'; img.decoding = 'async';
+            cell.appendChild(img);
         }
+        grid.appendChild(cell);
+    });
 
-        // ── State ──
-        let mediaItems = []; // all media (images + optional video)
-        let currentModalIndex = 0;
+    galleryDiv.appendChild(grid);
 
-        // ── Read URL param ──
-        const params = new URLSearchParams(window.location.search);
-        const portfolioId = parseInt(params.get('id') || '1');
+    // ── Description ──
+    const descDiv = document.createElement('div');
+    descDiv.className = 'portfolio-description';
 
-        function init() {
-            const data = portfolios[portfolioId];
-            if (!data) {
-                document.getElementById('statusMsg').textContent = 'Portfolio non trovato.';
-                return;
-            }
+    const { title, body } = parseDescription(rawText);
 
-            // Build media list
-            mediaItems = data.images.map(f => ({ src: BASE + f, type: 'image' }));
-            if (data.video) {
-                mediaItems.push({ src: BASE + data.video, type: 'video' });
-            }
+    if (title || body) {
+        const box = document.createElement('div');
+        box.className = 'description-box';
 
-            // Build HTML
-            const page = document.getElementById('portfolioPage');
-            page.innerHTML = '';
-
-            // Gallery section
-            const galleryDiv = document.createElement('div');
-            galleryDiv.className = 'portfolio-gallery';
-
-            const grid = document.createElement('div');
-            grid.className = 'masonry-grid';
-
-            mediaItems.forEach((item, idx) => {
-                const cell = document.createElement('div');
-                cell.className = 'masonry-item';
-                cell.onclick = () => openModal(idx);
-
-                if (item.type === 'video') {
-                    const vid = document.createElement('video');
-                    vid.src = item.src;
-                    vid.muted = true;
-                    vid.loop = true;
-                    vid.autoplay = true;
-                    vid.playsInline = true;
-                    vid.setAttribute('playsinline', '');
-                    cell.appendChild(vid);
-                } else {
-                    const img = document.createElement('img');
-                    img.src = item.src;
-                    img.alt = `Portfolio ${portfolioId} – ${idx + 1}`;
-                    img.loading = 'lazy';
-                    img.decoding = 'async';
-                    cell.appendChild(img);
-                }
-
-                grid.appendChild(cell);
-            });
-
-            galleryDiv.appendChild(grid);
-
-            // Description section (top right = order:2 via CSS, sticky)
-            const descDiv = document.createElement('div');
-            descDiv.className = 'portfolio-description';
-
-            const box = document.createElement('div');
-            box.className = 'description-box';
-
-            const h2 = document.createElement('h2');
-            h2.textContent = `Portfolio ${portfolioId}`;
-            box.appendChild(h2);
-
-            const textEl = document.createElement('div');
-            textEl.className = 'description-text';
-            textEl.textContent = 'Caricamento testo…';
-            box.appendChild(textEl);
-            descDiv.appendChild(box);
-
-            page.appendChild(galleryDiv);
-            page.appendChild(descDiv);
-
-            // Load description
-            fetch(BASE + `Portfolio_${portfolioId}.txt`)
-                .then(r => {
-                    if (!r.ok) throw new Error('no text');
-                    return r.text();
-                })
-                .then(txt => { textEl.textContent = txt; })
-                .catch(() => { textEl.textContent = ''; box.style.display = descDiv.childElementCount > 0 ? '' : 'none'; });
+        if (title) {
+            const h = document.createElement('div');
+            h.className = 'description-title';
+            h.textContent = title;
+            box.appendChild(h);
         }
-
-        // ── Modal ──
-        function openModal(idx) {
-            currentModalIndex = idx;
-            renderModal();
-            document.getElementById('imageModal').style.display = 'block';
+        if (body) {
+            const p = document.createElement('div');
+            p.className = 'description-body';
+            p.textContent = body; // textContent preserves \n in pre-wrap
+            box.appendChild(p);
         }
+        descDiv.appendChild(box);
+    }
 
-        function renderModal() {
-            const item = mediaItems[currentModalIndex];
-            const img = document.getElementById('modalImage');
-            const vid = document.getElementById('modalVideo');
+    page.appendChild(galleryDiv);
+    page.appendChild(descDiv);
+}
 
-            if (item.type === 'video') {
-                img.style.display = 'none';
-                vid.style.display = 'block';
-                vid.src = item.src;
-            } else {
-                vid.style.display = 'none';
-                vid.pause && vid.pause();
-                img.style.display = 'block';
-                img.src = item.src;
-            }
+// ── Modal ──
+function openModal(idx) {
+    currentIndex = idx;
+    firstVideoPlay = true;
+    renderModal();
+    document.getElementById('imageModal').style.display = 'block';
+}
+
+function renderModal() {
+    const item = mediaItems[currentIndex];
+    const img = document.getElementById('modalImage');
+    const vid = document.getElementById('modalVideo');
+
+    if (item.type === 'video') {
+        img.style.display = 'none';
+        vid.style.display = 'block';
+        vid.src = item.src;
+        if (firstVideoPlay) {
+            vid.autoplay = true;
+            vid.muted = false;
+            firstVideoPlay = false;
+            vid.play().catch(() => { vid.muted = true; vid.play(); });
         }
+    } else {
+        vid.pause();
+        vid.style.display = 'none';
+        img.style.display = 'block';
+        img.src = item.src;
+    }
+}
 
-        function navigateModal(dir) {
-            currentModalIndex = (currentModalIndex + dir + mediaItems.length) % mediaItems.length;
-            renderModal();
-        }
+function navigateModal(dir) {
+    currentIndex = (currentIndex + dir + mediaItems.length) % mediaItems.length;
+    firstVideoPlay = false; // subsequent video runs require play
+    renderModal();
+}
 
-        function closeModal() {
-            document.getElementById('imageModal').style.display = 'none';
-            const vid = document.getElementById('modalVideo');
-            vid.pause && vid.pause();
-        }
+function closeModal() {
+    document.getElementById('imageModal').style.display = 'none';
+    const vid = document.getElementById('modalVideo');
+    vid.pause(); vid.src = '';
+    firstVideoPlay = true;
+}
 
-        function handleModalClick(e) {
-            if (e.target === document.getElementById('imageModal')) closeModal();
-        }
+document.getElementById('imageModal').addEventListener('click', function(e) {
+    if (e.target === this) closeModal();
+});
 
-        // ── Mobile menu ──
-        function toggleMobileMenu() {
-            document.getElementById('mobileMenu').classList.toggle('active');
-            document.querySelector('.hamburger').classList.toggle('active');
-        }
+// ── Keyboard ──
+document.addEventListener('keydown', e => {
+    const modal = document.getElementById('imageModal');
+    if (modal.style.display === 'block') {
+        if (e.key === 'Escape') closeModal();
+        if (e.key === 'ArrowRight') navigateModal(1);
+        if (e.key === 'ArrowLeft') navigateModal(-1);
+    }
+    if (e.ctrlKey && ['s','u','p','a'].includes(e.key.toLowerCase())) e.preventDefault();
+    if (e.key === 'PrintScreen') navigator.clipboard?.writeText('');
+});
 
-        document.addEventListener('keydown', e => {
-            const modal = document.getElementById('imageModal');
-            if (modal.style.display === 'block') {
-                if (e.key === 'Escape') closeModal();
-                if (e.key === 'ArrowRight') navigateModal(1);
-                if (e.key === 'ArrowLeft') navigateModal(-1);
-            }
-        });
+// ── Image protection ──
+document.addEventListener('contextmenu', e => { if (e.target.tagName === 'IMG') e.preventDefault(); });
+document.addEventListener('dragstart', e => { if (e.target.tagName === 'IMG') e.preventDefault(); });
 
-        document.addEventListener('click', function(event) {
-            const mobileMenu = document.getElementById('mobileMenu');
-            const hamburger = document.querySelector('.hamburger');
-            const navbar = document.querySelector('.navbar');
-            if (!navbar.contains(event.target) && !mobileMenu.contains(event.target)) {
-                mobileMenu.classList.remove('active');
-                hamburger.classList.remove('active');
-            }
-        });
+// ── Mobile menu ──
+function toggleMobileMenu() {
+    document.getElementById('mobileMenu').classList.toggle('active');
+    document.getElementById('hamburger').classList.toggle('active');
+}
+document.addEventListener('click', e => {
+    const mm = document.getElementById('mobileMenu');
+    const hb = document.getElementById('hamburger');
+    if (!document.querySelector('.navbar').contains(e.target) && !mm.contains(e.target)) {
+        mm.classList.remove('active'); hb.classList.remove('active');
+    }
+});
 
-        // Run
-        init();
-    </script>
+// ── Run ──
+init();
+</script>
 </body>
 </html>
