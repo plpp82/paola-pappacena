@@ -17,7 +17,6 @@
             padding-top: 60px;
         }
         
-        /* Barra di navigazione trasparente */
         .navbar {
             position: fixed;
             top: 0;
@@ -75,7 +74,6 @@
             margin-left: 15px;
         }
         
-        /* Menu hamburger - nascosto su desktop */
         .hamburger {
             display: none;
             flex-direction: column;
@@ -105,7 +103,6 @@
             transform: rotate(-45deg) translate(6px, -6px);
         }
         
-        /* Menu mobile */
         .mobile-menu {
             display: none;
             position: fixed;
@@ -144,52 +141,39 @@
             border-top: 1px solid rgba(0, 0, 0, 0.05);
         }
         
+        /* Social buttons - refined style */
         .social-button {
-            width: 32px;
-            height: 32px;
-            border-radius: 2px;
-            background-color: #707070;
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
             color: white;
             display: flex;
             align-items: center;
             justify-content: center;
             text-decoration: none;
-            font-size: 10px;
-            font-weight: 600;
-            font-family: 'Arial', sans-serif;
-            letter-spacing: 0.5px;
-            transition: background-color 0.3s ease, transform 0.2s ease;
-            border: 1px solid #606060;
+            font-size: 11px;
+            font-weight: 700;
+            font-family: 'Georgia', serif;
+            letter-spacing: 0.3px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+            border: none;
         }
         
         .social-button:hover {
-            background-color: #505050;
-            transform: scale(1.03);
+            transform: scale(1.08);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+            opacity: 0.92;
+        }
+
+        .social-button.instagram {
+            background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%);
+        }
+
+        .social-button.facebook {
+            background: #1877F2;
         }
         
-        /* Sfondo header con Img13 - DISABILITATO */
-        /*
-        .header-background {
-            width: 100%;
-            height: 10cm;
-            background-image: url('https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Img13.jpg');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            position: relative;
-        }
-        
-        .header-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.1));
-        }
-        */
-        
-        /* Griglia delle immagini */
+        /* Gallery */
         .gallery-container {
             padding: 0;
             margin: 0;
@@ -211,6 +195,14 @@
         .image-item {
             cursor: pointer;
             overflow: hidden;
+            position: relative;
+            border-radius: 3px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(0, 0, 0, 0.08);
+            transition: box-shadow 0.3s ease;
+        }
+
+        .image-item:hover {
+            box-shadow: 0 8px 28px rgba(0, 0, 0, 0.2), 0 2px 8px rgba(0, 0, 0, 0.12);
         }
         
         .gallery-image {
@@ -220,14 +212,13 @@
             transition: transform 0.3s ease;
             border-radius: 3px;
             background-color: #f5f5f5;
-            border: 1px solid #e8e8e8;
         }
         
         .gallery-image:hover {
             transform: scale(1.02);
         }
         
-        /* Modal per l'ingrandimento */
+        /* Modal */
         .modal {
             display: none;
             position: fixed;
@@ -285,9 +276,9 @@
         }
         
         .footer-social .social-button {
-            width: 40px;
-            height: 40px;
-            font-size: 16px;
+            width: 42px;
+            height: 42px;
+            font-size: 12px;
         }
         
         @media (max-width: 768px) {
@@ -307,59 +298,24 @@
                 min-width: 0;
             }
             
-            .logo {
-                height: 35px;
-                flex-shrink: 0;
-            }
+            .logo { height: 35px; flex-shrink: 0; }
+            .artist-name { height: 24px; flex-shrink: 1; min-width: 0; max-width: 100%; }
             
-            .artist-name {
-                height: 24px;
-                flex-shrink: 1;
-                min-width: 0;
-                max-width: 100%;
-            }
-            
-            .navbar-right {
-                justify-self: end;
-                gap: 0;
-            }
+            .navbar-right { justify-self: end; gap: 0; }
             
             .navbar-right .nav-button,
-            .navbar-right .social-links {
-                display: none;
-            }
+            .navbar-right .social-links { display: none; }
             
-            .hamburger {
-                display: flex;
-                margin-left: auto;
-            }
+            .hamburger { display: flex; margin-left: auto; }
             
-            body {
-                padding-top: 60px;
-            }
+            body { padding-top: 60px; }
             
-            .image-grid {
-                grid-template-columns: 1fr;
-                gap: 10px;
-            }
+            .image-grid { grid-template-columns: 1fr; gap: 10px; }
+            .column { gap: 10px; }
             
-            .column {
-                gap: 10px;
-            }
-            
-            .footer {
-                padding: 30px 15px;
-            }
-            
-            .footer-copyright {
-                font-size: 1.1em;
-            }
-            
-            .footer-social .social-button {
-                width: 35px;
-                height: 35px;
-                font-size: 9px;
-            }
+            .footer { padding: 30px 15px; }
+            .footer-copyright { font-size: 1.1em; }
+            .footer-social .social-button { width: 38px; height: 38px; }
         }
         
         @media (max-width: 480px) {
@@ -368,48 +324,32 @@
                 grid-template-columns: auto 1fr auto;
                 gap: 8px;
             }
-            
-            .navbar-left {
-                gap: 8px;
-            }
-            
-            .logo {
-                height: 30px;
-            }
-            
-            .artist-name {
-                height: 20px;
-            }
-            
-            .footer-social {
-                gap: 12px;
-            }
+            .navbar-left { gap: 8px; }
+            .logo { height: 30px; }
+            .artist-name { height: 20px; }
+            .footer-social { gap: 12px; }
         }
     </style>
 </head>
 <body>
-    <!-- Barra di navigazione -->
+    <!-- Navbar -->
     <nav class="navbar">
         <div class="navbar-left">
             <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Sigla.png" alt="Logo" class="logo">
             <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Sigla_2.png" alt="Paola Pappacena" class="artist-name">
         </div>
         <div class="navbar-right">
-            <a href="https://paolapappacena.com" class="nav-button">Work</a>
-            <a href="/books.html" class="nav-button">Books</a>
-            <a href="#" class="nav-button">WorkShop</a>
-            <a href="/about.html" class="nav-button">About</a>
+            <a href="https://paolapappacena.com" class="nav-button">Portfolio</a>
             <a href="#" class="nav-button">Shop</a>
+            <a href="#" class="nav-button">Workshop</a>
+            <a href="/about.html" class="nav-button">About</a>
             <a href="/contacts.html" class="nav-button">Contacts</a>
             <div class="social-links">
-                <a href="https://instagram.com/torteincielo" class="social-button instagram" title="Instagram">IG</a>
-                <a href="https://facebook.com/torte.incielo" class="social-button facebook" title="Facebook">FB</a>
-                <a href="#" class="social-button linkedin" title="LinkedIn">IN</a>
+                <a href="https://www.instagram.com/paola.pappacena/" class="social-button instagram" title="Instagram" target="_blank" rel="noopener">IG</a>
+                <a href="https://www.facebook.com/torte.incielo" class="social-button facebook" title="Facebook" target="_blank" rel="noopener">FB</a>
             </div>
             <div class="hamburger" onclick="toggleMobileMenu()">
-                <span></span>
-                <span></span>
-                <span></span>
+                <span></span><span></span><span></span>
             </div>
         </div>
     </nav>
@@ -417,136 +357,112 @@
     <!-- Menu mobile -->
     <div class="mobile-menu" id="mobileMenu">
         <div class="mobile-nav-links">
-            <a href="https://paolapappacena.com" class="nav-button">Work</a>
-            <a href="/books.html" class="nav-button">Books</a>
-            <a href="#" class="nav-button">WorkShop</a>
-            <a href="/about.html" class="nav-button">About</a>
+            <a href="https://paolapappacena.com" class="nav-button">Portfolio</a>
             <a href="#" class="nav-button">Shop</a>
+            <a href="#" class="nav-button">Workshop</a>
+            <a href="/about.html" class="nav-button">About</a>
             <a href="/contacts.html" class="nav-button">Contacts</a>
         </div>
         <div class="mobile-social">
-            <a href="https://instagram.com/torteincielo" class="social-button instagram" title="Instagram">IG</a>
-            <a href="https://facebook.com/torte.incielo" class="social-button facebook" title="Facebook">FB</a>
-            <a href="#" class="social-button linkedin" title="LinkedIn">IN</a>
+            <a href="https://www.instagram.com/paola.pappacena/" class="social-button instagram" title="Instagram" target="_blank" rel="noopener">IG</a>
+            <a href="https://www.facebook.com/torte.incielo" class="social-button facebook" title="Facebook" target="_blank" rel="noopener">FB</a>
         </div>
     </div>
 
-    <!-- Sfondo header con Img13 - DISABILITATO -->
-    <!--
-    <div class="header-background">
-        <div class="header-overlay"></div>
-    </div>
-    -->
-
-    <!-- Griglia delle immagini -->
+    <!-- Gallery Grid -->
     <div class="gallery-container">
         <div class="image-grid">
             <!-- Colonna 1 -->
             <div class="column">
-                <div class="image-item" onclick="openModal('https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Work_1.jpg')">
-                    <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Work_1.jpg" alt="Work 1" class="gallery-image" loading="lazy" decoding="async">
+                <div class="image-item" onclick="goToPortfolio(1)">
+                    <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Portfolio_1copertina.jpg" alt="Portfolio 1" class="gallery-image" loading="lazy" decoding="async">
                 </div>
-                <div class="image-item" onclick="openModal('https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Work_4.jpg')">
-                    <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Work_4.jpg" alt="Work 4" class="gallery-image" loading="lazy" decoding="async">
+                <div class="image-item" onclick="goToPortfolio(4)">
+                    <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Portfolio_4copertina.jpg" alt="Portfolio 4" class="gallery-image" loading="lazy" decoding="async">
                 </div>
-                <div class="image-item" onclick="openModal('https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Work_7.jpg')">
-                    <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Work_7.jpg" alt="Work 7" class="gallery-image" loading="lazy" decoding="async">
+                <div class="image-item" onclick="goToPortfolio(7)">
+                    <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Portfolio_7copertina.jpg" alt="Portfolio 7" class="gallery-image" loading="lazy" decoding="async">
                 </div>
-                <div class="image-item" onclick="openModal('https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Work_13.jpg')">
-                    <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Work_13.jpg" alt="Work 13" class="gallery-image" loading="lazy" decoding="async">
+                <div class="image-item" onclick="goToPortfolio(10)">
+                    <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Portfolio_10copertina.jpg" alt="Portfolio 10" class="gallery-image" loading="lazy" decoding="async">
                 </div>
-                <div class="image-item" onclick="openModal('https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Work_10.jpg')">
-                    <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Work_10.jpg" alt="Work 10" class="gallery-image" loading="lazy" decoding="async">
+                <div class="image-item" onclick="goToPortfolio(13)">
+                    <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Portfolio_13copertina.jpg" alt="Portfolio 13" class="gallery-image" loading="lazy" decoding="async">
                 </div>
             </div>
             
             <!-- Colonna 2 -->
             <div class="column">
-                <div class="image-item" onclick="openModal('https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Work_2.jpg')">
-                    <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Work_2.jpg" alt="Work 2" class="gallery-image" loading="lazy" decoding="async">
+                <div class="image-item" onclick="goToPortfolio(2)">
+                    <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Portfolio_2copertina.jpg" alt="Portfolio 2" class="gallery-image" loading="lazy" decoding="async">
                 </div>
-                <div class="image-item" onclick="openModal('https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Work_5.jpg')">
-                    <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Work_5.jpg" alt="Work 5" class="gallery-image" loading="lazy" decoding="async">
+                <div class="image-item" onclick="goToPortfolio(5)">
+                    <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Portfolio_5copertina.jpg" alt="Portfolio 5" class="gallery-image" loading="lazy" decoding="async">
                 </div>
-                <div class="image-item" onclick="openModal('https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Work_8.jpg')">
-                    <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Work_8.jpg" alt="Work 8" class="gallery-image" loading="lazy" decoding="async">
+                <div class="image-item" onclick="goToPortfolio(8)">
+                    <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Portfolio_8copertina.jpg" alt="Portfolio 8" class="gallery-image" loading="lazy" decoding="async">
+                </div>
+                <div class="image-item" onclick="goToPortfolio(11)">
+                    <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Portfolio_11copertina.jpg" alt="Portfolio 11" class="gallery-image" loading="lazy" decoding="async">
+                </div>
+                <div class="image-item" onclick="goToPortfolio(14)">
+                    <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Portfolio_14copertina.jpg" alt="Portfolio 14" class="gallery-image" loading="lazy" decoding="async">
                 </div>
             </div>
             
             <!-- Colonna 3 -->
             <div class="column">
-                <div class="image-item" onclick="openModal('https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Work_3.jpg')">
-                    <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Work_3.jpg" alt="Work 3" class="gallery-image" loading="lazy" decoding="async">
+                <div class="image-item" onclick="goToPortfolio(3)">
+                    <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Portfolio_3copertina.jpg" alt="Portfolio 3" class="gallery-image" loading="lazy" decoding="async">
                 </div>
-                <div class="image-item" onclick="openModal('https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Work_6.jpg')">
-                    <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Work_6.jpg" alt="Work 6" class="gallery-image" loading="lazy" decoding="async">
+                <div class="image-item" onclick="goToPortfolio(6)">
+                    <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Portfolio_6copertina.jpg" alt="Portfolio 6" class="gallery-image" loading="lazy" decoding="async">
                 </div>
-                <div class="image-item" onclick="openModal('https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Work_11.jpg')">
-                    <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Work_11.jpg" alt="Work 11" class="gallery-image" loading="lazy" decoding="async">
+                <div class="image-item" onclick="goToPortfolio(9)">
+                    <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Portfolio_9copertina.jpg" alt="Portfolio 9" class="gallery-image" loading="lazy" decoding="async">
                 </div>
-                <div class="image-item" onclick="openModal('https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Work_12.jpg')">
-                    <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Work_12.jpg" alt="Work 12" class="gallery-image" loading="lazy" decoding="async">
+                <div class="image-item" onclick="goToPortfolio(12)">
+                    <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Portfolio_12copertina.jpg" alt="Portfolio 12" class="gallery-image" loading="lazy" decoding="async">
                 </div>
-                <div class="image-item" onclick="openModal('https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Work_14.jpg')">
-                    <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Work_14.jpg" alt="Work 14" class="gallery-image" loading="lazy" decoding="async">
-                </div>
-                <div class="image-item" onclick="openModal('https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Work_9.jpg')">
-                    <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Work_9.jpg" alt="Work 9" class="gallery-image" loading="lazy" decoding="async">
+                <div class="image-item" onclick="goToPortfolio(15)">
+                    <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Portfolio_15copertina.jpg" alt="Portfolio 15" class="gallery-image" loading="lazy" decoding="async">
                 </div>
             </div>
         </div>
-    </div>
-    
-    <!-- Modal per visualizzazione ingrandita -->
-    <div id="imageModal" class="modal" onclick="closeModal()">
-        <span class="close" onclick="closeModal()">&times;</span>
-        <img class="modal-content" id="modalImage">
     </div>
 
     <!-- Footer -->
     <footer class="footer">
         <div class="footer-copyright">@PaolaPappacena2025</div>
         <div class="footer-social">
-            <a href="https://instagram.com/torteincielo" class="social-button instagram" title="Instagram">IG</a>
-            <a href="https://facebook.com/torte.incielo" class="social-button facebook" title="Facebook">FB</a>
-            <a href="#" class="social-button linkedin" title="LinkedIn">IN</a>
+            <a href="https://www.instagram.com/paola.pappacena/" class="social-button instagram" title="Instagram" target="_blank" rel="noopener">IG</a>
+            <a href="https://www.facebook.com/torte.incielo" class="social-button facebook" title="Facebook" target="_blank" rel="noopener">FB</a>
         </div>
     </footer>
 
     <script>
-        function openModal(imageSrc) {
-            const modal = document.getElementById('imageModal');
-            const modalImage = document.getElementById('modalImage');
-            modal.style.display = 'block';
-            modalImage.src = imageSrc;
+        function goToPortfolio(num) {
+            window.location.href = `/portfolio.html?id=${num}`;
         }
-        
-        function closeModal() {
-            const modal = document.getElementById('imageModal');
-            modal.style.display = 'none';
-        }
-        
+
         function toggleMobileMenu() {
             const mobileMenu = document.getElementById('mobileMenu');
             const hamburger = document.querySelector('.hamburger');
-            
             mobileMenu.classList.toggle('active');
             hamburger.classList.toggle('active');
         }
         
-        // Chiudi modal con ESC
         document.addEventListener('keydown', function(event) {
             if (event.key === 'Escape') {
-                closeModal();
+                const modal = document.getElementById('imageModal');
+                if (modal) modal.style.display = 'none';
             }
         });
         
-        // Chiudi menu mobile quando si clicca fuori
         document.addEventListener('click', function(event) {
             const mobileMenu = document.getElementById('mobileMenu');
             const hamburger = document.querySelector('.hamburger');
             const navbar = document.querySelector('.navbar');
-            
             if (!navbar.contains(event.target) && !mobileMenu.contains(event.target)) {
                 mobileMenu.classList.remove('active');
                 hamburger.classList.remove('active');
