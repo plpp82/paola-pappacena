@@ -11,60 +11,57 @@
             background-color: white;
             font-family: Arial, sans-serif;
             padding-top: 60px;
+            padding-bottom: 40px;
         }
 
-        /* ── Navbar ── */
+        /* ── Navbar ──
+           Logo triplicato: era 42px → ora 126px.
+           La navbar si allarga di conseguenza su desktop. */
         .navbar {
             position: fixed; top: 0; left: 0; right: 0;
-            background-color: rgba(255,255,255,0.93);
-            backdrop-filter: blur(12px);
+            background: rgba(255,255,255,0.93); backdrop-filter: blur(12px);
             border-bottom: 1px solid rgba(0,0,0,0.08);
             padding: 0 24px;
             display: flex; justify-content: space-between; align-items: center;
-            z-index: 1000; height: 60px;
+            z-index: 1000;
+            height: 80px; /* taller to accommodate big logo */
         }
+        body { padding-top: 80px; }
+
         .navbar-left { display: flex; align-items: center; gap: 16px; }
-        .logo { height: 42px; width: auto; cursor: pointer; }
-        .artist-name { height: 28px; width: auto; cursor: pointer; }
+        .logo { height: 126px; width: auto; cursor: pointer; }
+        .artist-name { height: 32px; width: auto; cursor: pointer; }
+
         .navbar-right { display: flex; align-items: center; gap: 4px; }
         .nav-button {
-            color: #2c3e50; text-decoration: none; font-weight: 500; font-size: 0.88em;
-            padding: 7px 11px; border-radius: 5px; letter-spacing: 0.3px;
-            transition: background-color 0.25s;
+            color: #2c3e50; text-decoration: none; font-weight: 500;
+            font-size: 0.88em; padding: 7px 11px; border-radius: 5px;
+            letter-spacing: 0.3px; transition: background 0.25s;
         }
-        .nav-button:hover, .nav-button.active { background-color: rgba(44,62,80,0.09); }
+        .nav-button:hover, .nav-button.active { background: rgba(44,62,80,0.09); }
         .social-links { display: flex; gap: 8px; margin-left: 14px; }
-
-        /* Social icon buttons using images */
         .social-button {
             width: 30px; height: 30px; border-radius: 50%;
             display: flex; align-items: center; justify-content: center;
             text-decoration: none; overflow: hidden;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-            flex-shrink: 0;
+            transition: transform 0.2s, box-shadow 0.2s; flex-shrink: 0;
         }
         .social-button:hover { transform: scale(1.1); box-shadow: 0 3px 10px rgba(0,0,0,0.22); }
         .social-button img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
 
-        /* Hamburger */
         .hamburger { display: none; flex-direction: column; cursor: pointer; padding: 5px; gap: 5px; flex-shrink: 0; margin-left: 8px; }
-        .hamburger span { width: 24px; height: 2px; background-color: #2c3e50; border-radius: 1px; transition: all 0.3s; }
+        .hamburger span { width: 24px; height: 2px; background: #2c3e50; border-radius: 1px; transition: all 0.3s; }
         .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(7px,7px); }
         .hamburger.active span:nth-child(2) { opacity: 0; }
         .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(7px,-7px); }
 
-        /* Mobile menu */
-        .mobile-menu {
-            display: none; position: fixed; top: 60px; left: 0; right: 0;
-            background: rgba(255,255,255,0.97); backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(0,0,0,0.08); padding: 20px; z-index: 999;
-        }
+        .mobile-menu { display: none; position: fixed; top: 80px; left: 0; right: 0; background: rgba(255,255,255,0.97); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(0,0,0,0.08); padding: 20px; z-index: 999; }
         .mobile-menu.active { display: block; }
         .mobile-nav-links { display: flex; flex-direction: column; gap: 4px; margin-bottom: 20px; }
         .mobile-nav-links .nav-button { text-align: center; padding: 11px 20px; border-bottom: 1px solid rgba(0,0,0,0.04); font-size: 0.95em; }
         .mobile-social { display: flex; justify-content: center; gap: 16px; padding-top: 16px; border-top: 1px solid rgba(0,0,0,0.05); }
 
-        /* ── Sticky Footer Bar ── */
+        /* ── Sticky footer bar ── */
         .sticky-footer-bar {
             position: fixed; bottom: 0; left: 0; right: 0;
             background: rgba(255,255,255,0.93); backdrop-filter: blur(12px);
@@ -72,25 +69,22 @@
             height: 40px; display: flex; align-items: center; justify-content: center;
             gap: 12px; z-index: 900;
         }
-        .sticky-copyright {
-            font-size: 0.78em; color: #555; font-style: italic; letter-spacing: 0.3px;
-        }
+        .sticky-copyright { font-size: 0.78em; color: #555; font-style: italic; letter-spacing: 0.3px; }
         .sticky-footer-bar .social-button { width: 24px; height: 24px; }
-
-        body { padding-bottom: 40px; }
 
         /* ── Gallery ── */
         .gallery-container { padding: 0; margin: 0; }
-        .image-grid {
-            display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px;
-        }
+        .image-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px; }
         .column { display: flex; flex-direction: column; gap: 5px; }
+
         .image-item {
-            cursor: pointer; overflow: hidden; position: relative; border-radius: 3px;
+            cursor: pointer; overflow: hidden; position: relative;
+            border-radius: 3px;
             box-shadow: 0 3px 12px rgba(0,0,0,0.11), 0 1px 3px rgba(0,0,0,0.07);
             transition: box-shadow 0.3s; user-select: none;
         }
         .image-item:hover { box-shadow: 0 7px 24px rgba(0,0,0,0.18), 0 2px 6px rgba(0,0,0,0.1); }
+
         .gallery-image {
             width: 100%; height: auto; display: block;
             transition: transform 0.3s; border-radius: 3px;
@@ -99,12 +93,9 @@
         }
         .image-item:hover .gallery-image { transform: scale(1.02); }
 
-        /* Protection overlay */
-        .image-item::after {
-            content: ''; position: absolute; inset: 0;
-            z-index: 2; cursor: pointer;
-        }
-        /* Watermark overlay */
+        /* Invisible click-capture overlay so right-click on image is blocked */
+        .image-item::after { content: ''; position: absolute; inset: 0; z-index: 2; cursor: pointer; }
+        /* Watermark */
         .image-item::before {
             content: '© Paola Pappacena';
             position: absolute; bottom: 8px; right: 10px;
@@ -113,29 +104,29 @@
             text-shadow: 0 1px 3px rgba(0,0,0,0.5); letter-spacing: 0.5px;
         }
 
-        /* ── Footer (page bottom, hidden behind sticky bar) ── */
-        .footer {
-            background-color: #f8f9fa; padding: 30px 20px 50px;
-            text-align: center; border-top: 1px solid rgba(0,0,0,0.08);
-            margin-top: 30px;
-        }
-        .footer-copyright { color: #555; font-size: 0.9em; font-style: italic; }
+        /* Hidden by default – shown by JS if image loads */
+        .image-item.hidden { display: none; }
+
+        /* ── Footer ── */
+        .footer { background: #f8f9fa; padding: 28px 20px 50px; text-align: center; border-top: 1px solid rgba(0,0,0,0.08); margin-top: 20px; }
+        .footer-copyright { color: #666; font-size: 0.88em; font-style: italic; }
 
         /* ── Responsive ── */
         @media (max-width: 900px) {
-            .navbar-right .nav-button { font-size: 0.8em; padding: 6px 8px; }
+            .navbar-right .nav-button { font-size: 0.8em; padding: 6px 7px; }
         }
         @media (max-width: 768px) {
-            .navbar { padding: 0 15px; display: grid; grid-template-columns: auto 1fr auto; gap: 10px; }
-            .navbar-left { gap: 10px; }
-            .logo { height: 35px; } .artist-name { height: 22px; }
+            .navbar { padding: 0 15px; display: grid; grid-template-columns: auto 1fr auto; gap: 10px; height: 70px; }
+            body { padding-top: 70px; }
+            .mobile-menu { top: 70px; }
+            .logo { height: 64px; } .artist-name { height: 22px; }
             .navbar-right .nav-button, .navbar-right .social-links { display: none; }
             .hamburger { display: flex; }
             .image-grid { grid-template-columns: 1fr; gap: 8px; }
             .column { gap: 8px; }
         }
         @media (max-width: 480px) {
-            .logo { height: 30px; } .artist-name { height: 18px; }
+            .logo { height: 54px; }
         }
     </style>
 </head>
@@ -143,8 +134,8 @@
 
 <nav class="navbar">
     <div class="navbar-left">
-        <a href="/"><img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Sigla.png" alt="Logo" class="logo"></a>
-        <a href="/"><img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Sigla_2.png" alt="Paola Pappacena" class="artist-name"></a>
+        <a href="index.html"><img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Sigla.png" alt="Logo" class="logo"></a>
+        <a href="index.html"><img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Sigla_2.png" alt="Paola Pappacena" class="artist-name"></a>
     </div>
     <div class="navbar-right">
         <a href="index.html" class="nav-button active">Portfolio</a>
@@ -184,9 +175,10 @@
     </div>
 </div>
 
-<!-- Gallery -->
+<!-- Gallery Grid -->
 <div class="gallery-container">
     <div class="image-grid">
+
         <!-- Colonna 1 -->
         <div class="column">
             <div class="image-item" onclick="goToPortfolio(1)">
@@ -203,6 +195,9 @@
             </div>
             <div class="image-item" onclick="goToPortfolio(13)">
                 <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Portfolio_13copertina.jpg" alt="Portfolio 13" class="gallery-image" loading="lazy" decoding="async">
+            </div>
+            <div class="image-item" onclick="goToPortfolio(16)">
+                <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Portfolio_16copertina.jpg" alt="Portfolio 16" class="gallery-image" loading="lazy" decoding="async">
             </div>
         </div>
 
@@ -223,6 +218,12 @@
             <div class="image-item" onclick="goToPortfolio(14)">
                 <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Portfolio_14copertina.jpg" alt="Portfolio 14" class="gallery-image" loading="lazy" decoding="async">
             </div>
+            <!-- Portfolio 17: hidden until cover image loads successfully -->
+            <div class="image-item hidden" id="item-17" onclick="goToPortfolio(17)">
+                <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Portfolio_17copertina.jpg"
+                     alt="Portfolio 17" class="gallery-image" loading="lazy" decoding="async"
+                     onload="showItem('item-17')" onerror="hideItem('item-17')">
+            </div>
         </div>
 
         <!-- Colonna 3 -->
@@ -242,10 +243,14 @@
             <div class="image-item" onclick="goToPortfolio(15)">
                 <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Portfolio_15copertina.jpg" alt="Portfolio 15" class="gallery-image" loading="lazy" decoding="async">
             </div>
-            <div class="image-item" onclick="goToPortfolio(16)">
-                <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Portfolio_16copertina.jpg" alt="Portfolio 16" class="gallery-image" loading="lazy" decoding="async">
+            <!-- Portfolio 18: hidden until cover image loads successfully -->
+            <div class="image-item hidden" id="item-18" onclick="goToPortfolio(18)">
+                <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Portfolio_18copertina.jpg"
+                     alt="Portfolio 18" class="gallery-image" loading="lazy" decoding="async"
+                     onload="showItem('item-18')" onerror="hideItem('item-18')">
             </div>
         </div>
+
     </div>
 </div>
 
@@ -253,7 +258,6 @@
     <div class="footer-copyright" id="footerCopyright"></div>
 </footer>
 
-<!-- Sticky footer bar (always visible) -->
 <div class="sticky-footer-bar">
     <span class="sticky-copyright" id="stickyCopyright"></span>
     <a href="https://www.instagram.com/paola.pappacena/" class="social-button" title="Instagram" target="_blank" rel="noopener">
@@ -265,14 +269,20 @@
 </div>
 
 <script>
-    // Auto year
+    // ── Copyright auto-year ──
     const year = new Date().getFullYear();
-    const copyrightText = `© Paola Pappacena ${year}`;
-    document.getElementById('stickyCopyright').textContent = copyrightText;
-    document.getElementById('footerCopyright').textContent = copyrightText;
+    const cp = `© Paola Pappacena ${year}`;
+    document.getElementById('stickyCopyright').textContent = cp;
+    document.getElementById('footerCopyright').textContent = cp;
 
+    // ── Portfolio navigation ──
     function goToPortfolio(n) { window.location.href = `portfolio.html?id=${n}`; }
 
+    // ── Conditional visibility for P17 / P18 ──
+    function showItem(id) { document.getElementById(id).classList.remove('hidden'); }
+    function hideItem(id) { document.getElementById(id).classList.add('hidden'); }
+
+    // ── Mobile menu ──
     function toggleMobileMenu() {
         document.getElementById('mobileMenu').classList.toggle('active');
         document.getElementById('hamburger').classList.toggle('active');
@@ -289,10 +299,8 @@
     document.addEventListener('contextmenu', e => { if (e.target.tagName === 'IMG') e.preventDefault(); });
     document.addEventListener('dragstart', e => { if (e.target.tagName === 'IMG') e.preventDefault(); });
     document.addEventListener('keydown', e => {
-        // Block PrintScreen key hint (cannot truly block OS-level screenshot)
-        if (e.key === 'PrintScreen') { navigator.clipboard?.writeText(''); }
-        // Block Ctrl+S, Ctrl+U, Ctrl+P
         if (e.ctrlKey && ['s','u','p','a'].includes(e.key.toLowerCase())) e.preventDefault();
+        if (e.key === 'PrintScreen') navigator.clipboard?.writeText('');
     });
 </script>
 </body>
