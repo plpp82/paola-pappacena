@@ -1,44 +1,517 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portfolio | Paola Pappacena</title>
-  <link rel="stylesheet" href="assets/css/main.css">
-  <link rel="stylesheet" href="assets/css/gallery.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio – Paola Pappacena</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: white;
+            font-family: Arial, sans-serif;
+            padding-top: 60px;
+        }
+
+        /* ── Navbar ── */
+        .navbar {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            background-color: rgba(255,255,255,0.92);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            height: 60px;
+        }
+        .navbar-left { display: flex; align-items: center; gap: 20px; }
+        .logo { height: 45px; width: auto; }
+        .artist-name { height: 32px; width: auto; }
+        .navbar-right { display: flex; align-items: center; gap: 25px; }
+        .nav-button {
+            color: #2c3e50; text-decoration: none; font-weight: 500;
+            padding: 8px 15px; border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+        .nav-button:hover { background-color: rgba(52,73,94,0.1); }
+        .social-links { display: flex; gap: 10px; margin-left: 15px; }
+        .social-button {
+            width: 34px; height: 34px; border-radius: 50%;
+            color: white; display: flex; align-items: center; justify-content: center;
+            text-decoration: none; font-size: 11px; font-weight: 700;
+            font-family: 'Georgia', serif; letter-spacing: 0.3px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
+            border: none;
+        }
+        .social-button:hover { transform: scale(1.08); box-shadow: 0 4px 12px rgba(0,0,0,0.25); opacity: 0.92; }
+        .social-button.instagram { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%); }
+        .social-button.facebook { background: #1877F2; }
+
+        .hamburger {
+            display: none; flex-direction: column; cursor: pointer;
+            padding: 5px; gap: 4px; flex-shrink: 0;
+        }
+        .hamburger span { width: 25px; height: 2px; background-color: #2c3e50; transition: all 0.3s ease; border-radius: 1px; }
+        .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(6px,6px); }
+        .hamburger.active span:nth-child(2) { opacity: 0; }
+        .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(6px,-6px); }
+
+        .mobile-menu {
+            display: none; position: fixed; top: 60px; left: 0; right: 0;
+            background-color: rgba(255,255,255,0.95); backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0,0,0,0.1); padding: 20px; z-index: 999;
+        }
+        .mobile-menu.active { display: block; }
+        .mobile-nav-links { display: flex; flex-direction: column; gap: 15px; margin-bottom: 20px; }
+        .mobile-nav-links .nav-button { text-align: center; padding: 12px 20px; border-bottom: 1px solid rgba(0,0,0,0.05); }
+        .mobile-social { display: flex; justify-content: center; gap: 15px; padding-top: 15px; border-top: 1px solid rgba(0,0,0,0.05); }
+
+        /* ── Back link ── */
+        .back-link {
+            display: inline-flex; align-items: center; gap: 8px;
+            margin: 20px 20px 0;
+            color: #2c3e50; text-decoration: none; font-size: 0.9em; font-weight: 500;
+            opacity: 0.7; transition: opacity 0.2s;
+        }
+        .back-link:hover { opacity: 1; }
+        .back-link svg { width: 16px; height: 16px; }
+
+        /* ── Layout ── */
+        .portfolio-page {
+            display: flex;
+            gap: 30px;
+            padding: 20px 20px 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+            align-items: flex-start;
+        }
+
+        /* Description – top right */
+        .portfolio-description {
+            flex: 0 0 280px;
+            order: 2;
+            position: sticky;
+            top: 80px;
+        }
+
+        .description-box {
+            background: #fafafa;
+            border-left: 3px solid #2c3e50;
+            padding: 20px 22px;
+            border-radius: 0 6px 6px 0;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+        }
+
+        .description-box h2 {
+            font-size: 1em;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: #2c3e50;
+            margin-bottom: 12px;
+            opacity: 0.6;
+        }
+
+        .description-text {
+            font-size: 0.95em;
+            line-height: 1.7;
+            color: #444;
+            white-space: pre-wrap;
+        }
+
+        /* Gallery */
+        .portfolio-gallery {
+            flex: 1;
+            order: 1;
+        }
+
+        .masonry-grid {
+            column-count: 3;
+            column-gap: 8px;
+        }
+
+        .masonry-item {
+            break-inside: avoid;
+            margin-bottom: 8px;
+            cursor: pointer;
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.12), 0 1px 4px rgba(0,0,0,0.08);
+            transition: box-shadow 0.3s ease;
+        }
+
+        .masonry-item:hover {
+            box-shadow: 0 8px 28px rgba(0,0,0,0.2), 0 2px 8px rgba(0,0,0,0.12);
+        }
+
+        .masonry-item img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.3s ease;
+            border-radius: 4px;
+        }
+
+        .masonry-item:hover img { transform: scale(1.02); }
+
+        /* Video item */
+        .masonry-item video {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 4px;
+        }
+
+        /* Loading / error state */
+        .status-msg {
+            padding: 40px;
+            text-align: center;
+            color: #666;
+            font-size: 1.1em;
+        }
+
+        /* ── Modal ── */
+        .modal {
+            display: none; position: fixed; z-index: 2000;
+            left: 0; top: 0; width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.92); cursor: pointer;
+        }
+        .modal-inner {
+            position: absolute; top: 50%; left: 50%;
+            transform: translate(-50%,-50%);
+            max-width: 95%; max-height: 95%;
+            display: flex; flex-direction: column; align-items: center;
+        }
+        .modal-inner img, .modal-inner video {
+            max-width: 100%; max-height: 90vh;
+            border-radius: 8px; display: block;
+        }
+        .modal-close {
+            position: absolute; top: 15px; right: 25px;
+            color: white; font-size: 38px; font-weight: bold;
+            cursor: pointer; z-index: 2001; line-height: 1;
+            text-shadow: 0 2px 6px rgba(0,0,0,0.5);
+        }
+        .modal-nav {
+            position: absolute; top: 50%; transform: translateY(-50%);
+            color: white; font-size: 48px; font-weight: bold;
+            cursor: pointer; z-index: 2001;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.6);
+            padding: 20px; user-select: none;
+        }
+        .modal-prev { left: 10px; }
+        .modal-next { right: 10px; }
+        .modal-nav:hover { opacity: 0.7; }
+
+        /* ── Footer ── */
+        .footer {
+            background-color: #f8f9fa; padding: 40px 20px;
+            text-align: center; border-top: 1px solid rgba(0,0,0,0.1); margin-top: 20px;
+        }
+        .footer-copyright { color: #2c3e50; font-size: 1.2em; font-weight: 500; margin-bottom: 20px; letter-spacing: 0.5px; }
+        .footer-social { display: flex; justify-content: center; gap: 15px; }
+        .footer-social .social-button { width: 42px; height: 42px; font-size: 12px; }
+
+        /* ── Responsive ── */
+        @media (max-width: 900px) {
+            .portfolio-page { flex-direction: column; }
+            .portfolio-description { flex: none; width: 100%; order: 1; position: static; }
+            .portfolio-gallery { order: 2; width: 100%; }
+            .masonry-grid { column-count: 2; }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 10px 15px; height: 60px;
+                display: grid; grid-template-columns: 1fr 2fr 1fr;
+                align-items: center; gap: 10px;
+            }
+            .navbar-left { display: flex; align-items: center; gap: 10px; min-width: 0; }
+            .logo { height: 35px; flex-shrink: 0; }
+            .artist-name { height: 24px; flex-shrink: 1; min-width: 0; max-width: 100%; }
+            .navbar-right { justify-self: end; gap: 0; }
+            .navbar-right .nav-button, .navbar-right .social-links { display: none; }
+            .hamburger { display: flex; margin-left: auto; }
+        }
+
+        @media (max-width: 480px) {
+            .masonry-grid { column-count: 1; }
+            .navbar { padding: 10px 12px; grid-template-columns: auto 1fr auto; gap: 8px; }
+            .navbar-left { gap: 8px; }
+            .logo { height: 30px; }
+            .artist-name { height: 20px; }
+        }
+    </style>
 </head>
 <body>
-  <header><h1>Portfolio Opere</h1></header>
-  <main>
-    <div class="filters">
-      <button onclick="filterWorks('all')">Tutti</button>
-      <button onclick="filterWorks('illustrations')">Illustrazioni</button>
-      <button onclick="filterWorks('books')">Libri</button>
-    </div>
-    <div class="gallery">
-      <!-- Esempio item -->
-      <div class="gallery-item" data-category="illustrations" onclick="openDetail('forest-book')">
-        <img src="assets/images/portfolio/forest.jpg" alt="Foresta in città">
-        <h3>Foresta in città</h3>
-        <p>Libro illustrato, 2018</p>
-      </div>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-left">
+            <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Sigla.png" alt="Logo" class="logo">
+            <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Sigla_2.png" alt="Paola Pappacena" class="artist-name">
+        </div>
+        <div class="navbar-right">
+            <a href="/" class="nav-button">Portfolio</a>
+            <a href="#" class="nav-button">Shop</a>
+            <a href="#" class="nav-button">Workshop</a>
+            <a href="/about.html" class="nav-button">About</a>
+            <a href="/contacts.html" class="nav-button">Contacts</a>
+            <div class="social-links">
+                <a href="https://www.instagram.com/paola.pappacena/" class="social-button instagram" title="Instagram" target="_blank" rel="noopener">IG</a>
+                <a href="https://www.facebook.com/torte.incielo" class="social-button facebook" title="Facebook" target="_blank" rel="noopener">FB</a>
+            </div>
+            <div class="hamburger" onclick="toggleMobileMenu()">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Menu mobile -->
+    <div class="mobile-menu" id="mobileMenu">
+        <div class="mobile-nav-links">
+            <a href="/" class="nav-button">Portfolio</a>
+            <a href="#" class="nav-button">Shop</a>
+            <a href="#" class="nav-button">Workshop</a>
+            <a href="/about.html" class="nav-button">About</a>
+            <a href="/contacts.html" class="nav-button">Contacts</a>
+        </div>
+        <div class="mobile-social">
+            <a href="https://www.instagram.com/paola.pappacena/" class="social-button instagram" title="Instagram" target="_blank" rel="noopener">IG</a>
+            <a href="https://www.facebook.com/torte.incielo" class="social-button facebook" title="Facebook" target="_blank" rel="noopener">FB</a>
+        </div>
     </div>
 
-    <!-- Dettaglio Opera -->
-    <div id="forest-book" class="item-detail">
-      <div class="detail-content">
-        <h2>Foresta in città</h2>
-        <p><strong>Editore:</strong> NoBorders edizioni</p>
-        <p>Un viaggio illustrato tra natura e urbanizzazione...</p>
-        <div class="gallery">
-          <img src="assets/images/books/forest/pagina1.jpg" alt="Pagina 1">
-          <img src="assets/images/books/forest/pagina2.jpg" alt="Pagina 2">
-        </div>
-        <button class="close-btn" onclick="closeDetail()">Chiudi</button>
-      </div>
+    <a href="/" class="back-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
+        Torna al Portfolio
+    </a>
+
+    <div class="portfolio-page" id="portfolioPage">
+        <div class="status-msg" id="statusMsg">Caricamento...</div>
     </div>
-  </main>
-  <script src="assets/js/filters.js"></script>
-  <script src="assets/js/main.js"></script>
+
+    <!-- Modal -->
+    <div id="imageModal" class="modal" onclick="handleModalClick(event)">
+        <span class="modal-close" onclick="closeModal()">&times;</span>
+        <span class="modal-nav modal-prev" onclick="navigateModal(-1); event.stopPropagation();">&#8249;</span>
+        <span class="modal-nav modal-next" onclick="navigateModal(1); event.stopPropagation();">&#8250;</span>
+        <div class="modal-inner" onclick="event.stopPropagation()">
+            <img id="modalImage" src="" alt="" style="display:none;">
+            <video id="modalVideo" controls style="display:none;"></video>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-copyright">@PaolaPappacena2025</div>
+        <div class="footer-social">
+            <a href="https://www.instagram.com/paola.pappacena/" class="social-button instagram" title="Instagram" target="_blank" rel="noopener">IG</a>
+            <a href="https://www.facebook.com/torte.incielo" class="social-button facebook" title="Facebook" target="_blank" rel="noopener">FB</a>
+        </div>
+    </footer>
+
+    <script>
+        const BASE = 'https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/';
+
+        // Portfolio definitions
+        // images: array of filenames inside each portfolio
+        const portfolios = {
+            1:  { images: buildImgs(1, 4, 'jpg') },
+            2:  { images: buildImgs(2, 20, 'jpg') },
+            3:  { images: buildImgsCustom(3, [
+                    {n:1,ext:'jpg'},{n:2,ext:'jpg'},{n:3,ext:'jpeg'},
+                    {n:4,ext:'jpeg'},{n:5,ext:'jpeg'},{n:6,ext:'jpg'}
+                ]) },
+            4:  { images: buildImgs(4, 3, 'jpg') },
+            5:  { images: buildImgs(5, 5, 'jpg') },
+            6:  { images: buildImgs(6, 11, 'jpg'), video: `Portfolio_6.12.mp4` },
+            7:  { images: buildImgs(7, 8, 'jpg') },
+            8:  { images: buildImgs(8, 5, 'jpg') },
+            9:  { images: buildImgs(9, 1, 'jpg') },
+            10: { images: buildImgs(10, 4, 'jpg') },
+            11: { images: buildImgsCustom(11, [
+                    ...Array.from({length:12}, (_,i) => ({n:i+1,ext:'jpg'})),
+                    {n:13,ext:'jpeg'},
+                    {n:14,ext:'jpg'}
+                ]) },
+            12: { images: buildImgs(12, 12, 'jpg') },
+            13: { images: buildImgs(13, 9, 'jpg') },
+            14: { images: buildImgsCustom(14, [
+                    {n:1,ext:'jpg'},{n:2,ext:'jpg'},{n:3,ext:'jpg'},
+                    {n:4,ext:'jpg'},{n:5,ext:'jpg'}
+                ]) },
+            15: { images: buildImgs(15, 10, 'jpg') }
+        };
+
+        function buildImgs(portfolioNum, count, ext) {
+            return Array.from({length: count}, (_, i) =>
+                `Portfolio_${portfolioNum}.${i+1}.${ext}`
+            );
+        }
+
+        function buildImgsCustom(portfolioNum, items) {
+            return items.map(item => `Portfolio_${portfolioNum}.${item.n}.${item.ext}`);
+        }
+
+        // ── State ──
+        let mediaItems = []; // all media (images + optional video)
+        let currentModalIndex = 0;
+
+        // ── Read URL param ──
+        const params = new URLSearchParams(window.location.search);
+        const portfolioId = parseInt(params.get('id') || '1');
+
+        function init() {
+            const data = portfolios[portfolioId];
+            if (!data) {
+                document.getElementById('statusMsg').textContent = 'Portfolio non trovato.';
+                return;
+            }
+
+            // Build media list
+            mediaItems = data.images.map(f => ({ src: BASE + f, type: 'image' }));
+            if (data.video) {
+                mediaItems.push({ src: BASE + data.video, type: 'video' });
+            }
+
+            // Build HTML
+            const page = document.getElementById('portfolioPage');
+            page.innerHTML = '';
+
+            // Gallery section
+            const galleryDiv = document.createElement('div');
+            galleryDiv.className = 'portfolio-gallery';
+
+            const grid = document.createElement('div');
+            grid.className = 'masonry-grid';
+
+            mediaItems.forEach((item, idx) => {
+                const cell = document.createElement('div');
+                cell.className = 'masonry-item';
+                cell.onclick = () => openModal(idx);
+
+                if (item.type === 'video') {
+                    const vid = document.createElement('video');
+                    vid.src = item.src;
+                    vid.muted = true;
+                    vid.loop = true;
+                    vid.autoplay = true;
+                    vid.playsInline = true;
+                    vid.setAttribute('playsinline', '');
+                    cell.appendChild(vid);
+                } else {
+                    const img = document.createElement('img');
+                    img.src = item.src;
+                    img.alt = `Portfolio ${portfolioId} – ${idx + 1}`;
+                    img.loading = 'lazy';
+                    img.decoding = 'async';
+                    cell.appendChild(img);
+                }
+
+                grid.appendChild(cell);
+            });
+
+            galleryDiv.appendChild(grid);
+
+            // Description section (top right = order:2 via CSS, sticky)
+            const descDiv = document.createElement('div');
+            descDiv.className = 'portfolio-description';
+
+            const box = document.createElement('div');
+            box.className = 'description-box';
+
+            const h2 = document.createElement('h2');
+            h2.textContent = `Portfolio ${portfolioId}`;
+            box.appendChild(h2);
+
+            const textEl = document.createElement('div');
+            textEl.className = 'description-text';
+            textEl.textContent = 'Caricamento testo…';
+            box.appendChild(textEl);
+            descDiv.appendChild(box);
+
+            page.appendChild(galleryDiv);
+            page.appendChild(descDiv);
+
+            // Load description
+            fetch(BASE + `Portfolio_${portfolioId}.txt`)
+                .then(r => {
+                    if (!r.ok) throw new Error('no text');
+                    return r.text();
+                })
+                .then(txt => { textEl.textContent = txt; })
+                .catch(() => { textEl.textContent = ''; box.style.display = descDiv.childElementCount > 0 ? '' : 'none'; });
+        }
+
+        // ── Modal ──
+        function openModal(idx) {
+            currentModalIndex = idx;
+            renderModal();
+            document.getElementById('imageModal').style.display = 'block';
+        }
+
+        function renderModal() {
+            const item = mediaItems[currentModalIndex];
+            const img = document.getElementById('modalImage');
+            const vid = document.getElementById('modalVideo');
+
+            if (item.type === 'video') {
+                img.style.display = 'none';
+                vid.style.display = 'block';
+                vid.src = item.src;
+            } else {
+                vid.style.display = 'none';
+                vid.pause && vid.pause();
+                img.style.display = 'block';
+                img.src = item.src;
+            }
+        }
+
+        function navigateModal(dir) {
+            currentModalIndex = (currentModalIndex + dir + mediaItems.length) % mediaItems.length;
+            renderModal();
+        }
+
+        function closeModal() {
+            document.getElementById('imageModal').style.display = 'none';
+            const vid = document.getElementById('modalVideo');
+            vid.pause && vid.pause();
+        }
+
+        function handleModalClick(e) {
+            if (e.target === document.getElementById('imageModal')) closeModal();
+        }
+
+        // ── Mobile menu ──
+        function toggleMobileMenu() {
+            document.getElementById('mobileMenu').classList.toggle('active');
+            document.querySelector('.hamburger').classList.toggle('active');
+        }
+
+        document.addEventListener('keydown', e => {
+            const modal = document.getElementById('imageModal');
+            if (modal.style.display === 'block') {
+                if (e.key === 'Escape') closeModal();
+                if (e.key === 'ArrowRight') navigateModal(1);
+                if (e.key === 'ArrowLeft') navigateModal(-1);
+            }
+        });
+
+        document.addEventListener('click', function(event) {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const hamburger = document.querySelector('.hamburger');
+            const navbar = document.querySelector('.navbar');
+            if (!navbar.contains(event.target) && !mobileMenu.contains(event.target)) {
+                mobileMenu.classList.remove('active');
+                hamburger.classList.remove('active');
+            }
+        });
+
+        // Run
+        init();
+    </script>
 </body>
 </html>
