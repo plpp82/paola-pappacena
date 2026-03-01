@@ -6,7 +6,7 @@
     <title>Workshop – Paola Pappacena</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { background: white; font-family: Arial, sans-serif; padding-top: 60px; padding-bottom: 40px; line-height: 1.6; color: #333; overflow-x: hidden; }
+        body { background: white; font-family: Arial, sans-serif; padding-top: 60px; padding-bottom: 40px; line-height: 1.6; color: #333; }
 
         /* ── NAVBAR ── */
         .navbar { position: fixed; top: 0; left: 0; right: 0; background: rgba(255,255,255,0.93); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(0,0,0,0.08); padding: 0 24px; display: flex; justify-content: space-between; align-items: center; z-index: 1000; height: 60px; }
@@ -36,152 +36,105 @@
         .sticky-copyright { font-size: 0.78em; color: #555; font-style: italic; letter-spacing: 0.3px; }
         .sticky-footer-bar .social-button { width: 24px; height: 24px; }
 
-        /* ── PANEL SYSTEM ──
-           Panels slide in from the right, stacked by z-index.
-           data-level="1" = category hub (Cammini, WS&Lab)
-           data-level="2" = detail panel (gallery + description)
-        ── */
-        .panel {
-            position: fixed;
-            top: 60px; left: 0; right: 0; bottom: 40px;
-            background: white;
-            transform: translateX(100%);
-            transition: transform 0.38s cubic-bezier(0.4, 0, 0.2, 1);
-            overflow-y: auto;
-            will-change: transform;
-        }
-        .panel.open { transform: translateX(0); }
-        .panel[data-level="1"] { z-index: 100; }
-        .panel[data-level="2"] { z-index: 200; }
+        /* ── PAGE ── */
+        .ws-container { max-width: 1100px; margin: 0 auto; padding: 44px 24px; }
 
-        /* ── BACK BUTTON ── */
-        .back-link {
-            display: inline-flex; align-items: center; gap: 7px;
-            margin: 18px 22px 0; color: #2c3e50; background: none; border: none;
-            font-family: Arial, sans-serif; font-size: 0.87em; font-weight: 500;
-            opacity: 0.65; transition: opacity 0.2s; cursor: pointer; padding: 0;
-        }
-        .back-link:hover { opacity: 1; }
-        .back-link svg { width: 15px; height: 15px; flex-shrink: 0; }
-
-        /* ── PANEL INNER WRAPPER ── */
-        .panel-body { max-width: 1100px; margin: 0 auto; padding: 16px 24px 60px; }
-
-        /* ── SECTION TITLE ── */
-        .section-label {
-            font-size: 1.1em; font-weight: 600; color: #2c3e50;
-            text-transform: uppercase; letter-spacing: 1.2px;
-            margin-bottom: 24px; padding-bottom: 10px;
-            border-bottom: 1px solid rgba(44,62,80,0.15);
-        }
-
-        /* ── MAIN PAGE ── */
-        .ws-main { max-width: 1100px; margin: 0 auto; padding: 44px 24px 60px; }
         .ws-header { margin-bottom: 50px; }
         .ws-header h1 { font-size: 2.2em; color: #2c3e50; font-weight: 400; letter-spacing: 0.4px; margin-bottom: 14px; }
         .ws-header p { font-size: 1.05em; color: #555; max-width: 640px; }
 
-        .ws-intro { display: flex; gap: 44px; align-items: flex-start; margin-bottom: 60px; }
+        /* ── INTRO ── */
+        .ws-intro { display: flex; gap: 44px; align-items: flex-start; margin-bottom: 64px; }
         .ws-intro-text { flex: 1; }
         .ws-intro-text p { font-size: 1em; color: #444; margin-bottom: 16px; text-align: justify; }
         .ws-intro-image { flex: 0 0 320px; }
         .ws-intro-image img { width: 100%; border-radius: 6px; box-shadow: 0 4px 18px rgba(0,0,0,0.1); -webkit-user-drag: none; pointer-events: none; }
 
-        /* ── CARD GRIDS ── */
-        .main-grid  { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin-bottom: 50px; }
-        .sub-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-bottom: 50px; }
-        .sub-grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; margin-bottom: 50px; }
+        /* ── SECTION TITLE ── */
+        .ws-section-title { font-size: 1.1em; font-weight: 600; color: #2c3e50; text-transform: uppercase; letter-spacing: 1.2px; margin-bottom: 28px; padding-bottom: 10px; border-bottom: 1px solid rgba(44,62,80,0.15); }
 
-        /* ── CARD ── */
-        .ws-card { cursor: pointer; border: 1px solid rgba(0,0,0,0.09); border-radius: 10px; overflow: hidden; transition: box-shadow 0.3s, transform 0.3s; background: #fafafa; }
-        .ws-card:hover { box-shadow: 0 8px 28px rgba(0,0,0,0.13); transform: translateY(-3px); }
+        /* ── MAIN 4 CARDS GRID ── */
+        .ws-main-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px; margin-bottom: 60px; }
 
-        /* thumbnail strip — multiple small covers side by side */
-        .card-thumbs { display: flex; height: 200px; overflow: hidden; }
-        .card-thumbs img { flex: 1; object-fit: cover; height: 100%; border-right: 2px solid white; -webkit-user-drag: none; pointer-events: none; transition: transform 0.4s; }
-        .card-thumbs img:last-child { border-right: none; }
-        .ws-card:hover .card-thumbs img { transform: scale(1.04); }
+        .ws-main-card {
+            display: block; text-decoration: none; color: inherit;
+            border: 1px solid rgba(0,0,0,0.09); border-radius: 10px;
+            overflow: hidden; transition: box-shadow 0.3s, transform 0.3s;
+            background: #fafafa; cursor: pointer;
+        }
+        .ws-main-card:hover { box-shadow: 0 8px 28px rgba(0,0,0,0.12); transform: translateY(-3px); }
 
-        /* single cover */
-        .card-cover { height: 200px; overflow: hidden; }
-        .card-cover img { width: 100%; height: 100%; object-fit: cover; -webkit-user-drag: none; pointer-events: none; transition: transform 0.4s; }
-        .ws-card:hover .card-cover img { transform: scale(1.04); }
+        /* Thumbnail strip for cards with multiple covers */
+        .ws-main-card-thumbs {
+            display: flex; height: 220px; overflow: hidden;
+        }
+        .ws-main-card-thumbs img {
+            flex: 1; object-fit: cover; height: 100%;
+            -webkit-user-drag: none; pointer-events: none;
+            border-right: 2px solid white;
+        }
+        .ws-main-card-thumbs img:last-child { border-right: none; }
 
-        .card-body { padding: 18px 20px 20px; }
-        .card-body h3 { font-size: 1em; color: #2c3e50; font-weight: 600; margin-bottom: 8px; }
-        .card-body p { font-size: 0.86em; color: #666; line-height: 1.65; }
-        .card-caret { display: inline-block; margin-top: 11px; font-size: 0.76em; font-weight: 600; color: #2c3e50; letter-spacing: 0.5px; text-transform: uppercase; }
-        .card-caret::after { content: ' →'; }
+        /* Single cover image */
+        .ws-main-card-cover {
+            height: 220px; overflow: hidden;
+        }
+        .ws-main-card-cover img {
+            width: 100%; height: 100%; object-fit: cover;
+            -webkit-user-drag: none; pointer-events: none;
+            transition: transform 0.4s ease;
+        }
+        .ws-main-card:hover .ws-main-card-cover img { transform: scale(1.04); }
+        .ws-main-card:hover .ws-main-card-thumbs img { transform: scale(1.04); }
 
-        /* ── PROGETTI SU MISURA ── */
-        .ws-custom { background: linear-gradient(135deg, #f0f4f8 0%, #e8edf2 100%); border-radius: 10px; padding: 34px 32px; display: flex; gap: 24px; align-items: center; }
-        .ws-custom-icon { font-size: 2.2em; flex-shrink: 0; }
-        .ws-custom-text h3 { font-size: 1.1em; color: #2c3e50; font-weight: 600; margin-bottom: 8px; }
-        .ws-custom-text p { color: #555; font-size: 0.93em; margin-bottom: 14px; }
-        .cta-link { display: inline-block; background: #2c3e50; color: white; text-decoration: none; padding: 10px 22px; border-radius: 5px; font-size: 0.87em; font-weight: 500; letter-spacing: 0.3px; transition: background 0.25s, transform 0.2s; }
-        .cta-link:hover { background: #1a2432; transform: translateY(-1px); }
+        .ws-main-card-body { padding: 20px 22px 22px; }
+        .ws-main-card-body h3 { font-size: 1.05em; color: #2c3e50; font-weight: 600; margin-bottom: 8px; }
+        .ws-main-card-body p { font-size: 0.88em; color: #666; line-height: 1.6; }
+        .ws-main-card-caret {
+            display: inline-block; margin-top: 12px; font-size: 0.78em;
+            font-weight: 600; color: #2c3e50; letter-spacing: 0.5px; text-transform: uppercase;
+        }
+        .ws-main-card-caret::after { content: ' →'; }
 
-        /* ── DETAIL LAYOUT ── */
-        .detail-layout { display: flex; gap: 28px; align-items: flex-start; }
-        .detail-desc-col { flex: 0 0 270px; position: sticky; top: 78px; }
-        .description-box { background: #fafafa; border-left: 3px solid #2c3e50; padding: 20px 22px; border-radius: 0 6px 6px 0; box-shadow: 0 2px 12px rgba(0,0,0,0.07); }
-        .description-title { font-size: 0.98em; font-weight: 700; text-transform: uppercase; color: #2c3e50; margin-bottom: 14px; letter-spacing: 0.5px; line-height: 1.4; }
-        .description-body { font-size: 0.92em; line-height: 1.72; color: #444; white-space: pre-wrap; word-break: break-word; }
-        .detail-gallery-col { flex: 1; }
-
-        /* ── MASONRY ── */
-        .masonry { column-count: 3; column-gap: 7px; }
-        .masonry-item { break-inside: avoid; margin-bottom: 7px; cursor: pointer; border-radius: 4px; overflow: hidden; position: relative; box-shadow: 0 3px 14px rgba(0,0,0,0.11); transition: box-shadow 0.3s; user-select: none; }
-        .masonry-item:hover { box-shadow: 0 7px 26px rgba(0,0,0,0.18); }
-        .masonry-item img { width: 100%; height: auto; display: block; transition: transform 0.3s; border-radius: 4px; -webkit-user-drag: none; pointer-events: none; }
-        .masonry-item:hover img { transform: scale(1.02); }
-        .masonry-item::before { content: '© Paola Pappacena'; position: absolute; bottom: 7px; right: 9px; font-size: 0.58em; color: rgba(255,255,255,0.5); font-style: italic; z-index: 3; pointer-events: none; text-shadow: 0 1px 3px rgba(0,0,0,0.5); }
-        .masonry-item::after { content: ''; position: absolute; inset: 0; z-index: 2; cursor: pointer; }
-
-        /* ── LIGHTBOX ── */
-        .modal { display: none; position: fixed; z-index: 2000; inset: 0; background: rgba(0,0,0,0.93); }
-        .modal-close { position: absolute; top: 14px; right: 22px; color: white; font-size: 36px; font-weight: bold; cursor: pointer; z-index: 2001; line-height: 1; opacity: 0.85; transition: opacity 0.2s; }
-        .modal-close:hover { opacity: 1; }
-        .modal-inner { position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); max-width: 93vw; max-height: 90vh; display: flex; align-items: center; justify-content: center; }
-        .modal-inner img { max-width: 100%; max-height: 88vh; border-radius: 6px; display: block; -webkit-user-drag: none; }
-        .modal-nav { position: absolute; top: 50%; transform: translateY(-50%); color: rgba(255,255,255,0.8); font-size: 52px; font-weight: 300; cursor: pointer; z-index: 2001; padding: 20px 16px; user-select: none; transition: color 0.2s; }
-        .modal-nav:hover { color: white; }
-        .modal-prev { left: 6px; }
-        .modal-next { right: 6px; }
+        /* ── PROGETTI SU MISURA SECTION ── */
+        .ws-custom {
+            background: linear-gradient(135deg, #f0f4f8 0%, #e8edf2 100%);
+            border-radius: 10px; padding: 40px 36px;
+            display: flex; gap: 30px; align-items: center;
+            margin-bottom: 40px;
+        }
+        .ws-custom-icon { font-size: 2.4em; flex-shrink: 0; }
+        .ws-custom-text h3 { font-size: 1.15em; color: #2c3e50; font-weight: 600; margin-bottom: 10px; }
+        .ws-custom-text p { color: #555; font-size: 0.95em; margin-bottom: 16px; }
+        .ws-custom-text a.cta-link {
+            display: inline-block; background: #2c3e50; color: white;
+            text-decoration: none; padding: 10px 24px; border-radius: 5px;
+            font-size: 0.88em; font-weight: 500; letter-spacing: 0.3px;
+            transition: background 0.25s, transform 0.2s;
+        }
+        .ws-custom-text a.cta-link:hover { background: #1a2432; transform: translateY(-1px); }
 
         /* ── FOOTER ── */
-        .footer { background: #f8f9fa; padding: 28px 20px 50px; text-align: center; border-top: 1px solid rgba(0,0,0,0.08); margin-top: 20px; }
+        .footer { background: #f8f9fa; padding: 28px 20px 50px; text-align: center; border-top: 1px solid rgba(0,0,0,0.08); margin-top: 50px; }
         .footer-copyright { color: #666; font-size: 0.88em; font-style: italic; }
 
         /* ── RESPONSIVE ── */
-        @media (max-width: 960px) {
-            .detail-layout { flex-direction: column; }
-            .detail-desc-col { flex: none; width: 100%; position: static; }
-            .masonry { column-count: 2; }
-            .sub-grid-3 { grid-template-columns: repeat(2, 1fr); }
-        }
         @media (max-width: 768px) {
             .navbar { padding: 0 15px; display: grid; grid-template-columns: auto 1fr auto; gap: 10px; }
             .logo { height: 35px; } .artist-name { height: 22px; }
             .navbar-right .nav-button, .navbar-right .social-links { display: none; }
             .hamburger { display: flex; }
+            .ws-main-grid { grid-template-columns: 1fr; gap: 20px; }
             .ws-intro { flex-direction: column; }
             .ws-intro-image { flex: none; max-width: 300px; }
             .ws-header h1 { font-size: 1.8em; }
-            .main-grid { grid-template-columns: 1fr; }
-            .sub-grid-2 { grid-template-columns: 1fr; }
-            .ws-custom { flex-direction: column; gap: 16px; padding: 24px 18px; }
-            .panel-body { padding: 12px 14px 60px; }
-        }
-        @media (max-width: 560px) {
-            .sub-grid-3 { grid-template-columns: 1fr; }
-            .masonry { column-count: 1; }
+            .ws-custom { flex-direction: column; gap: 16px; padding: 28px 20px; }
         }
     </style>
 </head>
 <body>
 
-<!-- ── NAVBAR ── -->
+<!-- NAVBAR -->
 <nav class="navbar">
     <div class="navbar-left">
         <a href="index.html"><img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Sigla.png" alt="Logo" class="logo"></a>
@@ -207,6 +160,7 @@
     </div>
 </nav>
 
+<!-- MOBILE MENU -->
 <div class="mobile-menu" id="mobileMenu">
     <div class="mobile-nav-links">
         <a href="index.html" class="nav-button">Portfolio</a>
@@ -225,11 +179,8 @@
     </div>
 </div>
 
-
-<!-- ══════════════════════════════════════
-     MAIN PAGE (Level 0 — always behind panels)
-═══════════════════════════════════════ -->
-<div class="ws-main">
+<!-- PAGE CONTENT -->
+<div class="ws-container">
 
     <div class="ws-header">
         <h1>Workshop e Laboratori</h1>
@@ -244,68 +195,70 @@
         </div>
         <div class="ws-intro-image">
             <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Workshop_cover.jpg"
-                 onerror="this.style.display='none'" alt="Workshop Paola Pappacena">
+                 onerror="this.style.display='none'"
+                 alt="Workshop Paola Pappacena">
         </div>
     </div>
 
-    <div class="section-label">Cosa faccio</div>
+    <div class="ws-section-title">Cosa faccio</div>
 
-    <div class="main-grid">
+    <div class="ws-main-grid">
 
-        <!-- WS1 — Cammini Illustrati (3 thumbnail covers) -->
-        <div class="ws-card" onclick="openPanel('panel-ws1')">
-            <div class="card-thumbs">
-                <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/WS1.1_Copertina.jpeg" alt="">
-                <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/WS1.2_Copertina.jpeg" alt="">
-                <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/WS1.3_Copertina.jpeg" alt="">
+        <!-- WS1 — Cammini Illustrati (3 cover thumbnails) -->
+        <a href="ws1_cammini.html" class="ws-main-card">
+            <div class="ws-main-card-thumbs">
+                <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/WS1.1_Copertina.jpeg" alt="Disegni in Cammino" onerror="this.style.background='#dde5ed'">
+                <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/WS1.2_Copertina.jpeg" alt="Ora Blu" onerror="this.style.background='#d0dce8'">
+                <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/WS1.3_Copertina.jpg" alt="Sentieri Bambini" onerror="this.style.background='#c5d3e0'">
             </div>
-            <div class="card-body">
+            <div class="ws-main-card-body">
                 <h3>Cammini Illustrati</h3>
                 <p>Esperienze creative en plein air: osservare, camminare, disegnare in natura con il taccuino da campo.</p>
-                <span class="card-caret">Scopri i percorsi</span>
+                <span class="ws-main-card-caret">Scopri i percorsi</span>
             </div>
-        </div>
+        </a>
 
-        <!-- WS2 — Formazione (direct to detail) -->
-        <div class="ws-card" onclick="openDetail('ws2')">
-            <div class="card-cover">
-                <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/WS2_Copertina.jpeg" alt="Formazione">
+        <!-- WS2 — Formazione (single cover) -->
+        <a href="ws2_formazione.html" class="ws-main-card">
+            <div class="ws-main-card-cover">
+                <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/WS2_Copertina.jpg" alt="Formazione" onerror="this.style.background='#dde5ed'">
             </div>
-            <div class="card-body">
+            <div class="ws-main-card-body">
                 <h3>Formazione</h3>
                 <p>Seminari e workshop per insegnanti ed educatori, con focus su outdoor education e didattica creativa in natura.</p>
-                <span class="card-caret">Scopri di più</span>
+                <span class="ws-main-card-caret">Scopri di più</span>
             </div>
-        </div>
+        </a>
 
-        <!-- WS3 — Workshop e Laboratori (2 thumbnail covers) -->
-        <div class="ws-card" onclick="openPanel('panel-ws3')">
-            <div class="card-thumbs">
-                <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/WS3.1_Copertina.jpg" alt="">
-                <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/WS3.2_Copertina.jpg" alt="">
+        <!-- WS3 — Workshop e Laboratori (2 cover thumbnails) -->
+        <a href="ws3_workshop.html" class="ws-main-card">
+            <div class="ws-main-card-thumbs">
+                <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/WS3.1_Copertina.jpg" alt="Workshop Illustrazione" onerror="this.style.background='#dde5ed'">
+                <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/WS3.2_Copertina.jpg" alt="Laboratori Bambini" onerror="this.style.background='#d0dce8'">
             </div>
-            <div class="card-body">
+            <div class="ws-main-card-body">
                 <h3>Workshop e Laboratori</h3>
                 <p>Laboratori di illustrazione per adulti e percorsi creativi per bambini e bambine, in studio e non solo.</p>
-                <span class="card-caret">Scopri i laboratori</span>
+                <span class="ws-main-card-caret">Scopri i laboratori</span>
             </div>
-        </div>
+        </a>
 
-        <!-- WS4 — Atelier, Nidi e Materne (direct to detail) -->
-        <div class="ws-card" onclick="openDetail('ws4')">
-            <div class="card-cover">
-                <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/WS4_Copertina.jpeg" alt="Atelier">
+        <!-- WS4 — Atelier, Nidi e Materne (single cover) -->
+        <a href="ws4_atelier.html" class="ws-main-card">
+            <div class="ws-main-card-cover">
+                <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/WS4_Copertina.jpeg" alt="Atelier, Nidi e Materne" onerror="this.style.background='#dde5ed'">
             </div>
-            <div class="card-body">
+            <div class="ws-main-card-body">
                 <h3>Atelier, Nidi e Materne</h3>
                 <p>Percorsi pensati per la primissima infanzia, in collaborazione con nidi, scuole dell'infanzia e atelier creativi.</p>
-                <span class="card-caret">Scopri di più</span>
+                <span class="ws-main-card-caret">Scopri di più</span>
             </div>
-        </div>
+        </a>
 
     </div>
 
-    <div class="section-label">Collaborazioni speciali</div>
+    <!-- PROGETTI SU MISURA -->
+    <div class="ws-section-title">Collaborazioni speciali</div>
     <div class="ws-custom">
         <div class="ws-custom-icon">🤝</div>
         <div class="ws-custom-text">
@@ -317,133 +270,11 @@
 
 </div>
 
+<!-- FOOTER -->
 <footer class="footer">
     <div class="footer-copyright" id="footerCopyright"></div>
 </footer>
 
-
-<!-- ══════════════════════════════════════
-     PANEL LEVEL 1 — WS1: CAMMINI ILLUSTRATI
-═══════════════════════════════════════ -->
-<div class="panel" id="panel-ws1" data-level="1">
-    <div class="panel-body">
-        <button class="back-link" onclick="closePanel('panel-ws1')">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
-            Workshop
-        </button>
-        <div style="margin-top:28px;">
-            <div class="section-label">Cammini Illustrati</div>
-            <p style="color:#555;font-size:1em;margin-bottom:32px;max-width:620px;">Camminare, osservare, disegnare. Esperienze creative en plein air per adulti, bambini e famiglie.</p>
-            <div class="sub-grid-3">
-
-                <div class="ws-card" onclick="openDetail('ws1_1')">
-                    <div class="card-cover">
-                        <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/WS1.1_Copertina.jpeg" alt="Disegni in Cammino">
-                    </div>
-                    <div class="card-body">
-                        <h3>Disegni in Cammino</h3>
-                        <p>Illustrare il paesaggio passo dopo passo, con il taccuino come compagno di viaggio.</p>
-                        <span class="card-caret">Scopri</span>
-                    </div>
-                </div>
-
-                <div class="ws-card" onclick="openDetail('ws1_2')">
-                    <div class="card-cover">
-                        <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/WS1.2_Copertina.jpeg" alt="Ora Blu">
-                    </div>
-                    <div class="card-body">
-                        <h3>Ora Blu</h3>
-                        <p>Disegnare all'imbrunire: la luce cambia, i colori si fondono, il tempo si dilata.</p>
-                        <span class="card-caret">Scopri</span>
-                    </div>
-                </div>
-
-                <div class="ws-card" onclick="openDetail('ws1_3')">
-                    <div class="card-cover">
-                        <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/WS1.3_Copertina.jpeg" alt="Sentieri Bambini">
-                    </div>
-                    <div class="card-body">
-                        <h3>Sentieri Bambini</h3>
-                        <p>Cammini illustrati pensati per i più piccoli, tra natura, storie e disegno dal vero.</p>
-                        <span class="card-caret">Scopri</span>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </div>
-</div>
-
-
-<!-- ══════════════════════════════════════
-     PANEL LEVEL 1 — WS3: WORKSHOP E LABORATORI
-═══════════════════════════════════════ -->
-<div class="panel" id="panel-ws3" data-level="1">
-    <div class="panel-body">
-        <button class="back-link" onclick="closePanel('panel-ws3')">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
-            Workshop
-        </button>
-        <div style="margin-top:28px;">
-            <div class="section-label">Workshop e Laboratori</div>
-            <p style="color:#555;font-size:1em;margin-bottom:32px;max-width:620px;">Laboratori di illustrazione per adulti e percorsi creativi per bambini e bambine.</p>
-            <div class="sub-grid-2">
-
-                <div class="ws-card" onclick="openDetail('ws3_1')">
-                    <div class="card-cover">
-                        <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/WS3.1_Copertina.jpg" alt="Workshop Illustrazione">
-                    </div>
-                    <div class="card-body">
-                        <h3>Workshop Illustrazione</h3>
-                        <p>Percorsi di disegno e illustrazione per adulti: dall'osservazione al racconto visivo.</p>
-                        <span class="card-caret">Scopri</span>
-                    </div>
-                </div>
-
-                <div class="ws-card" onclick="openDetail('ws3_2')">
-                    <div class="card-cover">
-                        <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/WS3.2_Copertina.jpg" alt="Laboratori Bambini">
-                    </div>
-                    <div class="card-body">
-                        <h3>Laboratori Bambini e Bambine</h3>
-                        <p>Storie, colori e segni per esplorare il mondo attraverso la creatività.</p>
-                        <span class="card-caret">Scopri</span>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </div>
-</div>
-
-
-<!-- ══════════════════════════════════════
-     PANEL LEVEL 2 — DETAIL (gallery + description)
-     Shared panel, populated dynamically by JS
-═══════════════════════════════════════ -->
-<div class="panel" id="panel-detail" data-level="2">
-    <div class="panel-body">
-        <button class="back-link" id="detail-back-btn" onclick="closeDetail()">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
-            <span id="detail-back-label">Indietro</span>
-        </button>
-        <div class="detail-layout" id="detail-layout" style="margin-top:24px;"></div>
-    </div>
-</div>
-
-
-<!-- ── LIGHTBOX ── -->
-<div id="imageModal" class="modal">
-    <span class="modal-close" onclick="closeModal()">&times;</span>
-    <span class="modal-nav modal-prev" onclick="navigateModal(-1)">&#8249;</span>
-    <span class="modal-nav modal-next" onclick="navigateModal(1)">&#8250;</span>
-    <div class="modal-inner">
-        <img id="modalImage" src="" alt="">
-    </div>
-</div>
-
-
-<!-- ── STICKY FOOTER BAR ── -->
 <div class="sticky-footer-bar">
     <span class="sticky-copyright" id="stickyCopyright"></span>
     <a href="https://www.instagram.com/torteincielo/" class="social-button" title="Instagram" target="_blank" rel="noopener">
@@ -454,81 +285,37 @@
     </a>
 </div>
 
-
-<!-- ══════════════════════════════════════
-     JAVASCRIPT
-═══════════════════════════════════════ -->
 <script>
 const RAW = 'https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img';
 
 // ─────────────────────────────────────────────────────────────────
-//  IMAGE EXTENSION RESOLVER
-//  Each workshop entry lists image basenames WITHOUT extension
-//  (e.g. 'WS1.1.1'). At render time, tryExtensions() probes the
-//  candidates in order [jpeg, jpg, png] and uses the first that
-//  loads successfully. Images that 404 on all extensions are hidden.
-// ─────────────────────────────────────────────────────────────────
-const EXT_ORDER = ['jpeg', 'jpg', 'png'];
-
-/**
- * Given a bare basename (e.g. 'WS1.1.7'), returns a Promise that
- * resolves to the full URL of the first loadable extension,
- * or null if none work.
- */
-function tryExtensions(basename) {
-    return new Promise(resolve => {
-        let i = 0;
-        function attempt() {
-            if (i >= EXT_ORDER.length) { resolve(null); return; }
-            const url = `${RAW}/${basename}.${EXT_ORDER[i]}`;
-            const img = new Image();
-            img.onload  = () => resolve(url);
-            img.onerror = () => { i++; attempt(); };
-            img.src = url;
-        }
-        attempt();
-    });
-}
-
-// ─────────────────────────────────────────────────────────────────
-//  DESCRIPTION LOADER
-//  Identical to portfolio.html approach:
-//  — fetches as ArrayBuffer
-//  — tries UTF-8 first (no replacement chars → success)
-//  — falls back to windows-1252 (covers all Italian accented chars)
-//  — normalises \r\n and \r to \n
-//  — parses optional <<Titolo>> tag for the bold header
+//  DESCRIPTION LOADER — accent-safe, identical to portfolio.html
+//  1. Fetch as ArrayBuffer
+//  2. Try UTF-8: if no replacement chars (U+FFFD) → success
+//  3. Fallback to windows-1252 → covers all Italian accented chars
+//     (à, è, é, ì, ò, ù and all variants)
+//  4. Normalise \r\n / \r → \n
+//  5. Parse optional <<Titolo>> tag → bold header in description box
 // ─────────────────────────────────────────────────────────────────
 async function loadDescription(txtFile) {
     try {
         const r = await fetch(`${RAW}/${txtFile}`);
         if (!r.ok) return null;
-
         const contentType = r.headers.get('content-type') || '';
         if (contentType.toLowerCase().includes('charset=')) {
-            // Browser will decode according to the declared charset
             return await r.text();
         }
-
-        // GitHub Raw often omits charset; decode manually with fallback
         const buf  = await r.arrayBuffer();
         const utf8 = new TextDecoder('utf-8', { fatal: false }).decode(buf);
-        if (!utf8.includes('\uFFFD')) return utf8;   // UTF-8 clean → use it
-
-        // Replacement chars found → file is likely Windows-1252 (Latin-1)
+        if (!utf8.includes('\uFFFD')) return utf8;
         try {
             return new TextDecoder('windows-1252').decode(buf);
         } catch {
-            return utf8;  // last-resort fallback
+            return utf8;
         }
     } catch { return null; }
 }
 
-/**
- * Parse raw description text.
- * Supports optional <<Titolo>> tag for the bold header line.
- * Normalises all line endings (\r\n, \r → \n).
- */
 function parseDescription(raw) {
     if (!raw || !raw.trim()) return { title: '', body: '' };
     const normalised = raw.replace(/\r\n/g, '\n').replace(/\r/g, '\n');
@@ -542,9 +329,7 @@ function parseDescription(raw) {
 }
 
 // ─────────────────────────────────────────────────────────────────
-//  WORKSHOP CATALOGUE
-//  Images listed as BASENAMES only — no extension.
-//  tryExtensions() will probe jpeg → jpg → png at runtime.
+//  WORKSHOP CATALOGUE — exact filenames from repository listing
 // ─────────────────────────────────────────────────────────────────
 const WS_DATA = {
 
@@ -553,11 +338,10 @@ const WS_DATA = {
         parentPanel: 'panel-ws1',
         parentLabel: 'Cammini Illustrati',
         txtFile:     'WS1.1.txt',
-        // 15 images; mixed jpeg/jpg — extension resolved automatically
-        basenames: [
-            'WS1.1.1',  'WS1.1.2',  'WS1.1.3',  'WS1.1.4',  'WS1.1.5',
-            'WS1.1.6',  'WS1.1.7',  'WS1.1.8',  'WS1.1.9',  'WS1.1.10',
-            'WS1.1.11', 'WS1.1.12', 'WS1.1.13', 'WS1.1.14', 'WS1.1.15'
+        images: [
+            'WS1.1.1.jpeg',  'WS1.1.2.jpeg',  'WS1.1.3.jpeg',  'WS1.1.4.jpeg',  'WS1.1.5.jpeg',
+            'WS1.1.6.jpg',   'WS1.1.7.jpg',   'WS1.1.8.jpg',   'WS1.1.9.jpg',   'WS1.1.10.jpg',
+            'WS1.1.11.jpg',  'WS1.1.12.jpg',  'WS1.1.13.jpg',  'WS1.1.14.jpg',  'WS1.1.15.jpg'
         ]
     },
 
@@ -566,8 +350,9 @@ const WS_DATA = {
         parentPanel: 'panel-ws1',
         parentLabel: 'Cammini Illustrati',
         txtFile:     'WS1.2.txt',
-        // 5 images; last one is png — extension resolved automatically
-        basenames: ['WS1.2.1', 'WS1.2.2', 'WS1.2.3', 'WS1.2.4', 'WS1.2.5']
+        images: [
+            'WS1.2.1.jpg', 'WS1.2.2.jpeg', 'WS1.2.3.jpeg', 'WS1.2.4.jpg', 'WS1.2.5.png'
+        ]
     },
 
     ws1_3: {
@@ -575,20 +360,20 @@ const WS_DATA = {
         parentPanel: 'panel-ws1',
         parentLabel: 'Cammini Illustrati',
         txtFile:     'WS1.3.txt',
-        basenames: [
-            'WS1.3.1', 'WS1.3.2', 'WS1.3.3', 'WS1.3.4', 'WS1.3.5',
-            'WS1.3.6', 'WS1.3.7', 'WS1.3.8', 'WS1.3.9'
+        images: [
+            'WS1.3.1.jpg', 'WS1.3.2.jpg', 'WS1.3.3.jpg', 'WS1.3.4.jpg', 'WS1.3.5.jpg',
+            'WS1.3.6.jpg', 'WS1.3.7.jpg', 'WS1.3.8.jpg', 'WS1.3.9.jpg'
         ]
     },
 
     ws2: {
         title:       'Formazione',
-        parentPanel: null,            // direct from main page → back goes to Workshop
+        parentPanel: null,
         parentLabel: 'Workshop',
         txtFile:     'WS2.txt',
-        basenames: [
-            'WS2.1', 'WS2.2', 'WS2.3', 'WS2.4', 'WS2.5',
-            'WS2.6', 'WS2.7', 'WS2.8', 'WS2.9'
+        images: [
+            'WS2.1.jpg', 'WS2.2.jpg', 'WS2.3.jpg', 'WS2.4.jpg', 'WS2.5.jpg',
+            'WS2.6.jpg', 'WS2.7.jpg', 'WS2.8.jpg', 'WS2.9.jpg'
         ]
     },
 
@@ -597,9 +382,9 @@ const WS_DATA = {
         parentPanel: 'panel-ws3',
         parentLabel: 'Workshop e Laboratori',
         txtFile:     'WS3.1.txt',
-        basenames: [
-            'WS3.1.1', 'WS3.1.2', 'WS3.1.3', 'WS3.1.4',
-            'WS3.1.5', 'WS3.1.6', 'WS3.1.7', 'WS3.1.8'
+        images: [
+            'WS3.1.1.jpeg', 'WS3.1.2.jpg',  'WS3.1.3.jpg',  'WS3.1.4.jpeg',
+            'WS3.1.5.jpeg', 'WS3.1.6.jpeg', 'WS3.1.7.jpeg', 'WS3.1.8.jpeg'
         ]
     },
 
@@ -608,9 +393,9 @@ const WS_DATA = {
         parentPanel: 'panel-ws3',
         parentLabel: 'Workshop e Laboratori',
         txtFile:     'WS3.2.txt',
-        basenames: [
-            'WS3.2.1', 'WS3.2.2', 'WS3.2.3', 'WS3.2.4', 'WS3.2.5',
-            'WS3.2.6', 'WS3.2.7', 'WS3.2.8', 'WS3.2.9', 'WS3.2.10'
+        images: [
+            'WS3.2.1.jpg',  'WS3.2.2.jpg',  'WS3.2.3.jpg',  'WS3.2.4.jpg',  'WS3.2.5.jpg',
+            'WS3.2.6.jpg',  'WS3.2.7.jpeg', 'WS3.2.8.jpeg', 'WS3.2.9.jpeg', 'WS3.2.10.jpeg'
         ]
     },
 
@@ -619,15 +404,17 @@ const WS_DATA = {
         parentPanel: null,
         parentLabel: 'Workshop',
         txtFile:     'WS4.txt',
-        basenames: ['WS4.1', 'WS4.2', 'WS4.3', 'WS4.4', 'WS4.5']
+        images: [
+            'WS4.1.jpeg', 'WS4.2.jpeg', 'WS4.3.jpeg', 'WS4.4.jpeg', 'WS4.5.jpg'
+        ]
     }
 };
 
 // ─────────────────────────────────────────────────────────────────
 //  STATE
 // ─────────────────────────────────────────────────────────────────
-let panelStack  = [];   // { type:'panel'|'detail', id?, wsKey?, parentPanel? }
-let modalImages = [];   // resolved full URLs for the active detail gallery
+let panelStack  = [];
+let modalImages = [];
 let modalIndex  = 0;
 
 // ─────────────────────────────────────────────────────────────────
@@ -643,7 +430,7 @@ function openPanel(panelId) {
 function closePanel(panelId) {
     document.getElementById(panelId).classList.remove('open');
     panelStack = panelStack.filter(p => !(p.type === 'panel' && p.id === panelId));
-    // close any detail that was opened from within this panel
+    // also close any detail opened from within this panel
     const detail = document.getElementById('panel-detail');
     if (detail.classList.contains('open')) {
         detail.classList.remove('open');
@@ -658,29 +445,27 @@ async function openDetail(wsKey) {
     const data = WS_DATA[wsKey];
     if (!data) return;
 
-    // Configure back button
     document.getElementById('detail-back-label').textContent = data.parentLabel;
 
-    // Clear previous content
     const layout = document.getElementById('detail-layout');
     layout.innerHTML = '';
 
-    // ── Gallery column ──
-    const gallCol  = document.createElement('div');
+    // Gallery column
+    const gallCol = document.createElement('div');
     gallCol.className = 'detail-gallery-col';
-    const masonry  = document.createElement('div');
+    const masonry = document.createElement('div');
     masonry.className = 'masonry';
     gallCol.appendChild(masonry);
 
-    // ── Description column ──
-    const descCol  = document.createElement('div');
+    // Description column
+    const descCol = document.createElement('div');
     descCol.className = 'detail-desc-col';
-    const box      = document.createElement('div');
-    box.className  = 'description-box';
-    const titleEl  = document.createElement('div');
+    const box     = document.createElement('div');
+    box.className = 'description-box';
+    const titleEl = document.createElement('div');
     titleEl.className = 'description-title';
     titleEl.textContent = data.title;
-    const bodyEl   = document.createElement('div');
+    const bodyEl  = document.createElement('div');
     bodyEl.className = 'description-body';
     bodyEl.textContent = '';
     box.appendChild(titleEl);
@@ -690,39 +475,33 @@ async function openDetail(wsKey) {
     layout.appendChild(gallCol);
     layout.appendChild(descCol);
 
-    // ── Open panel immediately (gallery populates async) ──
+    // Open panel immediately
     const detailPanel = document.getElementById('panel-detail');
     detailPanel.classList.add('open');
     detailPanel.scrollTop = 0;
     panelStack.push({ type: 'detail', wsKey, parentPanel: data.parentPanel });
 
-    // ── Resolve images and build masonry (extension-agnostic) ──
-    modalImages = [];
-    const urlPromises = data.basenames.map(basename => tryExtensions(basename));
-    const resolvedUrls = await Promise.all(urlPromises);
+    // Build masonry with exact filenames
+    modalImages = data.images.map(f => `${RAW}/${f}`);
 
-    resolvedUrls.forEach((url, idx) => {
-        if (!url) return; // all extensions failed → skip silently
-
-        modalImages.push({ url, idx: modalImages.length });
-
+    data.images.forEach((filename, idx) => {
         const item = document.createElement('div');
         item.className = 'masonry-item';
-        const capturedIdx = modalImages.length - 1;
-        item.addEventListener('click', () => openModal(capturedIdx));
+        item.addEventListener('click', () => openModal(idx));
 
         const img = document.createElement('img');
-        img.src     = url;
+        img.src     = `${RAW}/${filename}`;
         img.alt     = `${data.title} – ${idx + 1}`;
         img.loading = 'lazy';
+        img.onerror = () => { item.style.display = 'none'; };
         item.appendChild(img);
         masonry.appendChild(item);
     });
 
-    // ── Load and render description ──
+    // Load description (accent-safe, async)
     const raw = await loadDescription(data.txtFile);
     const { title: parsedTitle, body } = parseDescription(raw);
-    if (parsedTitle) titleEl.textContent = parsedTitle; // override with <<Titolo>> if present
+    if (parsedTitle) titleEl.textContent = parsedTitle;
     bodyEl.textContent = body || '';
 }
 
@@ -731,7 +510,7 @@ async function openDetail(wsKey) {
 // ─────────────────────────────────────────────────────────────────
 function closeDetail() {
     document.getElementById('panel-detail').classList.remove('open');
-    panelStack = panelStack.filter(p => p.type !== 'detail');
+    panelStack  = panelStack.filter(p => p.type !== 'detail');
     modalImages = [];
 }
 
@@ -740,13 +519,13 @@ function closeDetail() {
 // ─────────────────────────────────────────────────────────────────
 function openModal(idx) {
     modalIndex = idx;
-    document.getElementById('modalImage').src = modalImages[idx].url;
+    document.getElementById('modalImage').src = modalImages[modalIndex];
     document.getElementById('imageModal').style.display = 'block';
 }
 
 function navigateModal(dir) {
     modalIndex = (modalIndex + dir + modalImages.length) % modalImages.length;
-    document.getElementById('modalImage').src = modalImages[modalIndex].url;
+    document.getElementById('modalImage').src = modalImages[modalIndex];
 }
 
 function closeModal() {
@@ -769,13 +548,11 @@ document.addEventListener('keydown', e => {
         if (e.key === 'ArrowLeft')  navigateModal(-1);
         return;
     }
-    // Esc closes the topmost open panel
     if (e.key === 'Escape' && panelStack.length) {
         const top = panelStack[panelStack.length - 1];
         if (top.type === 'detail') closeDetail();
         else closePanel(top.id);
     }
-    // Block common "view source" shortcuts
     if (e.ctrlKey && ['s','u','p','a'].includes(e.key.toLowerCase())) e.preventDefault();
     if (e.key === 'PrintScreen') navigator.clipboard?.writeText('');
 });
