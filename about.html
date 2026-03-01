@@ -4,68 +4,182 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chi Sono – Paola Pappacena</title>
+    <meta name="description" content="Paola Pappacena – Illustratrice e narratrice diplomata alla Scuola del Fumetto di Milano. Laboratori di illustrazione, cammini in natura, outdoor education.">
+    <meta property="og:title" content="Chi Sono – Paola Pappacena">
+    <meta property="og:description" content="Illustratrice e narratrice. Laboratori di illustrazione, cammini in natura, formazione per educatori.">
+    <meta property="og:type" content="website">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { background: white; font-family: Arial, sans-serif; padding-top: 60px; padding-bottom: 40px; line-height: 1.6; color: #333; }
 
-        .navbar { position: fixed; top: 0; left: 0; right: 0; background: rgba(255,255,255,0.93); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(0,0,0,0.08); padding: 0 24px; display: flex; justify-content: space-between; align-items: center; z-index: 1000; height: 60px; }
+        body {
+            background: white;
+            font-family: Arial, sans-serif;
+            padding-top: 60px;
+            padding-bottom: 40px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* ── NAVBAR ── */
+        .navbar {
+            position: fixed; top: 0; left: 0; right: 0;
+            background: rgba(255,255,255,0.93); backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(0,0,0,0.08);
+            padding: 0 24px;
+            display: flex; justify-content: space-between; align-items: center;
+            z-index: 1000; height: 60px;
+        }
         .navbar-left { display: flex; align-items: center; gap: 16px; }
         .logo { height: 42px; cursor: pointer; }
         .artist-name { height: 28px; cursor: pointer; }
         .navbar-right { display: flex; align-items: center; gap: 4px; }
-        .nav-button { color: #2c3e50; text-decoration: none; font-weight: 500; font-size: 0.88em; padding: 7px 11px; border-radius: 5px; letter-spacing: 0.3px; transition: background 0.25s; }
+        .nav-button {
+            color: #2c3e50; text-decoration: none; font-weight: 500;
+            font-size: 0.88em; padding: 7px 11px; border-radius: 5px;
+            letter-spacing: 0.3px; transition: background 0.25s;
+        }
         .nav-button:hover, .nav-button.active { background: rgba(44,62,80,0.09); }
         .social-links { display: flex; gap: 8px; margin-left: 14px; }
-        .social-button { width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; overflow: hidden; transition: transform 0.2s, box-shadow 0.2s; flex-shrink: 0; }
+        .social-button {
+            width: 30px; height: 30px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            text-decoration: none; overflow: hidden;
+            transition: transform 0.2s, box-shadow 0.2s; flex-shrink: 0;
+        }
         .social-button:hover { transform: scale(1.1); box-shadow: 0 3px 10px rgba(0,0,0,0.22); }
         .social-button img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
-        .hamburger { display: none; flex-direction: column; cursor: pointer; padding: 5px; gap: 5px; flex-shrink: 0; margin-left: 8px; }
+        .hamburger {
+            display: none; flex-direction: column; cursor: pointer;
+            padding: 5px; gap: 5px; flex-shrink: 0; margin-left: 8px;
+        }
         .hamburger span { width: 24px; height: 2px; background: #2c3e50; border-radius: 1px; transition: all 0.3s; }
         .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(7px,7px); }
         .hamburger.active span:nth-child(2) { opacity: 0; }
         .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(7px,-7px); }
-        .mobile-menu { display: none; position: fixed; top: 60px; left: 0; right: 0; background: rgba(255,255,255,0.97); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(0,0,0,0.08); padding: 20px; z-index: 999; }
+        .mobile-menu {
+            display: none; position: fixed; top: 60px; left: 0; right: 0;
+            background: rgba(255,255,255,0.97); backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(0,0,0,0.08); padding: 20px; z-index: 999;
+        }
         .mobile-menu.active { display: block; }
         .mobile-nav-links { display: flex; flex-direction: column; gap: 4px; margin-bottom: 20px; }
-        .mobile-nav-links .nav-button { text-align: center; padding: 11px 20px; border-bottom: 1px solid rgba(0,0,0,0.04); font-size: 0.95em; }
-        .mobile-social { display: flex; justify-content: center; gap: 16px; padding-top: 16px; border-top: 1px solid rgba(0,0,0,0.05); }
+        .mobile-nav-links .nav-button {
+            text-align: center; padding: 11px 20px;
+            border-bottom: 1px solid rgba(0,0,0,0.04); font-size: 0.95em;
+        }
+        .mobile-social {
+            display: flex; justify-content: center; gap: 16px;
+            padding-top: 16px; border-top: 1px solid rgba(0,0,0,0.05);
+        }
 
-        .sticky-footer-bar { position: fixed; bottom: 0; left: 0; right: 0; background: rgba(255,255,255,0.93); backdrop-filter: blur(12px); border-top: 1px solid rgba(0,0,0,0.08); height: 40px; display: flex; align-items: center; justify-content: center; gap: 12px; z-index: 900; }
+        /* ── STICKY FOOTER BAR ── */
+        .sticky-footer-bar {
+            position: fixed; bottom: 0; left: 0; right: 0;
+            background: rgba(255,255,255,0.93); backdrop-filter: blur(12px);
+            border-top: 1px solid rgba(0,0,0,0.08);
+            height: 40px; display: flex; align-items: center; justify-content: center;
+            gap: 12px; z-index: 900;
+        }
         .sticky-copyright { font-size: 0.78em; color: #555; font-style: italic; letter-spacing: 0.3px; }
         .sticky-footer-bar .social-button { width: 24px; height: 24px; }
 
-        /* About content */
-        .about-container { max-width: 1100px; margin: 0 auto; padding: 44px 24px; }
-        .about-header { margin-bottom: 44px; }
-        .about-header h1 { font-size: 2.2em; color: #2c3e50; font-weight: 400; letter-spacing: 0.5px; }
-        .about-main { display: flex; gap: 50px; align-items: flex-start; }
-        .about-image { flex: 0 0 340px; }
+        /* ── ABOUT CONTENT ── */
+        .about-container {
+            max-width: 1100px; margin: 0 auto; padding: 52px 24px 60px;
+            animation: fadeInUp 0.55s ease both;
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(18px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        .about-header { margin-bottom: 48px; }
+        .about-header h1 {
+            font-family: 'Lora', Georgia, serif;
+            font-size: 2.4em; color: #2c3e50;
+            font-weight: 400; letter-spacing: 0.3px;
+        }
+
+        .about-main { display: flex; gap: 56px; align-items: flex-start; }
+
+        /* Portrait */
+        .about-image { flex: 0 0 320px; }
         .about-image img {
             width: 100%; border-radius: 6px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.11);
+            box-shadow: 0 6px 28px rgba(0,0,0,0.13), 0 2px 8px rgba(0,0,0,0.07);
             -webkit-user-drag: none; pointer-events: none;
+            display: block;
         }
-        .about-text { flex: 1; }
-        .about-text p { margin-bottom: 18px; font-size: 1.05em; text-align: justify; }
-        .about-text p:first-child { font-size: 1.12em; font-weight: 500; color: #2c3e50; }
-        .about-text p em { font-style: italic; }
 
-        .footer { background: #f8f9fa; padding: 28px 20px 50px; text-align: center; border-top: 1px solid rgba(0,0,0,0.08); margin-top: 50px; }
+        /* Bio text */
+        .about-text { flex: 1; }
+
+        .about-text p {
+            font-family: 'Lora', Georgia, serif;
+            font-size: 1.05em;
+            line-height: 1.82;
+            color: #3a3a3a;
+            text-align: justify;
+            margin-bottom: 20px;
+        }
+
+        /* Prima riga: nome in evidenza */
+        .about-text p.lead {
+            font-size: 1.0em;
+            font-weight: 500;
+            color: #2c3e50;
+            letter-spacing: 0.1px;
+            border-left: 3px solid rgba(44,62,80,0.18);
+            padding-left: 16px;
+            text-align: left;
+        }
+
+        /* Ultima riga: nota personale, italics */
+        .about-text p.note {
+            font-style: italic;
+            color: #666;
+            font-size: 1.0em;
+            margin-top: 8px;
+        }
+
+        .about-text em { font-style: italic; }
+
+        /* Separatore tematico sottile */
+        .about-divider {
+            width: 36px; height: 1px;
+            background: rgba(44,62,80,0.2);
+            margin: 28px 0;
+        }
+
+        /* ── FOOTER ── */
+        .footer {
+            background: #f8f9fa; padding: 28px 20px 50px;
+            text-align: center; border-top: 1px solid rgba(0,0,0,0.08);
+            margin-top: 50px;
+        }
         .footer-copyright { color: #666; font-size: 0.88em; font-style: italic; }
 
+        /* ── RESPONSIVE ── */
+        @media (max-width: 900px) {
+            .about-image { flex: 0 0 280px; }
+        }
         @media (max-width: 768px) {
             .navbar { padding: 0 15px; display: grid; grid-template-columns: auto 1fr auto; gap: 10px; }
             .logo { height: 35px; } .artist-name { height: 22px; }
             .navbar-right .nav-button, .navbar-right .social-links { display: none; }
             .hamburger { display: flex; }
-            .about-main { flex-direction: column; gap: 28px; align-items: center; }
-            .about-image { flex: none; max-width: 280px; }
-            .about-text p { text-align: left; font-size: 1em; }
-            .about-header h1 { font-size: 1.8em; }
+            .about-main { flex-direction: column; gap: 32px; align-items: center; }
+            .about-image { flex: none; max-width: 280px; width: 100%; }
+            .about-text p { text-align: left; }
+            .about-header h1 { font-size: 1.9em; }
         }
         @media (max-width: 480px) {
-            .about-image { max-width: 220px; }
-            .about-header h1 { font-size: 1.6em; }
+            .about-image { max-width: 230px; }
+            .about-header h1 { font-size: 1.65em; }
+            .about-text p { font-size: 1em; }
         }
     </style>
 </head>
@@ -119,16 +233,27 @@
         <h1>Chi sono</h1>
     </div>
     <div class="about-main">
+
         <div class="about-image">
             <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Portrait.jpg" alt="Paola Pappacena">
         </div>
+
         <div class="about-text">
-            <p>Mi chiamo Paola Pappacena e sono illustratrice e narratrice, appassionata di natura e didattica.</p>
-            <p>Mi sono diplomata in illustrazione per l'infanzia presso la Scuola del Fumetto di Milano, e nel tempo ho collaborato come illustratrice con case editrici come Gribaudo, La Maison est en carton, NoBorders, Terre di Mezzo e Fulmìno edizioni.</p>
-            <p>Il mio lavoro si intreccia da anni con quello di artisti, musicisti, pedagogisti e teatranti, accomunati dall'interesse per la didattica rivolta alla primissima infanzia. Insieme abbiamo ideato laboratori e materiali illustrati dedicati a bambini, genitori ed educatori.</p>
-            <p>Conduco laboratori di illustrazione per adulti e bambini e organizzo camminate in natura, dove si sperimentano pratiche artistiche all'aria aperta.</p>
-            <p>Collaboro con scuole e biblioteche per ideare percorsi educativi e progetti di formazione in outdoor education, accompagnando insegnanti ed educatori alla scoperta di nuove pratiche creative in natura.</p>
-            <p>Amo la montagna, il disegno <em>en plein air</em> e le storie da raccontare.</p>
+
+            <p class="lead">Paola Pappacena si è diplomata in illustrazione per l'infanzia alla Scuola del Fumetto di Milano nel 2004.</p>
+
+            <p>Ha avviato il suo percorso artistico collaborando con compagnie di teatro ragazzi, per le quali ha realizzato scenografie, locandine, percorsi didattici e laboratori creativi nelle scuole e nelle pinacoteche.</p>
+
+            <p>Come illustratrice ha collaborato con diverse case editrici — tra cui Gribaudo, NoBorders Publishing, Fulmìno Edizioni, <em>La maison est en carton</em> e Terre di mezzo — e ha sviluppato progetti illustrati con RaiPlaySound, Museo civico di Morbegno e Legambiente. Le sue opere sono state esposte anche presso la Galleria Robillard di Parigi.</p>
+
+            <div class="about-divider"></div>
+
+            <p>Da anni intreccia il proprio lavoro con quello di artisti, musicisti, pedagogisti e teatranti, accomunati dall'interesse per la didattica rivolta alla primissima infanzia. In collaborazione con l'associazione Musicali si Cresce ha ideato laboratori e materiali illustrati dedicati a bambini, genitori ed educatori.</p>
+
+            <p>Appassionata di natura e didattica, organizza camminate all'aria aperta in cui sperimentare pratiche artistiche e narrative. Da queste esperienze sono nati corsi di formazione rivolti agli insegnanti, incentrati sulla progettazione di attività di outdoor education e su percorsi di illustrazione e narrazione in natura per adulti e bambini.</p>
+
+            <p class="note">Ama stare nel bosco e disegnare all'aria aperta. Appena può cammina in montagna e osserva il mondo da lassù.</p>
+
         </div>
     </div>
 </div>
@@ -164,8 +289,10 @@
             mm.classList.remove('active'); hb.classList.remove('active');
         }
     });
+
+    // Image protection
     document.addEventListener('contextmenu', e => { if (e.target.tagName === 'IMG') e.preventDefault(); });
-    document.addEventListener('dragstart', e => { if (e.target.tagName === 'IMG') e.preventDefault(); });
+    document.addEventListener('dragstart',   e => { if (e.target.tagName === 'IMG') e.preventDefault(); });
     document.addEventListener('keydown', e => {
         if (e.ctrlKey && ['s','u','p'].includes(e.key.toLowerCase())) e.preventDefault();
     });
