@@ -4,145 +4,192 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shop – Paola Pappacena</title>
+    <meta name="description" content="Shop di Paola Pappacena – Illustrazioni originali, stampe, libri e materiali didattici. Prossimamente online.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { background: white; font-family: Arial, sans-serif; padding-top: 60px; padding-bottom: 40px; line-height: 1.6; color: #333; }
 
-        .navbar { position: fixed; top: 0; left: 0; right: 0; background: rgba(255,255,255,0.93); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(0,0,0,0.08); padding: 0 24px; display: flex; justify-content: space-between; align-items: center; z-index: 1000; height: 60px; }
+        body {
+            background: white;
+            font-family: Arial, sans-serif;
+            padding-top: 60px;
+            padding-bottom: 40px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* ── NAVBAR ── */
+        .navbar {
+            position: fixed; top: 0; left: 0; right: 0;
+            background: rgba(255,255,255,0.93); backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(0,0,0,0.08);
+            padding: 0 24px;
+            display: flex; justify-content: space-between; align-items: center;
+            z-index: 1000; height: 60px;
+        }
         .navbar-left { display: flex; align-items: center; gap: 16px; }
         .logo { height: 42px; cursor: pointer; }
         .artist-name { height: 28px; cursor: pointer; }
         .navbar-right { display: flex; align-items: center; gap: 4px; }
-        .nav-button { color: #2c3e50; text-decoration: none; font-weight: 500; font-size: 0.88em; padding: 7px 11px; border-radius: 5px; letter-spacing: 0.3px; transition: background 0.25s; }
+        .nav-button {
+            color: #2c3e50; text-decoration: none; font-weight: 500;
+            font-size: 0.88em; padding: 7px 11px; border-radius: 5px;
+            letter-spacing: 0.3px; transition: background 0.25s;
+        }
         .nav-button:hover, .nav-button.active { background: rgba(44,62,80,0.09); }
         .social-links { display: flex; gap: 8px; margin-left: 14px; }
-        .social-button { width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; overflow: hidden; transition: transform 0.2s, box-shadow 0.2s; flex-shrink: 0; }
+        .social-button {
+            width: 30px; height: 30px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            text-decoration: none; overflow: hidden;
+            transition: transform 0.2s, box-shadow 0.2s; flex-shrink: 0;
+        }
         .social-button:hover { transform: scale(1.1); box-shadow: 0 3px 10px rgba(0,0,0,0.22); }
         .social-button img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
-        .hamburger { display: none; flex-direction: column; cursor: pointer; padding: 5px; gap: 5px; flex-shrink: 0; margin-left: 8px; }
+        .hamburger {
+            display: none; flex-direction: column; cursor: pointer;
+            padding: 5px; gap: 5px; flex-shrink: 0; margin-left: 8px;
+        }
         .hamburger span { width: 24px; height: 2px; background: #2c3e50; border-radius: 1px; transition: all 0.3s; }
         .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(7px,7px); }
         .hamburger.active span:nth-child(2) { opacity: 0; }
         .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(7px,-7px); }
-        .mobile-menu { display: none; position: fixed; top: 60px; left: 0; right: 0; background: rgba(255,255,255,0.97); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(0,0,0,0.08); padding: 20px; z-index: 999; }
+        .mobile-menu {
+            display: none; position: fixed; top: 60px; left: 0; right: 0;
+            background: rgba(255,255,255,0.97); backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(0,0,0,0.08); padding: 20px; z-index: 999;
+        }
         .mobile-menu.active { display: block; }
         .mobile-nav-links { display: flex; flex-direction: column; gap: 4px; margin-bottom: 20px; }
-        .mobile-nav-links .nav-button { text-align: center; padding: 11px 20px; border-bottom: 1px solid rgba(0,0,0,0.04); font-size: 0.95em; }
-        .mobile-social { display: flex; justify-content: center; gap: 16px; padding-top: 16px; border-top: 1px solid rgba(0,0,0,0.05); }
+        .mobile-nav-links .nav-button {
+            text-align: center; padding: 11px 20px;
+            border-bottom: 1px solid rgba(0,0,0,0.04); font-size: 0.95em;
+        }
+        .mobile-social {
+            display: flex; justify-content: center; gap: 16px;
+            padding-top: 16px; border-top: 1px solid rgba(0,0,0,0.05);
+        }
 
-        .sticky-footer-bar { position: fixed; bottom: 0; left: 0; right: 0; background: rgba(255,255,255,0.93); backdrop-filter: blur(12px); border-top: 1px solid rgba(0,0,0,0.08); height: 40px; display: flex; align-items: center; justify-content: center; gap: 12px; z-index: 900; }
+        /* ── STICKY FOOTER BAR ── */
+        .sticky-footer-bar {
+            position: fixed; bottom: 0; left: 0; right: 0;
+            background: rgba(255,255,255,0.93); backdrop-filter: blur(12px);
+            border-top: 1px solid rgba(0,0,0,0.08);
+            height: 40px; display: flex; align-items: center; justify-content: center;
+            gap: 12px; z-index: 900;
+        }
         .sticky-copyright { font-size: 0.78em; color: #555; font-style: italic; letter-spacing: 0.3px; }
         .sticky-footer-bar .social-button { width: 24px; height: 24px; }
 
-        /* Shop content */
-        .shop-container { max-width: 1100px; margin: 0 auto; padding: 44px 24px; }
-
-        .shop-header { margin-bottom: 46px; }
-        .shop-header h1 { font-size: 2.2em; color: #2c3e50; font-weight: 400; letter-spacing: 0.4px; margin-bottom: 12px; }
-        .shop-header p { font-size: 1.05em; color: #555; max-width: 560px; }
-
-        /* Filter tabs */
-        .shop-filters {
-            display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 36px;
+        /* ── MAIN CONTENT ── */
+        .shop-container {
+            min-height: calc(100vh - 60px - 40px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 60px 24px;
+            animation: fadeIn 0.6s ease both;
         }
-        .filter-btn {
-            padding: 7px 16px; border-radius: 20px; border: 1px solid rgba(44,62,80,0.25);
-            background: transparent; color: #2c3e50; font-size: 0.82em; font-weight: 500;
-            cursor: pointer; letter-spacing: 0.3px; transition: all 0.2s;
-        }
-        .filter-btn:hover, .filter-btn.active {
-            background: #2c3e50; color: white; border-color: #2c3e50;
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(14px); }
+            to   { opacity: 1; transform: translateY(0); }
         }
 
-        /* Product grid */
-        .shop-grid {
-            display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;
-            margin-bottom: 60px;
+        /* Piccola illustrazione decorativa SVG */
+        .deco-icon {
+            width: 72px;
+            height: 72px;
+            margin-bottom: 36px;
+            opacity: 0.18;
         }
 
-        .product-card {
-            border: 1px solid rgba(0,0,0,0.08); border-radius: 8px; overflow: hidden;
-            transition: box-shadow 0.3s, transform 0.3s; background: white;
-            cursor: pointer;
-        }
-        .product-card:hover { box-shadow: 0 8px 28px rgba(0,0,0,0.1); transform: translateY(-3px); }
-
-        .product-image {
-            width: 100%; aspect-ratio: 1; background: #f5f5f5;
-            display: flex; align-items: center; justify-content: center;
-            overflow: hidden; position: relative;
-        }
-        .product-image img {
-            width: 100%; height: 100%; object-fit: cover;
-            transition: transform 0.4s;
-            -webkit-user-drag: none; pointer-events: none;
-        }
-        .product-card:hover .product-image img { transform: scale(1.04); }
-
-        /* Placeholder when no image */
-        .product-image .img-placeholder {
-            font-size: 2.8em; color: rgba(44,62,80,0.2);
+        .wip-label {
+            font-family: Arial, sans-serif;
+            font-size: 0.7em;
+            font-weight: 700;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            color: #2c3e50;
+            opacity: 0.45;
+            margin-bottom: 18px;
         }
 
-        .product-badge {
-            position: absolute; top: 10px; left: 10px;
-            background: #2c3e50; color: white;
-            font-size: 0.65em; font-weight: 600; letter-spacing: 0.7px;
-            padding: 3px 8px; border-radius: 10px; text-transform: uppercase;
+        .wip-title {
+            font-family: 'Lora', Georgia, serif;
+            font-size: 2.4em;
+            font-weight: 400;
+            color: #2c3e50;
+            letter-spacing: 0.2px;
+            margin-bottom: 20px;
+            text-align: center;
         }
 
-        .product-info { padding: 16px 16px 18px; }
-        .product-info h3 { font-size: 0.93em; color: #2c3e50; font-weight: 600; margin-bottom: 6px; line-height: 1.35; }
-        .product-info .product-desc { font-size: 0.82em; color: #777; margin-bottom: 12px; line-height: 1.5; }
-        .product-price { font-size: 1em; font-weight: 700; color: #2c3e50; }
-        .product-price .old-price { font-size: 0.8em; color: #aaa; text-decoration: line-through; margin-left: 6px; font-weight: 400; }
-
-        .add-to-cart-btn {
-            display: block; width: 100%; margin-top: 12px;
-            padding: 9px 0; background: #2c3e50; color: white;
-            border: none; border-radius: 5px; font-size: 0.82em;
-            font-weight: 500; cursor: pointer; letter-spacing: 0.3px;
-            transition: background 0.2s;
-        }
-        .add-to-cart-btn:hover { background: #1a2432; }
-
-        /* Coming soon banner */
-        .coming-soon-banner {
-            background: linear-gradient(135deg, #f0f4f8 0%, #e8edf2 100%);
-            border-radius: 10px; padding: 50px 36px; text-align: center;
-            margin-top: 10px;
-        }
-        .coming-soon-banner .cs-icon { font-size: 2.8em; margin-bottom: 18px; display: block; }
-        .coming-soon-banner h3 { font-size: 1.4em; color: #2c3e50; font-weight: 400; margin-bottom: 12px; }
-        .coming-soon-banner p { color: #666; font-size: 0.95em; max-width: 440px; margin: 0 auto 24px; }
-        .coming-soon-banner a {
-            display: inline-block; background: #2c3e50; color: white;
-            text-decoration: none; padding: 11px 26px; border-radius: 5px;
-            font-size: 0.88em; font-weight: 500; transition: background 0.2s;
-        }
-        .coming-soon-banner a:hover { background: #1a2432; }
-
-        /* Section label */
-        .shop-section-label {
-            font-size: 0.75em; font-weight: 700; text-transform: uppercase;
-            letter-spacing: 1.4px; color: #2c3e50; opacity: 0.55;
-            margin-bottom: 20px; display: block;
+        .wip-desc {
+            font-family: 'Lora', Georgia, serif;
+            font-size: 1.05em;
+            color: #666;
+            line-height: 1.78;
+            max-width: 480px;
+            text-align: center;
+            margin-bottom: 48px;
         }
 
-        .footer { background: #f8f9fa; padding: 28px 20px 50px; text-align: center; border-top: 1px solid rgba(0,0,0,0.08); margin-top: 50px; }
+        /* Divider */
+        .wip-divider {
+            width: 40px;
+            height: 1px;
+            background: rgba(44,62,80,0.2);
+            margin: 0 auto 40px;
+        }
+
+        /* Contact block */
+        .contact-block {
+            text-align: center;
+        }
+        .contact-block p {
+            font-size: 0.88em;
+            color: #888;
+            letter-spacing: 0.3px;
+            margin-bottom: 14px;
+        }
+        .contact-btn {
+            display: inline-block;
+            padding: 11px 28px;
+            background: #2c3e50;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 0.88em;
+            font-weight: 500;
+            letter-spacing: 0.4px;
+            transition: background 0.2s, transform 0.2s;
+        }
+        .contact-btn:hover {
+            background: #1a2432;
+            transform: translateY(-1px);
+        }
+
+        /* ── FOOTER ── */
+        .footer {
+            background: #f8f9fa; padding: 28px 20px 50px;
+            text-align: center; border-top: 1px solid rgba(0,0,0,0.08);
+        }
         .footer-copyright { color: #666; font-size: 0.88em; font-style: italic; }
 
-        @media (max-width: 900px) { .shop-grid { grid-template-columns: repeat(3, 1fr); } }
+        /* ── RESPONSIVE ── */
         @media (max-width: 768px) {
             .navbar { padding: 0 15px; display: grid; grid-template-columns: auto 1fr auto; gap: 10px; }
             .logo { height: 35px; } .artist-name { height: 22px; }
             .navbar-right .nav-button, .navbar-right .social-links { display: none; }
             .hamburger { display: flex; }
-            .shop-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
-            .shop-header h1 { font-size: 1.8em; }
+            .wip-title { font-size: 2em; }
         }
-        @media (max-width: 420px) {
-            .shop-grid { grid-template-columns: 1fr; }
+        @media (max-width: 480px) {
+            .wip-title { font-size: 1.7em; }
+            .wip-desc { font-size: 1em; }
         }
     </style>
 </head>
@@ -192,96 +239,31 @@
 </div>
 
 <div class="shop-container">
-    <div class="shop-header">
-        <h1>Shop</h1>
-        <p>Illustrazioni originali, stampe, libri e materiali didattici — pezzi unici e tirature limitate.</p>
+
+    <!-- Icona decorativa: pennello/matita stilizzato in SVG -->
+    <svg class="deco-icon" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M52 8L64 20L28 56L12 60L16 44L52 8Z" stroke="#2c3e50" stroke-width="2.5" stroke-linejoin="round"/>
+        <path d="M44 16L56 28" stroke="#2c3e50" stroke-width="2.5" stroke-linecap="round"/>
+        <path d="M16 44L28 56" stroke="#2c3e50" stroke-width="2" stroke-linecap="round"/>
+        <circle cx="20" cy="52" r="2" fill="#2c3e50"/>
+    </svg>
+
+    <div class="wip-label">Prossimamente</div>
+
+    <h1 class="wip-title">Lo shop è in costruzione</h1>
+
+    <p class="wip-desc">
+        Stampe, illustrazioni originali, libri e materiali didattici stanno per arrivare.
+        Nel frattempo, se hai già qualcosa in mente, scrivimi: rispondo sempre.
+    </p>
+
+    <div class="wip-divider"></div>
+
+    <div class="contact-block">
+        <p>Per acquisti, prenotazioni o informazioni</p>
+        <a href="contacts.html" class="contact-btn">Contattami</a>
     </div>
 
-    <div class="shop-filters">
-        <button class="filter-btn active" onclick="filterProducts('all', this)">Tutto</button>
-        <button class="filter-btn" onclick="filterProducts('stampe', this)">Stampe</button>
-        <button class="filter-btn" onclick="filterProducts('libri', this)">Libri</button>
-        <button class="filter-btn" onclick="filterProducts('originali', this)">Originali</button>
-        <button class="filter-btn" onclick="filterProducts('didattica', this)">Materiali didattici</button>
-    </div>
-
-    <!-- Product grid – da popolare con i tuoi prodotti reali -->
-    <span class="shop-section-label">Prodotti disponibili</span>
-    <div class="shop-grid" id="shopGrid">
-
-        <!-- Carta 1 – Stampa -->
-        <div class="product-card" data-cat="stampe">
-            <div class="product-image">
-                <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Shop_1.jpg"
-                     onerror="this.parentElement.innerHTML='<span class=\'img-placeholder\'>🖼</span>'"
-                     alt="Stampa 1">
-                <span class="product-badge">Stampa</span>
-            </div>
-            <div class="product-info">
-                <h3>Titolo stampa</h3>
-                <div class="product-desc">Stampa fine art su carta cotone, tiratura limitata firmata e numerata.</div>
-                <div class="product-price">€ 00,00</div>
-                <button class="add-to-cart-btn" onclick="requestProduct('Stampa 1')">Richiedi info</button>
-            </div>
-        </div>
-
-        <!-- Carta 2 – Libro -->
-        <div class="product-card" data-cat="libri">
-            <div class="product-image">
-                <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Shop_2.jpg"
-                     onerror="this.parentElement.innerHTML='<span class=\'img-placeholder\'>📖</span>'"
-                     alt="Libro 1">
-                <span class="product-badge">Libro</span>
-            </div>
-            <div class="product-info">
-                <h3>Titolo libro</h3>
-                <div class="product-desc">Illustrazioni e testo. Casa editrice, anno.</div>
-                <div class="product-price">€ 00,00</div>
-                <button class="add-to-cart-btn" onclick="requestProduct('Libro 1')">Richiedi info</button>
-            </div>
-        </div>
-
-        <!-- Carta 3 – Originale -->
-        <div class="product-card" data-cat="originali">
-            <div class="product-image">
-                <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Shop_3.jpg"
-                     onerror="this.parentElement.innerHTML='<span class=\'img-placeholder\'>🎨</span>'"
-                     alt="Originale 1">
-                <span class="product-badge" style="background:#8B6914;">Originale</span>
-            </div>
-            <div class="product-info">
-                <h3>Titolo originale</h3>
-                <div class="product-desc">Tavola originale, tecnica mista su carta, pezzo unico.</div>
-                <div class="product-price">€ 000,00</div>
-                <button class="add-to-cart-btn" onclick="requestProduct('Originale 1')">Richiedi info</button>
-            </div>
-        </div>
-
-        <!-- Carta 4 – Didattica -->
-        <div class="product-card" data-cat="didattica">
-            <div class="product-image">
-                <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Shop_4.jpg"
-                     onerror="this.parentElement.innerHTML='<span class=\'img-placeholder\'>📋</span>'"
-                     alt="Materiale didattico">
-                <span class="product-badge" style="background:#3a7d44;">Didattica</span>
-            </div>
-            <div class="product-info">
-                <h3>Kit didattico</h3>
-                <div class="product-desc">Materiale illustrato per laboratori, destinato a educatori e insegnanti.</div>
-                <div class="product-price">€ 00,00</div>
-                <button class="add-to-cart-btn" onclick="requestProduct('Kit didattico')">Richiedi info</button>
-            </div>
-        </div>
-
-    </div>
-
-    <!-- Coming soon / contact note -->
-    <div class="coming-soon-banner">
-        <span class="cs-icon">✉️</span>
-        <h3>Vuoi acquistare o prenotare?</h3>
-        <p>Lo shop è in costruzione. Per acquistare una stampa, un libro o un originale scrivimi direttamente: rispondo sempre.</p>
-        <a href="contacts.html">Contattami</a>
-    </div>
 </div>
 
 <footer class="footer">
@@ -315,27 +297,6 @@
             mm.classList.remove('active'); hb.classList.remove('active');
         }
     });
-
-    function filterProducts(cat, btn) {
-        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        document.querySelectorAll('.product-card').forEach(card => {
-            card.style.display = (cat === 'all' || card.dataset.cat === cat) ? 'block' : 'none';
-        });
-    }
-
-    function requestProduct(name) {
-        window.location.href = `contacts.html?product=${encodeURIComponent(name)}`;
-    }
-
-    document.addEventListener('contextmenu', e => { if (e.target.tagName === 'IMG') e.preventDefault(); });
-    document.addEventListener('dragstart', e => { if (e.target.tagName === 'IMG') e.preventDefault(); });
-    document.addEventListener('keydown', e => {
-        if (e.ctrlKey && ['s','u','p'].includes(e.key.toLowerCase())) e.preventDefault();
-    });
 </script>
 </body>
-
 </html>
-
-
