@@ -37,10 +37,10 @@
         .sticky-footer-bar .social-button { width: 24px; height: 24px; }
 
         /* ── PANEL SYSTEM ──
-           Panels slide in from the right over the content underneath.
+           Panels slide in from the right, stacked by z-index.
            data-level="1" = category hub (Cammini, WS&Lab)
-           data-level="2" = detail with gallery
-        */
+           data-level="2" = detail panel (gallery + description)
+        ── */
         .panel {
             position: fixed;
             top: 60px; left: 0; right: 0; bottom: 40px;
@@ -88,19 +88,21 @@
         .ws-intro-image img { width: 100%; border-radius: 6px; box-shadow: 0 4px 18px rgba(0,0,0,0.1); -webkit-user-drag: none; pointer-events: none; }
 
         /* ── CARD GRIDS ── */
-        .main-grid   { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin-bottom: 50px; }
-        .sub-grid-3  { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-bottom: 50px; }
-        .sub-grid-2  { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; margin-bottom: 50px; }
+        .main-grid  { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin-bottom: 50px; }
+        .sub-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-bottom: 50px; }
+        .sub-grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; margin-bottom: 50px; }
 
         /* ── CARD ── */
         .ws-card { cursor: pointer; border: 1px solid rgba(0,0,0,0.09); border-radius: 10px; overflow: hidden; transition: box-shadow 0.3s, transform 0.3s; background: #fafafa; }
         .ws-card:hover { box-shadow: 0 8px 28px rgba(0,0,0,0.13); transform: translateY(-3px); }
 
+        /* thumbnail strip — multiple small covers side by side */
         .card-thumbs { display: flex; height: 200px; overflow: hidden; }
         .card-thumbs img { flex: 1; object-fit: cover; height: 100%; border-right: 2px solid white; -webkit-user-drag: none; pointer-events: none; transition: transform 0.4s; }
         .card-thumbs img:last-child { border-right: none; }
         .ws-card:hover .card-thumbs img { transform: scale(1.04); }
 
+        /* single cover */
         .card-cover { height: 200px; overflow: hidden; }
         .card-cover img { width: 100%; height: 100%; object-fit: cover; -webkit-user-drag: none; pointer-events: none; transition: transform 0.4s; }
         .ws-card:hover .card-cover img { transform: scale(1.04); }
@@ -228,6 +230,7 @@
      MAIN PAGE (Level 0 — always behind panels)
 ═══════════════════════════════════════ -->
 <div class="ws-main">
+
     <div class="ws-header">
         <h1>Workshop e Laboratori</h1>
         <p>Pratiche creative per adulti, bambini ed educatori — in studio, all'aperto, in natura.</p>
@@ -311,6 +314,7 @@
             <a href="contacts.html" class="cta-link">Scrivimi</a>
         </div>
     </div>
+
 </div>
 
 <footer class="footer">
@@ -457,99 +461,189 @@
 <script>
 const RAW = 'https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img';
 
-// ── Workshop catalogue ──
+// ─────────────────────────────────────────────────────────────────
+//  IMAGE EXTENSION RESOLVER
+//  Each workshop entry lists image basenames WITHOUT extension
+//  (e.g. 'WS1.1.1'). At render time, tryExtensions() probes the
+//  candidates in order [jpeg, jpg, png] and uses the first that
+//  loads successfully. Images that 404 on all extensions are hidden.
+// ─────────────────────────────────────────────────────────────────
+const EXT_ORDER = ['jpeg', 'jpg', 'png'];
+
+/**
+ * Given a bare basename (e.g. 'WS1.1.7'), returns a Promise that
+ * resolves to the full URL of the first loadable extension,
+ * or null if none work.
+ */
+function tryExtensions(basename) {
+    return new Promise(resolve => {
+        let i = 0;
+        function attempt() {
+            if (i >= EXT_ORDER.length) { resolve(null); return; }
+            const url = `${RAW}/${basename}.${EXT_ORDER[i]}`;
+            const img = new Image();
+            img.onload  = () => resolve(url);
+            img.onerror = () => { i++; attempt(); };
+            img.src = url;
+        }
+        attempt();
+    });
+}
+
+// ─────────────────────────────────────────────────────────────────
+//  DESCRIPTION LOADER
+//  Identical to portfolio.html approach:
+//  — fetches as ArrayBuffer
+//  — tries UTF-8 first (no replacement chars → success)
+//  — falls back to windows-1252 (covers all Italian accented chars)
+//  — normalises \r\n and \r to \n
+//  — parses optional <<Titolo>> tag for the bold header
+// ─────────────────────────────────────────────────────────────────
+async function loadDescription(txtFile) {
+    try {
+        const r = await fetch(`${RAW}/${txtFile}`);
+        if (!r.ok) return null;
+
+        const contentType = r.headers.get('content-type') || '';
+        if (contentType.toLowerCase().includes('charset=')) {
+            // Browser will decode according to the declared charset
+            return await r.text();
+        }
+
+        // GitHub Raw often omits charset; decode manually with fallback
+        const buf  = await r.arrayBuffer();
+        const utf8 = new TextDecoder('utf-8', { fatal: false }).decode(buf);
+        if (!utf8.includes('\uFFFD')) return utf8;   // UTF-8 clean → use it
+
+        // Replacement chars found → file is likely Windows-1252 (Latin-1)
+        try {
+            return new TextDecoder('windows-1252').decode(buf);
+        } catch {
+            return utf8;  // last-resort fallback
+        }
+    } catch { return null; }
+}
+
+/**
+ * Parse raw description text.
+ * Supports optional <<Titolo>> tag for the bold header line.
+ * Normalises all line endings (\r\n, \r → \n).
+ */
+function parseDescription(raw) {
+    if (!raw || !raw.trim()) return { title: '', body: '' };
+    const normalised = raw.replace(/\r\n/g, '\n').replace(/\r/g, '\n');
+    const match = normalised.match(/<<(.+?)>>/s);
+    let title = '', body = normalised;
+    if (match) {
+        title = match[1].trim();
+        body  = normalised.replace(match[0], '').replace(/^\n+/, '').trimEnd();
+    }
+    return { title, body };
+}
+
+// ─────────────────────────────────────────────────────────────────
+//  WORKSHOP CATALOGUE
+//  Images listed as BASENAMES only — no extension.
+//  tryExtensions() will probe jpeg → jpg → png at runtime.
+// ─────────────────────────────────────────────────────────────────
 const WS_DATA = {
 
     ws1_1: {
-        title: 'Disegni in Cammino',
+        title:       'Disegni in Cammino',
         parentPanel: 'panel-ws1',
         parentLabel: 'Cammini Illustrati',
-        txtFile: 'WS1.1.txt',
-        images: [
-            'WS1.1.1.jpeg','WS1.1.2.jpeg','WS1.1.3.jpeg','WS1.1.4.jpeg','WS1.1.5.jpeg',
-            'WS1.1.6.jpeg','WS1.1.7.jpeg','WS1.1.8.jpeg','WS1.1.9.jpeg','WS1.1.10.jpeg',
-            'WS1.1.11.jpeg','WS1.1.12.jpeg','WS1.1.13.jpeg','WS1.1.14.jpeg','WS1.1.15.jpg'
+        txtFile:     'WS1.1.txt',
+        // 15 images; mixed jpeg/jpg — extension resolved automatically
+        basenames: [
+            'WS1.1.1',  'WS1.1.2',  'WS1.1.3',  'WS1.1.4',  'WS1.1.5',
+            'WS1.1.6',  'WS1.1.7',  'WS1.1.8',  'WS1.1.9',  'WS1.1.10',
+            'WS1.1.11', 'WS1.1.12', 'WS1.1.13', 'WS1.1.14', 'WS1.1.15'
         ]
     },
 
     ws1_2: {
-        title: 'Ora Blu',
+        title:       'Ora Blu',
         parentPanel: 'panel-ws1',
         parentLabel: 'Cammini Illustrati',
-        txtFile: 'WS1.2.txt',
-        images: ['WS1.2.1.jpg','WS1.2.2.jpg','WS1.2.3.jpg','WS1.2.4.jpg','WS1.2.5.png']
+        txtFile:     'WS1.2.txt',
+        // 5 images; last one is png — extension resolved automatically
+        basenames: ['WS1.2.1', 'WS1.2.2', 'WS1.2.3', 'WS1.2.4', 'WS1.2.5']
     },
 
     ws1_3: {
-        title: 'Sentieri Bambini',
+        title:       'Sentieri Bambini',
         parentPanel: 'panel-ws1',
         parentLabel: 'Cammini Illustrati',
-        txtFile: 'WS1.3.txt',
-        images: [
-            'WS1.3.1.jpg','WS1.3.2.jpg','WS1.3.3.jpg','WS1.3.4.jpg','WS1.3.5.jpg',
-            'WS1.3.6.jpg','WS1.3.7.jpg','WS1.3.8.jpg','WS1.3.9.jpg'
+        txtFile:     'WS1.3.txt',
+        basenames: [
+            'WS1.3.1', 'WS1.3.2', 'WS1.3.3', 'WS1.3.4', 'WS1.3.5',
+            'WS1.3.6', 'WS1.3.7', 'WS1.3.8', 'WS1.3.9'
         ]
     },
 
     ws2: {
-        title: 'Formazione',
-        parentPanel: null,
+        title:       'Formazione',
+        parentPanel: null,            // direct from main page → back goes to Workshop
         parentLabel: 'Workshop',
-        txtFile: 'WS2.txt',
-        images: [
-            'WS2.1.jpg','WS2.2.jpg','WS2.3.jpg','WS2.4.jpg','WS2.5.jpg',
-            'WS2.6.jpg','WS2.7.jpg','WS2.8.jpg','WS2.9.jpg'
+        txtFile:     'WS2.txt',
+        basenames: [
+            'WS2.1', 'WS2.2', 'WS2.3', 'WS2.4', 'WS2.5',
+            'WS2.6', 'WS2.7', 'WS2.8', 'WS2.9'
         ]
     },
 
     ws3_1: {
-        title: 'Workshop Illustrazione',
+        title:       'Workshop Illustrazione',
         parentPanel: 'panel-ws3',
         parentLabel: 'Workshop e Laboratori',
-        txtFile: 'WS3.1.txt',
-        images: [
-            'WS3.1.1.jpeg','WS3.1.2.jpeg','WS3.1.3.jpeg','WS3.1.4.jpeg',
-            'WS3.1.5.jpeg','WS3.1.6.jpeg','WS3.1.7.jpeg','WS3.1.8.jpeg'
+        txtFile:     'WS3.1.txt',
+        basenames: [
+            'WS3.1.1', 'WS3.1.2', 'WS3.1.3', 'WS3.1.4',
+            'WS3.1.5', 'WS3.1.6', 'WS3.1.7', 'WS3.1.8'
         ]
     },
 
     ws3_2: {
-        title: 'Laboratori Bambini e Bambine',
+        title:       'Laboratori Bambini e Bambine',
         parentPanel: 'panel-ws3',
         parentLabel: 'Workshop e Laboratori',
-        txtFile: 'WS3.2.txt',
-        images: [
-            'WS3.2.1.jpeg','WS3.2.2.jpeg','WS3.2.3.jpeg','WS3.2.4.jpeg','WS3.2.5.jpeg',
-            'WS3.2.6.jpeg','WS3.2.7.jpeg','WS3.2.8.jpeg','WS3.2.9.jpeg','WS3.2.10.jpeg'
+        txtFile:     'WS3.2.txt',
+        basenames: [
+            'WS3.2.1', 'WS3.2.2', 'WS3.2.3', 'WS3.2.4', 'WS3.2.5',
+            'WS3.2.6', 'WS3.2.7', 'WS3.2.8', 'WS3.2.9', 'WS3.2.10'
         ]
     },
 
     ws4: {
-        title: 'Atelier, Nidi e Materne',
+        title:       'Atelier, Nidi e Materne',
         parentPanel: null,
         parentLabel: 'Workshop',
-        txtFile: 'WS4.txt',
-        images: ['WS4.1.jpeg','WS4.2.jpeg','WS4.3.jpeg','WS4.4.jpeg','WS4.5.jpg']
+        txtFile:     'WS4.txt',
+        basenames: ['WS4.1', 'WS4.2', 'WS4.3', 'WS4.4', 'WS4.5']
     }
 };
 
-// ── State ──
-let panelStack = [];   // tracks open panels for back-navigation & Esc
-let modalImages = [];
+// ─────────────────────────────────────────────────────────────────
+//  STATE
+// ─────────────────────────────────────────────────────────────────
+let panelStack  = [];   // { type:'panel'|'detail', id?, wsKey?, parentPanel? }
+let modalImages = [];   // resolved full URLs for the active detail gallery
 let modalIndex  = 0;
 
-// ── Open a level-1 category hub panel ──
+// ─────────────────────────────────────────────────────────────────
+//  PANEL OPEN / CLOSE
+// ─────────────────────────────────────────────────────────────────
 function openPanel(panelId) {
-    document.getElementById(panelId).classList.add('open');
+    const el = document.getElementById(panelId);
+    el.classList.add('open');
+    el.scrollTop = 0;
     panelStack.push({ type: 'panel', id: panelId });
-    document.getElementById(panelId).scrollTop = 0;
 }
 
-// ── Close a level-1 panel ──
 function closePanel(panelId) {
     document.getElementById(panelId).classList.remove('open');
     panelStack = panelStack.filter(p => !(p.type === 'panel' && p.id === panelId));
-    // also close detail if it was open from within this panel
+    // close any detail that was opened from within this panel
     const detail = document.getElementById('panel-detail');
     if (detail.classList.contains('open')) {
         detail.classList.remove('open');
@@ -557,40 +651,28 @@ function closePanel(panelId) {
     }
 }
 
-// ── Open a detail panel (level 2) ──
+// ─────────────────────────────────────────────────────────────────
+//  DETAIL PANEL OPEN
+// ─────────────────────────────────────────────────────────────────
 async function openDetail(wsKey) {
     const data = WS_DATA[wsKey];
     if (!data) return;
 
-    // Set back button label
+    // Configure back button
     document.getElementById('detail-back-label').textContent = data.parentLabel;
 
-    // Build layout
+    // Clear previous content
     const layout = document.getElementById('detail-layout');
     layout.innerHTML = '';
 
-    // Gallery column (left/top)
-    modalImages = data.images.map(f => `${RAW}/${f}`);
-    const gallCol = document.createElement('div');
+    // ── Gallery column ──
+    const gallCol  = document.createElement('div');
     gallCol.className = 'detail-gallery-col';
-    const masonry = document.createElement('div');
+    const masonry  = document.createElement('div');
     masonry.className = 'masonry';
-
-    data.images.forEach((filename, idx) => {
-        const item = document.createElement('div');
-        item.className = 'masonry-item';
-        item.addEventListener('click', () => openModal(idx));
-        const img = document.createElement('img');
-        img.src = `${RAW}/${filename}`;
-        img.alt = `${data.title} – ${idx + 1}`;
-        img.loading = 'lazy';
-        img.onerror = () => { item.style.display = 'none'; };
-        item.appendChild(img);
-        masonry.appendChild(item);
-    });
     gallCol.appendChild(masonry);
 
-    // Description column (right/bottom on mobile)
+    // ── Description column ──
     const descCol  = document.createElement('div');
     descCol.className = 'detail-desc-col';
     const box      = document.createElement('div');
@@ -600,7 +682,7 @@ async function openDetail(wsKey) {
     titleEl.textContent = data.title;
     const bodyEl   = document.createElement('div');
     bodyEl.className = 'description-body';
-    bodyEl.textContent = 'Caricamento…';
+    bodyEl.textContent = '';
     box.appendChild(titleEl);
     box.appendChild(bodyEl);
     descCol.appendChild(box);
@@ -608,46 +690,77 @@ async function openDetail(wsKey) {
     layout.appendChild(gallCol);
     layout.appendChild(descCol);
 
-    // Open the panel
+    // ── Open panel immediately (gallery populates async) ──
     const detailPanel = document.getElementById('panel-detail');
     detailPanel.classList.add('open');
     detailPanel.scrollTop = 0;
     panelStack.push({ type: 'detail', wsKey, parentPanel: data.parentPanel });
 
-    // Load description async from GitHub raw
-    try {
-        const res = await fetch(`${RAW}/${data.txtFile}`);
-        bodyEl.textContent = res.ok ? (await res.text()).trim() : '';
-    } catch {
-        bodyEl.textContent = '';
-    }
+    // ── Resolve images and build masonry (extension-agnostic) ──
+    modalImages = [];
+    const urlPromises = data.basenames.map(basename => tryExtensions(basename));
+    const resolvedUrls = await Promise.all(urlPromises);
+
+    resolvedUrls.forEach((url, idx) => {
+        if (!url) return; // all extensions failed → skip silently
+
+        modalImages.push({ url, idx: modalImages.length });
+
+        const item = document.createElement('div');
+        item.className = 'masonry-item';
+        const capturedIdx = modalImages.length - 1;
+        item.addEventListener('click', () => openModal(capturedIdx));
+
+        const img = document.createElement('img');
+        img.src     = url;
+        img.alt     = `${data.title} – ${idx + 1}`;
+        img.loading = 'lazy';
+        item.appendChild(img);
+        masonry.appendChild(item);
+    });
+
+    // ── Load and render description ──
+    const raw = await loadDescription(data.txtFile);
+    const { title: parsedTitle, body } = parseDescription(raw);
+    if (parsedTitle) titleEl.textContent = parsedTitle; // override with <<Titolo>> if present
+    bodyEl.textContent = body || '';
 }
 
-// ── Close detail panel — returns to parent panel or main page ──
+// ─────────────────────────────────────────────────────────────────
+//  DETAIL PANEL CLOSE
+// ─────────────────────────────────────────────────────────────────
 function closeDetail() {
     document.getElementById('panel-detail').classList.remove('open');
     panelStack = panelStack.filter(p => p.type !== 'detail');
+    modalImages = [];
 }
 
-// ── Lightbox ──
+// ─────────────────────────────────────────────────────────────────
+//  LIGHTBOX
+// ─────────────────────────────────────────────────────────────────
 function openModal(idx) {
     modalIndex = idx;
-    document.getElementById('modalImage').src = modalImages[modalIndex];
+    document.getElementById('modalImage').src = modalImages[idx].url;
     document.getElementById('imageModal').style.display = 'block';
 }
+
 function navigateModal(dir) {
     modalIndex = (modalIndex + dir + modalImages.length) % modalImages.length;
-    document.getElementById('modalImage').src = modalImages[modalIndex];
+    document.getElementById('modalImage').src = modalImages[modalIndex].url;
 }
+
 function closeModal() {
     document.getElementById('imageModal').style.display = 'none';
     document.getElementById('modalImage').src = '';
 }
+
 document.getElementById('imageModal').addEventListener('click', function(e) {
     if (e.target === this) closeModal();
 });
 
-// ── Keyboard navigation ──
+// ─────────────────────────────────────────────────────────────────
+//  KEYBOARD NAVIGATION
+// ─────────────────────────────────────────────────────────────────
 document.addEventListener('keydown', e => {
     const modal = document.getElementById('imageModal');
     if (modal.style.display === 'block') {
@@ -656,22 +769,28 @@ document.addEventListener('keydown', e => {
         if (e.key === 'ArrowLeft')  navigateModal(-1);
         return;
     }
+    // Esc closes the topmost open panel
     if (e.key === 'Escape' && panelStack.length) {
         const top = panelStack[panelStack.length - 1];
         if (top.type === 'detail') closeDetail();
         else closePanel(top.id);
     }
+    // Block common "view source" shortcuts
     if (e.ctrlKey && ['s','u','p','a'].includes(e.key.toLowerCase())) e.preventDefault();
     if (e.key === 'PrintScreen') navigator.clipboard?.writeText('');
 });
 
-// ── Copyright ──
+// ─────────────────────────────────────────────────────────────────
+//  COPYRIGHT
+// ─────────────────────────────────────────────────────────────────
 const year = new Date().getFullYear();
 const cp = `© Paola Pappacena ${year}`;
 document.getElementById('stickyCopyright').textContent = cp;
 document.getElementById('footerCopyright').textContent = cp;
 
-// ── Mobile menu ──
+// ─────────────────────────────────────────────────────────────────
+//  MOBILE MENU
+// ─────────────────────────────────────────────────────────────────
 function toggleMobileMenu() {
     document.getElementById('mobileMenu').classList.toggle('active');
     document.getElementById('hamburger').classList.toggle('active');
@@ -684,7 +803,9 @@ document.addEventListener('click', e => {
     }
 });
 
-// ── Image protection ──
+// ─────────────────────────────────────────────────────────────────
+//  IMAGE PROTECTION
+// ─────────────────────────────────────────────────────────────────
 document.addEventListener('contextmenu', e => { if (e.target.tagName === 'IMG') e.preventDefault(); });
 document.addEventListener('dragstart',   e => { if (e.target.tagName === 'IMG') e.preventDefault(); });
 </script>
