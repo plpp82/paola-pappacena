@@ -7,13 +7,13 @@
     <meta name="description" content="Shop di Paola Pappacena – Illustrazioni originali, stampe, libri e materiali didattici. Prossimamente online.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             background: white;
-            font-family: Arial, sans-serif;
+            font-family: 'Avenir', 'Avenir Next', 'Nunito Sans', Arial, sans-serif;
             padding-top: 60px;
             padding-bottom: 40px;
             line-height: 1.6;
@@ -37,6 +37,7 @@
             color: #2c3e50; text-decoration: none; font-weight: 500;
             font-size: 0.88em; padding: 7px 11px; border-radius: 5px;
             letter-spacing: 0.3px; transition: background 0.25s;
+            font-family: inherit;
         }
         .nav-button:hover, .nav-button.active { background: rgba(44,62,80,0.09); }
         .social-links { display: flex; gap: 8px; margin-left: 14px; }
@@ -98,79 +99,46 @@
             to   { opacity: 1; transform: translateY(0); }
         }
 
-        /* Piccola illustrazione decorativa SVG */
         .deco-icon {
-            width: 72px;
-            height: 72px;
+            width: 72px; height: 72px;
             margin-bottom: 36px;
             opacity: 0.18;
         }
 
         .wip-label {
-            font-family: Arial, sans-serif;
-            font-size: 0.7em;
-            font-weight: 700;
-            letter-spacing: 2.5px;
-            text-transform: uppercase;
-            color: #2c3e50;
-            opacity: 0.45;
-            margin-bottom: 18px;
+            font-size: 0.7em; font-weight: 700;
+            letter-spacing: 2.5px; text-transform: uppercase;
+            color: #2c3e50; opacity: 0.45; margin-bottom: 18px;
         }
 
         .wip-title {
-            font-family: 'Lora', Georgia, serif;
-            font-size: 2.4em;
-            font-weight: 400;
-            color: #2c3e50;
-            letter-spacing: 0.2px;
-            margin-bottom: 20px;
-            text-align: center;
+            font-size: 2.4em; font-weight: 400;
+            color: #2c3e50; letter-spacing: 0.2px;
+            margin-bottom: 20px; text-align: center;
         }
 
         .wip-desc {
-            font-family: 'Lora', Georgia, serif;
-            font-size: 1.05em;
-            color: #666;
-            line-height: 1.78;
-            max-width: 480px;
-            text-align: center;
-            margin-bottom: 48px;
+            font-size: 1.05em; color: #666;
+            line-height: 1.78; max-width: 480px;
+            text-align: center; margin-bottom: 48px;
         }
 
-        /* Divider */
         .wip-divider {
-            width: 40px;
-            height: 1px;
+            width: 40px; height: 1px;
             background: rgba(44,62,80,0.2);
             margin: 0 auto 40px;
         }
 
-        /* Contact block */
-        .contact-block {
-            text-align: center;
-        }
-        .contact-block p {
-            font-size: 0.88em;
-            color: #888;
-            letter-spacing: 0.3px;
-            margin-bottom: 14px;
-        }
+        .contact-block { text-align: center; }
+        .contact-block p { font-size: 0.88em; color: #888; letter-spacing: 0.3px; margin-bottom: 14px; }
         .contact-btn {
-            display: inline-block;
-            padding: 11px 28px;
-            background: #2c3e50;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            font-size: 0.88em;
-            font-weight: 500;
-            letter-spacing: 0.4px;
+            display: inline-block; padding: 11px 28px;
+            background: #2c3e50; color: white;
+            text-decoration: none; border-radius: 5px;
+            font-size: 0.88em; font-weight: 500; letter-spacing: 0.4px;
             transition: background 0.2s, transform 0.2s;
         }
-        .contact-btn:hover {
-            background: #1a2432;
-            transform: translateY(-1px);
-        }
+        .contact-btn:hover { background: #1a2432; transform: translateY(-1px); }
 
         /* ── FOOTER ── */
         .footer {
@@ -201,7 +169,7 @@
         <a href="index.html"><img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Sigla_2.png" alt="Paola Pappacena" class="artist-name"></a>
     </div>
     <div class="navbar-right">
-        <a href="index.html" class="nav-button">Portfolio</a>
+        <a href="portfolio.html" class="nav-button">Portfolio</a>
         <a href="shop.html" class="nav-button active">Shop</a>
         <a href="workshop.html" class="nav-button">Workshop</a>
         <a href="about.html" class="nav-button">About</a>
@@ -222,7 +190,7 @@
 
 <div class="mobile-menu" id="mobileMenu">
     <div class="mobile-nav-links">
-        <a href="index.html" class="nav-button">Portfolio</a>
+        <a href="portfolio.html" class="nav-button">Portfolio</a>
         <a href="shop.html" class="nav-button active">Shop</a>
         <a href="workshop.html" class="nav-button">Workshop</a>
         <a href="about.html" class="nav-button">About</a>
@@ -240,7 +208,6 @@
 
 <div class="shop-container">
 
-    <!-- Icona decorativa: pennello/matita stilizzato in SVG -->
     <svg class="deco-icon" viewBox="0 0 72 72" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M52 8L64 20L28 56L12 60L16 44L52 8Z" stroke="#2c3e50" stroke-width="2.5" stroke-linejoin="round"/>
         <path d="M44 16L56 28" stroke="#2c3e50" stroke-width="2.5" stroke-linecap="round"/>
