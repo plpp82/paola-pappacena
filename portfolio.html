@@ -43,7 +43,6 @@
 
         .portfolio-page { display: flex; gap: 28px; padding: 16px 22px 40px; max-width: 1400px; margin: 0 auto; align-items: flex-start; }
 
-        /* Description box: cream, no left border */
         .portfolio-description { flex: 0 0 270px; order: 2; position: sticky; top: 78px; }
         .description-box { background: #fdf8f0; padding: 20px 22px; border-radius: 6px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
         .description-title { font-size: 0.98em; font-weight: 700; text-transform: uppercase; color: #2c3e50; margin-bottom: 14px; letter-spacing: 0.5px; line-height: 1.4; }
@@ -225,7 +224,6 @@ document.title = `Portfolio ${portfolioId} – Paola Pappacena`;
 // ── Check if we're in "single portfolio" mode or "gallery" mode ──
 const isSingle = !!params.get('id');
 if (!isSingle) {
-    // Gallery mode: show the masonry grid of all cover images
     document.querySelector('.back-link').style.display = 'none';
     showGalleryGrid();
 } else {
@@ -246,10 +244,16 @@ function showGalleryGrid() {
     const grid = document.createElement('div');
     grid.style.cssText = 'display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px;';
 
-    // Build 3 columns
+    // ── Assegnazione manuale delle colonne per bilanciare le altezze ──
     const cols = [[], [], []];
-    const ids = Object.keys(PORTFOLIOS).map(Number).sort((a,b) => a-b);
-    ids.forEach((id, i) => cols[i % 3].push(id));
+    const colAssign = {
+        0: [1, 4, 7, 10, 13],
+        1: [2, 5, 8, 11, 14],
+        2: [3, 6, 9, 12, 15, 16]
+    };
+    Object.entries(colAssign).forEach(([col, portIds]) => {
+        portIds.forEach(id => { if (PORTFOLIOS[id]) cols[parseInt(col)].push(id); });
+    });
 
     cols.forEach(colIds => {
         const col = document.createElement('div');
@@ -406,7 +410,6 @@ async function init() {
         if (body) {
             const b = document.createElement('div');
             b.className = 'description-body';
-            // Split body by newlines, linkify each line
             const lines = body.split('\n');
             lines.forEach((line, i) => {
                 b.appendChild(linkifyText(line));
