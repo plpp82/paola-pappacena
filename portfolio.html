@@ -82,7 +82,7 @@
             .masonry-grid { column-count: 2; }
         }
         @media (max-width: 768px) {
-            .navbar { padding: 0 15px; display: grid; grid-template-columns: auto 1fr auto; gap: 10px; }
+            .navbar { padding: 0 15px; }
             .logo { height: 35px; } .artist-name { height: 22px; }
             .navbar-right .nav-button, .navbar-right .social-links { display: none; }
             .hamburger { display: flex; }
@@ -102,10 +102,10 @@
     </div>
     <div class="navbar-right">
         <a href="portfolio.html" class="nav-button active">Portfolio</a>
-        <a href="shop.html" class="nav-button">Shop</a>
         <a href="workshop.html" class="nav-button">Workshop</a>
         <a href="about.html" class="nav-button">About</a>
         <a href="contacts.html" class="nav-button">Contacts</a>
+        <a href="shop.html" class="nav-button">Shop</a>
         <div class="social-links">
             <a href="https://www.instagram.com/torteincielo/" class="social-button" title="Instagram" target="_blank" rel="noopener">
                 <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/IG_symbol.jpg" alt="Instagram">
@@ -123,10 +123,10 @@
 <div class="mobile-menu" id="mobileMenu">
     <div class="mobile-nav-links">
         <a href="portfolio.html" class="nav-button active">Portfolio</a>
-        <a href="shop.html" class="nav-button">Shop</a>
         <a href="workshop.html" class="nav-button">Workshop</a>
         <a href="about.html" class="nav-button">About</a>
         <a href="contacts.html" class="nav-button">Contacts</a>
+        <a href="shop.html" class="nav-button">Shop</a>
     </div>
     <div class="mobile-social">
         <a href="https://www.instagram.com/torteincielo/" class="social-button" title="Instagram" target="_blank" rel="noopener">
@@ -191,10 +191,14 @@ const PORTFOLIOS = {
     4:  { images: imgs(4, 3, 'jpg') },
     5:  { images: imgs(5, 5, 'jpg') },
     6:  { images: [
-            fi(6,8,'jpg'), fi(6,1,'png'), fi(6,3,'jpg'),
-            fi(6,11,'jpg'), fi(6,4,'png'),fi(6,9,'jpg'), 
-			fi(6,2,'png'), fi(6,12,'jpg'),fi(6,13,'png'),
-			fi(6,5,'jpg'), fi(6,6,'png'), fi(6,7,'jpg')
+            // ── BLOCCO 6: ordine della griglia (3 colonne, scorrimento dall'alto verso il basso per colonna) ──
+            // Colonna 0 (sinistra)   Colonna 1 (centro)     Colonna 2 (destra)
+            fi(6,8,'jpg'),            fi(6,1,'png'),          fi(6,3,'jpg'),
+            fi(6,11,'jpg'),           fi(6,4,'png'),          fi(6,9,'jpg'),
+            fi(6,2,'png'),            fi(6,12,'jpg'),         fi(6,13,'png'),
+            fi(6,5,'jpg'),            fi(6,6,'png'),          fi(6,7,'jpg')
+            // ── Per spostare un'immagine: cambia la sua posizione nella riga corrispondente ──
+            // ── Esempio: per mettere fi(6,5,'jpg') in colonna 0 riga 1, spostala alla prima posizione della seconda riga ──
         ], video: 'Portfolio_6.10.mp4' },
     7:  { images: imgs(7, 8, 'jpg') },
     8:  { images: imgs(8, 5, 'jpg') },
