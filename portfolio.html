@@ -4,16 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portfolio – Paola Pappacena</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { background: white; font-family: Arial, sans-serif; padding-top: 60px; padding-bottom: 40px; color: #333; }
+        body { background: white; font-family: 'Avenir', 'Avenir Next', 'Nunito Sans', Arial, sans-serif; padding-top: 60px; padding-bottom: 40px; color: #333; }
 
         .navbar { position: fixed; top: 0; left: 0; right: 0; background: rgba(255,255,255,0.93); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(0,0,0,0.08); padding: 0 24px; display: flex; justify-content: space-between; align-items: center; z-index: 1000; height: 60px; }
         .navbar-left { display: flex; align-items: center; gap: 16px; }
         .logo { height: 42px; cursor: pointer; }
         .artist-name { height: 28px; cursor: pointer; }
         .navbar-right { display: flex; align-items: center; gap: 4px; }
-        .nav-button { color: #2c3e50; text-decoration: none; font-weight: 500; font-size: 0.88em; padding: 7px 11px; border-radius: 5px; letter-spacing: 0.3px; transition: background 0.25s; }
+        .nav-button { color: #2c3e50; text-decoration: none; font-weight: 500; font-size: 0.88em; padding: 7px 11px; border-radius: 5px; letter-spacing: 0.3px; transition: background 0.25s; font-family: inherit; }
         .nav-button:hover, .nav-button.active { background: rgba(44,62,80,0.09); }
         .social-links { display: flex; gap: 8px; margin-left: 14px; }
         .social-button { width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; overflow: hidden; transition: transform 0.2s, box-shadow 0.2s; flex-shrink: 0; }
@@ -34,16 +37,19 @@
         .sticky-copyright { font-size: 0.78em; color: #555; font-style: italic; letter-spacing: 0.3px; }
         .sticky-footer-bar .social-button { width: 24px; height: 24px; }
 
-        .back-link { display: inline-flex; align-items: center; gap: 7px; margin: 18px 22px 0; color: #2c3e50; text-decoration: none; font-size: 0.87em; font-weight: 500; opacity: 0.65; transition: opacity 0.2s; }
+        .back-link { display: inline-flex; align-items: center; gap: 7px; margin: 18px 22px 0; color: #2c3e50; text-decoration: none; font-size: 0.87em; font-weight: 500; opacity: 0.65; transition: opacity 0.2s; font-family: inherit; }
         .back-link:hover { opacity: 1; }
         .back-link svg { width: 15px; height: 15px; }
 
         .portfolio-page { display: flex; gap: 28px; padding: 16px 22px 40px; max-width: 1400px; margin: 0 auto; align-items: flex-start; }
 
+        /* Description box: cream, no left border */
         .portfolio-description { flex: 0 0 270px; order: 2; position: sticky; top: 78px; }
-        .description-box { background: #fafafa; border-left: 3px solid #2c3e50; padding: 20px 22px; border-radius: 0 6px 6px 0; box-shadow: 0 2px 12px rgba(0,0,0,0.07); }
+        .description-box { background: #fdf8f0; padding: 20px 22px; border-radius: 6px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
         .description-title { font-size: 0.98em; font-weight: 700; text-transform: uppercase; color: #2c3e50; margin-bottom: 14px; letter-spacing: 0.5px; line-height: 1.4; }
         .description-body { font-size: 0.92em; line-height: 1.72; color: #444; white-space: pre-wrap; word-break: break-word; }
+        .description-body a { color: #2c3e50; font-weight: 600; text-decoration: underline; text-underline-offset: 2px; }
+        .description-body a:hover { color: #1a2432; }
 
         .portfolio-gallery { flex: 1; order: 1; }
         .masonry-grid { column-count: 3; column-gap: 7px; }
@@ -77,16 +83,14 @@
             .masonry-grid { column-count: 2; }
         }
         @media (max-width: 768px) {
-            .navbar { padding: 0 15px; display: grid; grid-template-columns: auto 1fr auto; gap: 10px; height: 70px; }
-            body { padding-top: 70px; }
-            .logo { height: 64px; } .artist-name { height: 22px; }
+            .navbar { padding: 0 15px; display: grid; grid-template-columns: auto 1fr auto; gap: 10px; }
+            .logo { height: 35px; } .artist-name { height: 22px; }
             .navbar-right .nav-button, .navbar-right .social-links { display: none; }
             .hamburger { display: flex; }
             .portfolio-page { padding: 12px 14px 36px; }
         }
         @media (max-width: 480px) {
             .masonry-grid { column-count: 1; }
-            .logo { height: 54px; }
         }
     </style>
 </head>
@@ -98,7 +102,7 @@
         <a href="index.html"><img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Sigla_2.png" alt="Paola Pappacena" class="artist-name"></a>
     </div>
     <div class="navbar-right">
-        <a href="index.html" class="nav-button active">Portfolio</a>
+        <a href="portfolio.html" class="nav-button active">Portfolio</a>
         <a href="shop.html" class="nav-button">Shop</a>
         <a href="workshop.html" class="nav-button">Workshop</a>
         <a href="about.html" class="nav-button">About</a>
@@ -119,7 +123,7 @@
 
 <div class="mobile-menu" id="mobileMenu">
     <div class="mobile-nav-links">
-        <a href="index.html" class="nav-button active">Portfolio</a>
+        <a href="portfolio.html" class="nav-button active">Portfolio</a>
         <a href="shop.html" class="nav-button">Shop</a>
         <a href="workshop.html" class="nav-button">Workshop</a>
         <a href="about.html" class="nav-button">About</a>
@@ -135,7 +139,7 @@
     </div>
 </div>
 
-<a href="index.html" class="back-link">
+<a href="portfolio.html" class="back-link">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
     Torna al Portfolio
 </a>
@@ -175,13 +179,9 @@ document.getElementById('footerCopyright').textContent = cp;
 
 const BASE = 'https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/';
 
-// ── Helper builders ──
 function fi(p, n, ext) { return `Portfolio_${p}.${n}.${ext}`; }
 function imgs(p, count, ext) { return Array.from({length: count}, (_, i) => fi(p, i+1, ext)); }
 
-// ── Hardcoded portfolio definitions ──
-// To add future images: just increase the count in imgs() or add fi() entries
-// Images that 404 are silently hidden via onerror
 const PORTFOLIOS = {
     1:  { images: imgs(1, 4, 'jpg') },
     2:  { images: imgs(2, 20, 'jpg') },
@@ -215,46 +215,105 @@ const PORTFOLIOS = {
     16: { images: imgs(16, 5, 'jpg') }
 };
 
-// ── State ──
 let mediaItems = [];
 let currentIndex = 0;
 
-// ── URL param ──
 const params = new URLSearchParams(window.location.search);
 const portfolioId = parseInt(params.get('id') || '1');
 document.title = `Portfolio ${portfolioId} – Paola Pappacena`;
+
+// ── Check if we're in "single portfolio" mode or "gallery" mode ──
+const isSingle = !!params.get('id');
+if (!isSingle) {
+    // Gallery mode: show the masonry grid of all cover images
+    document.querySelector('.back-link').style.display = 'none';
+    showGalleryGrid();
+} else {
+    init();
+}
+
+// ── GALLERY GRID (cover thumbnails) ──
+function showGalleryGrid() {
+    document.title = 'Portfolio – Paola Pappacena';
+    const page = document.getElementById('portfolioPage');
+    page.style.display = 'block';
+    page.style.padding = '0';
+    page.style.maxWidth = '100%';
+
+    const container = document.createElement('div');
+    container.style.cssText = 'padding: 0; margin: 0;';
+
+    const grid = document.createElement('div');
+    grid.style.cssText = 'display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px;';
+
+    // Build 3 columns
+    const cols = [[], [], []];
+    const ids = Object.keys(PORTFOLIOS).map(Number).sort((a,b) => a-b);
+    ids.forEach((id, i) => cols[i % 3].push(id));
+
+    cols.forEach(colIds => {
+        const col = document.createElement('div');
+        col.style.cssText = 'display: flex; flex-direction: column; gap: 5px;';
+        colIds.forEach(id => {
+            const item = document.createElement('div');
+            item.style.cssText = 'cursor:pointer;overflow:hidden;position:relative;border-radius:3px;box-shadow:0 3px 12px rgba(0,0,0,0.11),0 1px 3px rgba(0,0,0,0.07);transition:box-shadow 0.3s;user-select:none;';
+            item.addEventListener('mouseenter', () => { item.style.boxShadow = '0 7px 24px rgba(0,0,0,0.18),0 2px 6px rgba(0,0,0,0.1)'; });
+            item.addEventListener('mouseleave', () => { item.style.boxShadow = '0 3px 12px rgba(0,0,0,0.11),0 1px 3px rgba(0,0,0,0.07)'; });
+            item.onclick = () => { window.location.href = `portfolio.html?id=${id}`; };
+
+            const wm = document.createElement('span');
+            wm.style.cssText = 'position:absolute;bottom:8px;right:10px;font-size:0.6em;color:rgba(255,255,255,0.55);font-style:italic;z-index:3;pointer-events:none;text-shadow:0 1px 3px rgba(0,0,0,0.5);letter-spacing:0.5px;';
+            wm.textContent = '© Paola Pappacena';
+
+            const overlay = document.createElement('span');
+            overlay.style.cssText = 'content:"";position:absolute;inset:0;z-index:2;cursor:pointer;';
+
+            const img = document.createElement('img');
+            img.src = `${BASE}Portfolio_${id}copertina.jpg`;
+            img.alt = `Portfolio ${id}`;
+            img.loading = 'lazy';
+            img.decoding = 'async';
+            img.style.cssText = 'width:100%;height:auto;display:block;transition:transform 0.3s;border-radius:3px;background-color:#f0f0f0;-webkit-user-drag:none;pointer-events:none;';
+            item.addEventListener('mouseenter', () => { img.style.transform = 'scale(1.02)'; });
+            item.addEventListener('mouseleave', () => { img.style.transform = ''; });
+            img.onerror = () => { item.style.display = 'none'; };
+
+            item.appendChild(img);
+            item.appendChild(wm);
+            item.appendChild(overlay);
+            col.appendChild(item);
+        });
+        grid.appendChild(col);
+    });
+
+    container.appendChild(grid);
+    page.appendChild(container);
+
+    // Responsive
+    function setGridCols() {
+        grid.style.gridTemplateColumns = window.innerWidth <= 768 ? '1fr' : 'repeat(3, 1fr)';
+    }
+    setGridCols();
+    window.addEventListener('resize', setGridCols);
+}
 
 // ── Load description ──
 async function loadDescription(id) {
     try {
         const r = await fetch(BASE + `Portfolio_${id}.txt`);
         if (!r.ok) return null;
-        // Use response.text() directly — preserves line endings (\n, \r\n)
-        // and lets the browser use the Content-Type charset from GitHub's headers.
-        // If the file was saved in Windows-1252, we also try that fallback.
         const contentType = r.headers.get('content-type') || '';
-        if (contentType.toLowerCase().includes('charset=')) {
-            // Browser will decode correctly
-            return await r.text();
-        }
-        // GitHub Raw sometimes doesn't declare charset; try latin-1 first, check for replacement chars
+        if (contentType.toLowerCase().includes('charset=')) return await r.text();
         const buf = await r.arrayBuffer();
         const utf8 = new TextDecoder('utf-8', { fatal: false }).decode(buf);
-        // If no replacement chars (U+FFFD), UTF-8 worked fine
         if (!utf8.includes('\uFFFD')) return utf8;
-        // Otherwise try windows-1252 (covers all Italian accented chars)
-        try {
-            return new TextDecoder('windows-1252').decode(buf);
-        } catch {
-            return utf8; // fallback
-        }
+        try { return new TextDecoder('windows-1252').decode(buf); }
+        catch { return utf8; }
     } catch { return null; }
 }
 
-// ── Parse description: <<Titolo>> → bold uppercase; rest → plain pre-wrap ──
 function parseDescription(raw) {
     if (!raw || !raw.trim()) return { title: '', body: '' };
-    // Normalize all line endings to \n (handles \r\n from Windows, \r from old Mac)
     const normalized = raw.replace(/\r\n/g, '\n').replace(/\r/g, '\n');
     const match = normalized.match(/<<(.+?)>>/s);
     let title = '';
@@ -266,18 +325,37 @@ function parseDescription(raw) {
     return { title, body };
 }
 
-// ── Build page ──
+// ── Auto-link URLs in plain text ──
+function linkifyText(text) {
+    const urlRegex = /(https?:\/\/[^\s]+|www\.[^\s]+)/g;
+    const parts = text.split(urlRegex);
+    const frag = document.createDocumentFragment();
+    parts.forEach((part, i) => {
+        if (urlRegex.test(part)) {
+            const a = document.createElement('a');
+            a.href = part.startsWith('http') ? part : 'https://' + part;
+            a.textContent = part;
+            a.target = '_blank';
+            a.rel = 'noopener';
+            frag.appendChild(a);
+        } else {
+            frag.appendChild(document.createTextNode(part));
+        }
+        urlRegex.lastIndex = 0;
+    });
+    return frag;
+}
+
+// ── Build single portfolio page ──
 async function init() {
     const def = PORTFOLIOS[portfolioId];
     if (!def) return;
 
-    // Build media list
     mediaItems = def.images.map(f => ({ src: BASE + f, type: 'image' }));
     if (def.video) mediaItems.push({ src: BASE + def.video, type: 'video' });
 
     const page = document.getElementById('portfolioPage');
 
-    // Gallery
     const galleryDiv = document.createElement('div');
     galleryDiv.className = 'portfolio-gallery';
     const grid = document.createElement('div');
@@ -293,21 +371,16 @@ async function init() {
             badge.className = 'video-badge';
             badge.textContent = '▶ VIDEO';
             cell.appendChild(badge);
-
             const vid = document.createElement('video');
             vid.src = item.src;
-            vid.muted = true;
-            vid.loop = true;
-            vid.autoplay = true;
-            vid.playsInline = true;
+            vid.muted = true; vid.loop = true; vid.autoplay = true; vid.playsInline = true;
             vid.setAttribute('playsinline', '');
             cell.appendChild(vid);
         } else {
             const img = document.createElement('img');
             img.src = item.src;
             img.alt = `Portfolio ${portfolioId} – ${idx + 1}`;
-            img.loading = 'lazy';
-            img.decoding = 'async';
+            img.loading = 'lazy'; img.decoding = 'async';
             img.onerror = () => { cell.style.display = 'none'; };
             cell.appendChild(img);
         }
@@ -316,7 +389,6 @@ async function init() {
 
     galleryDiv.appendChild(grid);
 
-    // Description
     const descDiv = document.createElement('div');
     descDiv.className = 'portfolio-description';
     const rawText = await loadDescription(portfolioId);
@@ -334,7 +406,12 @@ async function init() {
         if (body) {
             const b = document.createElement('div');
             b.className = 'description-body';
-            b.textContent = body;
+            // Split body by newlines, linkify each line
+            const lines = body.split('\n');
+            lines.forEach((line, i) => {
+                b.appendChild(linkifyText(line));
+                if (i < lines.length - 1) b.appendChild(document.createElement('br'));
+            });
             box.appendChild(b);
         }
         descDiv.appendChild(box);
@@ -355,26 +432,17 @@ function renderModal(isFirstOpen) {
     const item = mediaItems[currentIndex];
     const img = document.getElementById('modalImage');
     const vid = document.getElementById('modalVideo');
-
     if (item.type === 'video') {
-        img.style.display = 'none';
-        img.src = '';
-        vid.style.display = 'block';
-        vid.src = item.src;
-        vid.load();
+        img.style.display = 'none'; img.src = '';
+        vid.style.display = 'block'; vid.src = item.src; vid.load();
         if (isFirstOpen) {
             vid.muted = false;
             const p = vid.play();
             if (p !== undefined) p.catch(() => { vid.muted = true; vid.play(); });
         }
-        // When navigating to video (not first open): controls visible, user presses play
     } else {
-        vid.pause();
-        vid.removeAttribute('src');
-        vid.load();
-        vid.style.display = 'none';
-        img.style.display = 'block';
-        img.src = item.src;
+        vid.pause(); vid.removeAttribute('src'); vid.load(); vid.style.display = 'none';
+        img.style.display = 'block'; img.src = item.src;
     }
 }
 
@@ -386,9 +454,7 @@ function navigateModal(dir) {
 function closeModal() {
     document.getElementById('imageModal').style.display = 'none';
     const vid = document.getElementById('modalVideo');
-    vid.pause();
-    vid.removeAttribute('src');
-    vid.load();
+    vid.pause(); vid.removeAttribute('src'); vid.load();
 }
 
 document.getElementById('imageModal').addEventListener('click', function(e) {
@@ -420,8 +486,6 @@ document.addEventListener('click', e => {
         mm.classList.remove('active'); hb.classList.remove('active');
     }
 });
-
-init();
 </script>
 </body>
 </html>
