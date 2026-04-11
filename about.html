@@ -3,152 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chi Sono – Paola Pappacena</title>
-    <meta name="description" content="Paola Pappacena – Illustratrice e narratrice diplomata alla Scuola del Fumetto di Milano. Laboratori di illustrazione, cammini in natura, outdoor education.">
+    <title>Chi Sono – Paola Pappacena | Illustratrice e Narratrice</title>
+    <meta name="description" content="Paola Pappacena, illustratrice diplomata alla Scuola del Fumetto di Milano. Collabora con case editrici, musei, teatri ragazzi. Workshop in natura e outdoor education.">
+    <meta name="keywords" content="Paola Pappacena, illustratrice italiana, Scuola del Fumetto Milano, illustrazione per l'infanzia, outdoor education, workshop illustrazione, libri illustrati">
+    <meta name="author" content="Paola Pappacena">
     <meta property="og:title" content="Chi Sono – Paola Pappacena">
     <meta property="og:description" content="Illustratrice e narratrice. Laboratori di illustrazione, cammini in natura, formazione per educatori.">
     <meta property="og:type" content="website">
+    <meta property="og:image" content="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Portrait.jpg">
+    <link rel="canonical" href="https://paolapappacena.it/about.html">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background: white; font-family: 'Avenir', 'Avenir Next', 'Nunito Sans', Arial, sans-serif; padding-top: 60px; padding-bottom: 40px; line-height: 1.6; color: #333; }
 
-        body {
-            background: white;
-            font-family: 'Avenir', 'Avenir Next', 'Nunito Sans', Arial, sans-serif;
-            padding-top: 60px;
-            padding-bottom: 40px;
-            line-height: 1.6;
-            color: #333;
-        }
-
-        /* ── NAVBAR ── */
-        .navbar {
-            position: fixed; top: 0; left: 0; right: 0;
-            background: rgba(255,255,255,0.93); backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(0,0,0,0.08);
-            padding: 0 24px;
-            display: flex; justify-content: space-between; align-items: center;
-            z-index: 1000; height: 60px;
-        }
+        .navbar { position: fixed; top: 0; left: 0; right: 0; background: rgba(255,255,255,0.93); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(0,0,0,0.08); padding: 0 24px; display: flex; justify-content: space-between; align-items: center; z-index: 1000; height: 60px; }
         .navbar-left { display: flex; align-items: center; gap: 16px; }
         .logo { height: 42px; cursor: pointer; }
         .artist-name { height: 28px; cursor: pointer; }
         .navbar-right { display: flex; align-items: center; gap: 4px; }
-        .nav-button {
-            color: #2c3e50; text-decoration: none; font-weight: 500;
-            font-size: 0.88em; padding: 7px 11px; border-radius: 5px;
-            letter-spacing: 0.3px; transition: background 0.25s;
-            font-family: inherit;
-        }
+        .nav-button { color: #2c3e50; text-decoration: none; font-weight: 500; font-size: 0.88em; padding: 7px 11px; border-radius: 5px; letter-spacing: 0.3px; transition: background 0.25s; font-family: inherit; }
         .nav-button:hover, .nav-button.active { background: rgba(44,62,80,0.09); }
         .social-links { display: flex; gap: 8px; margin-left: 14px; }
-        .social-button {
-            width: 30px; height: 30px; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            text-decoration: none; overflow: hidden;
-            transition: transform 0.2s, box-shadow 0.2s; flex-shrink: 0;
-        }
+        .social-button { width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; overflow: hidden; transition: transform 0.2s, box-shadow 0.2s; flex-shrink: 0; }
         .social-button:hover { transform: scale(1.1); box-shadow: 0 3px 10px rgba(0,0,0,0.22); }
         .social-button img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
-        .hamburger {
-            display: none; flex-direction: column; cursor: pointer;
-            padding: 5px; gap: 5px; flex-shrink: 0; margin-left: 8px;
-        }
+        .lang-switcher { display: flex; align-items: center; gap: 6px; margin-left: 10px; padding-left: 10px; border-left: 1px solid rgba(44,62,80,0.15); }
+        .lang-btn { display: flex; align-items: center; gap: 4px; background: none; border: none; cursor: pointer; font-family: inherit; font-size: 0.78em; font-weight: 600; color: #2c3e50; padding: 4px 7px; border-radius: 4px; letter-spacing: 0.4px; text-transform: uppercase; transition: background 0.2s, opacity 0.2s; opacity: 0.45; }
+        .lang-btn.active { opacity: 1; background: rgba(44,62,80,0.08); }
+        .lang-btn:hover { opacity: 1; }
+        .lang-flag { font-size: 1.2em; line-height: 1; }
+        .hamburger { display: none; flex-direction: column; cursor: pointer; padding: 5px; gap: 5px; flex-shrink: 0; margin-left: 8px; }
         .hamburger span { width: 24px; height: 2px; background: #2c3e50; border-radius: 1px; transition: all 0.3s; }
         .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(7px,7px); }
         .hamburger.active span:nth-child(2) { opacity: 0; }
         .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(7px,-7px); }
-        .mobile-menu {
-            display: none; position: fixed; top: 60px; left: 0; right: 0;
-            background: rgba(255,255,255,0.97); backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(0,0,0,0.08); padding: 20px; z-index: 999;
-        }
+        .mobile-menu { display: none; position: fixed; top: 60px; left: 0; right: 0; background: rgba(255,255,255,0.97); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(0,0,0,0.08); padding: 20px; z-index: 999; }
         .mobile-menu.active { display: block; }
         .mobile-nav-links { display: flex; flex-direction: column; gap: 4px; margin-bottom: 20px; }
-        .mobile-nav-links .nav-button {
-            text-align: center; padding: 11px 20px;
-            border-bottom: 1px solid rgba(0,0,0,0.04); font-size: 0.95em;
-        }
-        .mobile-social {
-            display: flex; justify-content: center; gap: 16px;
-            padding-top: 16px; border-top: 1px solid rgba(0,0,0,0.05);
-        }
+        .mobile-nav-links .nav-button { text-align: center; padding: 11px 20px; border-bottom: 1px solid rgba(0,0,0,0.04); font-size: 0.95em; }
+        .mobile-social { display: flex; justify-content: center; gap: 16px; padding-top: 16px; border-top: 1px solid rgba(0,0,0,0.05); }
+        .mobile-lang { display: flex; justify-content: center; gap: 8px; margin-top: 14px; padding-top: 14px; border-top: 1px solid rgba(0,0,0,0.05); }
 
-        /* ── STICKY FOOTER BAR ── */
-        .sticky-footer-bar {
-            position: fixed; bottom: 0; left: 0; right: 0;
-            background: rgba(255,255,255,0.93); backdrop-filter: blur(12px);
-            border-top: 1px solid rgba(0,0,0,0.08);
-            height: 40px; display: flex; align-items: center; justify-content: center;
-            gap: 12px; z-index: 900;
-        }
+        .sticky-footer-bar { position: fixed; bottom: 0; left: 0; right: 0; background: rgba(255,255,255,0.93); backdrop-filter: blur(12px); border-top: 1px solid rgba(0,0,0,0.08); height: 40px; display: flex; align-items: center; justify-content: center; gap: 12px; z-index: 900; }
         .sticky-copyright { font-size: 0.78em; color: #555; font-style: italic; letter-spacing: 0.3px; }
         .sticky-footer-bar .social-button { width: 24px; height: 24px; }
 
-        /* ── ABOUT CONTENT ── */
-        .about-container {
-            max-width: 1100px; margin: 0 auto; padding: 52px 24px 60px;
-            animation: fadeInUp 0.55s ease both;
-        }
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(18px); }
-            to   { opacity: 1; transform: translateY(0); }
-        }
-
+        .about-container { max-width: 1100px; margin: 0 auto; padding: 52px 24px 60px; animation: fadeInUp 0.55s ease both; }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
         .about-header { margin-bottom: 48px; }
-        .about-header h1 {
-            font-size: 2.4em; color: #2c3e50;
-            font-weight: 400; letter-spacing: 0.3px;
-        }
-
+        .about-header h1 { font-size: 2.4em; color: #2c3e50; font-weight: 400; letter-spacing: 0.3px; }
         .about-main { display: flex; gap: 56px; align-items: flex-start; }
-
-        /* Portrait */
         .about-image { flex: 0 0 320px; }
-        .about-image img {
-            width: 100%; border-radius: 6px;
-            box-shadow: 0 6px 28px rgba(0,0,0,0.13), 0 2px 8px rgba(0,0,0,0.07);
-            -webkit-user-drag: none; pointer-events: none;
-            display: block;
-        }
-
-        /* Bio text */
+        .about-image img { width: 100%; border-radius: 6px; box-shadow: 0 6px 28px rgba(0,0,0,0.13), 0 2px 8px rgba(0,0,0,0.07); -webkit-user-drag: none; pointer-events: none; display: block; }
         .about-text { flex: 1; }
-
-        .about-text p {
-            font-size: 1.05em;
-            line-height: 1.82;
-            color: #3a3a3a;
-            text-align: justify;
-            margin-bottom: 20px;
-        }
-
+        .about-text p { font-size: 1.05em; line-height: 1.82; color: #3a3a3a; text-align: justify; margin-bottom: 20px; }
         .about-text em { font-style: italic; }
+        .about-divider { width: 36px; height: 1px; background: rgba(44,62,80,0.2); margin: 28px 0; }
 
-        .about-divider {
-            width: 36px; height: 1px;
-            background: rgba(44,62,80,0.2);
-            margin: 28px 0;
-        }
-
-        /* ── FOOTER ── */
-        .footer {
-            background: #f8f9fa; padding: 28px 20px 50px;
-            text-align: center; border-top: 1px solid rgba(0,0,0,0.08);
-            margin-top: 50px;
-        }
+        .footer { background: #f8f9fa; padding: 28px 20px 50px; text-align: center; border-top: 1px solid rgba(0,0,0,0.08); margin-top: 50px; }
         .footer-copyright { color: #666; font-size: 0.88em; font-style: italic; }
 
-        /* ── RESPONSIVE ── */
-        @media (max-width: 900px) {
-            .about-image { flex: 0 0 280px; }
-        }
+        @media (max-width: 900px) { .about-image { flex: 0 0 280px; } }
         @media (max-width: 768px) {
             .navbar { padding: 0 15px; }
             .logo { height: 35px; } .artist-name { height: 22px; }
-            .navbar-right .nav-button, .navbar-right .social-links { display: none; }
+            .navbar-right .nav-button, .navbar-right .social-links, .navbar-right .lang-switcher { display: none; }
             .hamburger { display: flex; }
             .about-main { flex-direction: column; gap: 32px; align-items: center; }
             .about-image { flex: none; max-width: 280px; width: 100%; }
@@ -160,76 +82,92 @@
             .about-header h1 { font-size: 1.65em; }
             .about-text p { font-size: 1em; }
         }
+
+        /* Language hidden classes */
+        [data-lang-en] { display: none; }
+        body.lang-en [data-lang-it] { display: none; }
+        body.lang-en [data-lang-en] { display: block; }
+        body.lang-en span[data-lang-en] { display: inline; }
+        body.lang-en span[data-lang-it] { display: none; }
     </style>
 </head>
 <body>
 
 <nav class="navbar">
     <div class="navbar-left">
-        <a href="index.html"><img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Sigla.png" alt="Logo" class="logo"></a>
+        <a href="index.html"><img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Sigla.png" alt="Logo Paola Pappacena" class="logo"></a>
         <a href="index.html"><img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Sigla_2.png" alt="Paola Pappacena" class="artist-name"></a>
     </div>
     <div class="navbar-right">
-        <a href="portfolio.html" class="nav-button">Portfolio</a>
-        <a href="workshop.html" class="nav-button">Workshop</a>
-        <a href="about.html" class="nav-button active">About</a>
-        <a href="contacts.html" class="nav-button">Contacts</a>
+        <a href="portfolio.html" class="nav-button"><span data-lang-it>Portfolio</span><span data-lang-en>Portfolio</span></a>
+        <a href="workshop.html" class="nav-button"><span data-lang-it>Workshop</span><span data-lang-en>Workshop</span></a>
+        <a href="about.html" class="nav-button active"><span data-lang-it>About</span><span data-lang-en>About</span></a>
+        <a href="contacts.html" class="nav-button"><span data-lang-it>Contatti</span><span data-lang-en>Contacts</span></a>
         <a href="shop.html" class="nav-button">Shop</a>
         <div class="social-links">
-            <a href="https://www.instagram.com/torteincielo/" class="social-button" title="Instagram" target="_blank" rel="noopener">
-                <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/IG_symbol.jpg" alt="Instagram">
-            </a>
-            <a href="https://www.facebook.com/torte.incielo" class="social-button" title="Facebook" target="_blank" rel="noopener">
-                <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/FB_symbol.jpg" alt="Facebook">
-            </a>
+            <a href="https://www.instagram.com/torteincielo/" class="social-button" title="Instagram" target="_blank" rel="noopener"><img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/IG_symbol.jpg" alt="Instagram"></a>
+            <a href="https://www.facebook.com/torte.incielo" class="social-button" title="Facebook" target="_blank" rel="noopener"><img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/FB_symbol.jpg" alt="Facebook"></a>
         </div>
-        <div class="hamburger" id="hamburger" onclick="toggleMobileMenu()">
-            <span></span><span></span><span></span>
+        <div class="lang-switcher">
+            <button class="lang-btn active" id="btnIt" onclick="setLang('it')" aria-label="Versione italiana"><span class="lang-flag">🇮🇹</span> IT</button>
+            <button class="lang-btn" id="btnEn" onclick="setLang('en')" aria-label="English version"><span class="lang-flag">🇬🇧</span> EN</button>
         </div>
+        <div class="hamburger" id="hamburger" onclick="toggleMobileMenu()"><span></span><span></span><span></span></div>
     </div>
 </nav>
 
 <div class="mobile-menu" id="mobileMenu">
     <div class="mobile-nav-links">
-        <a href="portfolio.html" class="nav-button">Portfolio</a>
-        <a href="workshop.html" class="nav-button">Workshop</a>
-        <a href="about.html" class="nav-button active">About</a>
-        <a href="contacts.html" class="nav-button">Contacts</a>
+        <a href="portfolio.html" class="nav-button"><span data-lang-it>Portfolio</span><span data-lang-en>Portfolio</span></a>
+        <a href="workshop.html" class="nav-button"><span data-lang-it>Workshop</span><span data-lang-en>Workshop</span></a>
+        <a href="about.html" class="nav-button active"><span data-lang-it>About</span><span data-lang-en>About</span></a>
+        <a href="contacts.html" class="nav-button"><span data-lang-it>Contatti</span><span data-lang-en>Contacts</span></a>
         <a href="shop.html" class="nav-button">Shop</a>
     </div>
     <div class="mobile-social">
-        <a href="https://www.instagram.com/torteincielo/" class="social-button" title="Instagram" target="_blank" rel="noopener">
-            <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/IG_symbol.jpg" alt="Instagram">
-        </a>
-        <a href="https://www.facebook.com/torte.incielo" class="social-button" title="Facebook" target="_blank" rel="noopener">
-            <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/FB_symbol.jpg" alt="Facebook">
-        </a>
+        <a href="https://www.instagram.com/torteincielo/" class="social-button" title="Instagram" target="_blank" rel="noopener"><img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/IG_symbol.jpg" alt="Instagram"></a>
+        <a href="https://www.facebook.com/torte.incielo" class="social-button" title="Facebook" target="_blank" rel="noopener"><img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/FB_symbol.jpg" alt="Facebook"></a>
+    </div>
+    <div class="mobile-lang">
+        <button class="lang-btn active" id="btnItMobile" onclick="setLang('it')" aria-label="Versione italiana"><span class="lang-flag">🇮🇹</span> IT</button>
+        <button class="lang-btn" id="btnEnMobile" onclick="setLang('en')" aria-label="English version"><span class="lang-flag">🇬🇧</span> EN</button>
     </div>
 </div>
 
 <div class="about-container">
     <div class="about-header">
-        <h1>Chi sono</h1>
+        <h1>
+            <span data-lang-it>Chi sono</span>
+            <span data-lang-en>About me</span>
+        </h1>
     </div>
     <div class="about-main">
 
         <div class="about-image">
-            <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Portrait.jpg" alt="Paola Pappacena">
+            <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Portrait.jpg" alt="Paola Pappacena – Illustratrice">
         </div>
 
         <div class="about-text">
 
-            <p>Paola Pappacena si è diplomata in illustrazione per l'infanzia alla Scuola del Fumetto di Milano nel 2004. Ha avviato il suo percorso artistico collaborando con compagnie di teatro ragazzi, per le quali ha realizzato scenografie, locandine, percorsi didattici e laboratori creativi nelle scuole e nelle pinacoteche.</p>
+            <!-- ITALIANO -->
+            <div data-lang-it>
+                <p>Paola Pappacena si è diplomata in illustrazione per l'infanzia alla Scuola del Fumetto di Milano nel 2004. Ha avviato il suo percorso artistico collaborando con compagnie di teatro ragazzi, per le quali ha realizzato scenografie, locandine, percorsi didattici e laboratori creativi nelle scuole e nelle pinacoteche.</p>
+                <p>Come illustratrice ha lavorato con diverse case editrici — tra cui Gribaudo, NoBorders Publishing, Fulmìno Edizioni, <em>La maison est en carton</em> e Terre di mezzo — e ha sviluppato progetti con RaiPlaySound, il Museo civico di Morbegno e Legambiente. Le sue opere sono state esposte anche presso la Galleria Robillard di Parigi.</p>
+                <div class="about-divider"></div>
+                <p>Da anni intreccia il proprio lavoro con quello di artisti, musicisti, pedagogisti e teatranti, accomunati dall'interesse per la didattica rivolta alla primissima infanzia. In collaborazione con l'associazione Musicali si Cresce ha ideato laboratori e materiali illustrati per bambini, genitori ed educatori.</p>
+                <p>Appassionata di natura e didattica, organizza camminate all'aria aperta in cui sperimentare pratiche artistiche e narrative. Da queste esperienze sono nati corsi di formazione per insegnanti, incentrati su outdoor education e su percorsi di illustrazione e narrazione in natura per adulti e bambini.</p>
+                <p>Ama stare nel bosco e disegnare all'aria aperta. Appena può cammina in montagna e osserva il mondo da lassù.</p>
+            </div>
 
-            <p>Come illustratrice ha lavorato con diverse case editrici — tra cui Gribaudo, NoBorders Publishing, Fulmìno Edizioni, <em>La maison est en carton</em> e Terre di mezzo — e ha sviluppato progetti con RaiPlaySound, il Museo civico di Morbegno e Legambiente. Le sue opere sono state esposte anche presso la Galleria Robillard di Parigi.</p>
-
-            <div class="about-divider"></div>
-
-            <p>Da anni intreccia il proprio lavoro con quello di artisti, musicisti, pedagogisti e teatranti, accomunati dall'interesse per la didattica rivolta alla primissima infanzia. In collaborazione con l'associazione Musicali si Cresce ha ideato laboratori e materiali illustrati per bambini, genitori ed educatori.</p>
-
-            <p>Appassionata di natura e didattica, organizza camminate all'aria aperta in cui sperimentare pratiche artistiche e narrative. Da queste esperienze sono nati corsi di formazione per insegnanti, incentrati su outdoor education e su percorsi di illustrazione e narrazione in natura per adulti e bambini.</p>
-
-            <p>Ama stare nel bosco e disegnare all'aria aperta. Appena può cammina in montagna e osserva il mondo da lassù.</p>
+            <!-- ENGLISH -->
+            <div data-lang-en>
+                <p>Paola Pappacena graduated in children's illustration from the Scuola del Fumetto in Milan in 2004. She began her artistic path collaborating with children's theatre companies, for which she created set designs, posters, educational programmes and creative workshops in schools and art galleries.</p>
+                <p>As an illustrator she has worked with several publishers — including Gribaudo, NoBorders Publishing, Fulmìno Edizioni, <em>La maison est en carton</em> and Terre di mezzo — and has developed projects with RaiPlaySound, the Morbegno Civic Museum and Legambiente. Her works have also been exhibited at the Galerie Robillard in Paris.</p>
+                <div class="about-divider"></div>
+                <p>For years she has woven her work together with that of artists, musicians, pedagogists and theatre-makers, united by a shared interest in early childhood education. In collaboration with the association Musicali si Cresce, she has designed workshops and illustrated materials for children, parents and educators.</p>
+                <p>Passionate about nature and education, she organises outdoor walks where artistic and narrative practices are explored in the open air. From these experiences she has developed training courses for teachers, focused on outdoor education and on illustration and storytelling in nature for both adults and children.</p>
+                <p>She loves being in the forest and drawing outdoors. Whenever she can, she walks in the mountains and observes the world from above.</p>
+            </div>
 
         </div>
     </div>
@@ -241,15 +179,22 @@
 
 <div class="sticky-footer-bar">
     <span class="sticky-copyright" id="stickyCopyright"></span>
-    <a href="https://www.instagram.com/torteincielo/" class="social-button" title="Instagram" target="_blank" rel="noopener">
-        <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/IG_symbol.jpg" alt="Instagram">
-    </a>
-    <a href="https://www.facebook.com/torte.incielo" class="social-button" title="Facebook" target="_blank" rel="noopener">
-        <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/FB_symbol.jpg" alt="Facebook">
-    </a>
+    <a href="https://www.instagram.com/torteincielo/" class="social-button" title="Instagram" target="_blank" rel="noopener"><img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/IG_symbol.jpg" alt="Instagram"></a>
+    <a href="https://www.facebook.com/torte.incielo" class="social-button" title="Facebook" target="_blank" rel="noopener"><img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/FB_symbol.jpg" alt="Facebook"></a>
 </div>
 
 <script>
+    function setLang(lang) {
+        localStorage.setItem('pp_lang', lang);
+        document.documentElement.lang = lang;
+        document.body.classList.toggle('lang-en', lang === 'en');
+        ['btnIt','btnEn','btnItMobile','btnEnMobile'].forEach(id => {
+            const el = document.getElementById(id);
+            if (el) el.classList.toggle('active', el.id.toLowerCase().includes(lang));
+        });
+    }
+    (function() { setLang(localStorage.getItem('pp_lang') || 'it'); })();
+
     const year = new Date().getFullYear();
     const cp = `© Paola Pappacena ${year}`;
     document.getElementById('stickyCopyright').textContent = cp;
@@ -266,12 +211,9 @@
             mm.classList.remove('active'); hb.classList.remove('active');
         }
     });
-
     document.addEventListener('contextmenu', e => { if (e.target.tagName === 'IMG') e.preventDefault(); });
-    document.addEventListener('dragstart',   e => { if (e.target.tagName === 'IMG') e.preventDefault(); });
-    document.addEventListener('keydown', e => {
-        if (e.ctrlKey && ['s','u','p'].includes(e.key.toLowerCase())) e.preventDefault();
-    });
+    document.addEventListener('dragstart', e => { if (e.target.tagName === 'IMG') e.preventDefault(); });
+    document.addEventListener('keydown', e => { if (e.ctrlKey && ['s','u','p'].includes(e.key.toLowerCase())) e.preventDefault(); });
 </script>
 </body>
 </html>

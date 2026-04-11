@@ -3,7 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio – Paola Pappacena</title>
+    <title>Portfolio – Paola Pappacena | Illustratrice</title>
+    <meta name="description" content="Portfolio di Paola Pappacena, illustratrice. Illustrazioni per l'editoria, il teatro ragazzi, musei e progetti culturali. Libri illustrati, scenografie, percorsi didattici.">
+    <meta name="keywords" content="portfolio illustrazione, Paola Pappacena portfolio, illustrazioni per bambini, illustrazioni editoriali, illustrazioni originali Italia, libri illustrati">
+    <meta name="author" content="Paola Pappacena">
+    <meta property="og:title" content="Portfolio – Paola Pappacena">
+    <meta property="og:description" content="Illustrazioni per l'editoria, il teatro ragazzi, musei e progetti culturali.">
+    <meta property="og:type" content="website">
+    <link rel="canonical" href="https://paolapappacena.it/portfolio.html">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -22,6 +29,11 @@
         .social-button { width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; overflow: hidden; transition: transform 0.2s, box-shadow 0.2s; flex-shrink: 0; }
         .social-button:hover { transform: scale(1.1); box-shadow: 0 3px 10px rgba(0,0,0,0.22); }
         .social-button img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+        .lang-switcher { display: flex; align-items: center; gap: 6px; margin-left: 10px; padding-left: 10px; border-left: 1px solid rgba(44,62,80,0.15); }
+        .lang-btn { display: flex; align-items: center; gap: 4px; background: none; border: none; cursor: pointer; font-family: inherit; font-size: 0.78em; font-weight: 600; color: #2c3e50; padding: 4px 7px; border-radius: 4px; letter-spacing: 0.4px; text-transform: uppercase; transition: background 0.2s, opacity 0.2s; opacity: 0.45; }
+        .lang-btn.active { opacity: 1; background: rgba(44,62,80,0.08); }
+        .lang-btn:hover { opacity: 1; }
+        .lang-flag { font-size: 1.2em; line-height: 1; }
         .hamburger { display: none; flex-direction: column; cursor: pointer; padding: 5px; gap: 5px; flex-shrink: 0; margin-left: 8px; }
         .hamburger span { width: 24px; height: 2px; background: #2c3e50; border-radius: 1px; transition: all 0.3s; }
         .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(7px,7px); }
@@ -32,6 +44,7 @@
         .mobile-nav-links { display: flex; flex-direction: column; gap: 4px; margin-bottom: 20px; }
         .mobile-nav-links .nav-button { text-align: center; padding: 11px 20px; border-bottom: 1px solid rgba(0,0,0,0.04); font-size: 0.95em; }
         .mobile-social { display: flex; justify-content: center; gap: 16px; padding-top: 16px; border-top: 1px solid rgba(0,0,0,0.05); }
+        .mobile-lang { display: flex; justify-content: center; gap: 8px; margin-top: 14px; padding-top: 14px; border-top: 1px solid rgba(0,0,0,0.05); }
 
         .sticky-footer-bar { position: fixed; bottom: 0; left: 0; right: 0; background: rgba(255,255,255,0.93); backdrop-filter: blur(12px); border-top: 1px solid rgba(0,0,0,0.08); height: 40px; display: flex; align-items: center; justify-content: center; gap: 12px; z-index: 900; }
         .sticky-copyright { font-size: 0.78em; color: #555; font-style: italic; letter-spacing: 0.3px; }
@@ -42,7 +55,6 @@
         .back-link svg { width: 15px; height: 15px; }
 
         .portfolio-page { display: flex; gap: 28px; padding: 16px 22px 40px; max-width: 1400px; margin: 0 auto; align-items: flex-start; }
-
         .portfolio-description { flex: 0 0 270px; order: 2; position: sticky; top: 78px; }
         .description-box { background: #fdf8f0; padding: 20px 22px; border-radius: 6px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
         .description-title { font-size: 0.98em; font-weight: 700; text-transform: uppercase; color: #2c3e50; margin-bottom: 14px; letter-spacing: 0.5px; line-height: 1.4; }
@@ -84,63 +96,59 @@
         @media (max-width: 768px) {
             .navbar { padding: 0 15px; }
             .logo { height: 35px; } .artist-name { height: 22px; }
-            .navbar-right .nav-button, .navbar-right .social-links { display: none; }
+            .navbar-right .nav-button, .navbar-right .social-links, .navbar-right .lang-switcher { display: none; }
             .hamburger { display: flex; }
             .portfolio-page { padding: 12px 14px 36px; }
         }
-        @media (max-width: 480px) {
-            .masonry-grid { column-count: 1; }
-        }
+        @media (max-width: 480px) { .masonry-grid { column-count: 1; } }
     </style>
 </head>
 <body>
 
 <nav class="navbar">
     <div class="navbar-left">
-        <a href="index.html"><img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Sigla.png" alt="Logo" class="logo"></a>
+        <a href="index.html"><img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Sigla.png" alt="Logo Paola Pappacena" class="logo"></a>
         <a href="index.html"><img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Sigla_2.png" alt="Paola Pappacena" class="artist-name"></a>
     </div>
     <div class="navbar-right">
-        <a href="portfolio.html" class="nav-button active">Portfolio</a>
-        <a href="workshop.html" class="nav-button">Workshop</a>
-        <a href="about.html" class="nav-button">About</a>
-        <a href="contacts.html" class="nav-button">Contacts</a>
+        <a href="portfolio.html" class="nav-button active"><span data-lang-it>Portfolio</span><span data-lang-en>Portfolio</span></a>
+        <a href="workshop.html" class="nav-button"><span data-lang-it>Workshop</span><span data-lang-en>Workshop</span></a>
+        <a href="about.html" class="nav-button"><span data-lang-it>About</span><span data-lang-en>About</span></a>
+        <a href="contacts.html" class="nav-button"><span data-lang-it>Contatti</span><span data-lang-en>Contacts</span></a>
         <a href="shop.html" class="nav-button">Shop</a>
         <div class="social-links">
-            <a href="https://www.instagram.com/torteincielo/" class="social-button" title="Instagram" target="_blank" rel="noopener">
-                <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/IG_symbol.jpg" alt="Instagram">
-            </a>
-            <a href="https://www.facebook.com/torte.incielo" class="social-button" title="Facebook" target="_blank" rel="noopener">
-                <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/FB_symbol.jpg" alt="Facebook">
-            </a>
+            <a href="https://www.instagram.com/torteincielo/" class="social-button" title="Instagram" target="_blank" rel="noopener"><img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/IG_symbol.jpg" alt="Instagram"></a>
+            <a href="https://www.facebook.com/torte.incielo" class="social-button" title="Facebook" target="_blank" rel="noopener"><img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/FB_symbol.jpg" alt="Facebook"></a>
         </div>
-        <div class="hamburger" id="hamburger" onclick="toggleMobileMenu()">
-            <span></span><span></span><span></span>
+        <div class="lang-switcher">
+            <button class="lang-btn active" id="btnIt" onclick="setLang('it')" aria-label="Versione italiana"><span class="lang-flag">🇮🇹</span> IT</button>
+            <button class="lang-btn" id="btnEn" onclick="setLang('en')" aria-label="English version"><span class="lang-flag">🇬🇧</span> EN</button>
         </div>
+        <div class="hamburger" id="hamburger" onclick="toggleMobileMenu()"><span></span><span></span><span></span></div>
     </div>
 </nav>
 
 <div class="mobile-menu" id="mobileMenu">
     <div class="mobile-nav-links">
-        <a href="portfolio.html" class="nav-button active">Portfolio</a>
-        <a href="workshop.html" class="nav-button">Workshop</a>
-        <a href="about.html" class="nav-button">About</a>
-        <a href="contacts.html" class="nav-button">Contacts</a>
+        <a href="portfolio.html" class="nav-button active"><span data-lang-it>Portfolio</span><span data-lang-en>Portfolio</span></a>
+        <a href="workshop.html" class="nav-button"><span data-lang-it>Workshop</span><span data-lang-en>Workshop</span></a>
+        <a href="about.html" class="nav-button"><span data-lang-it>About</span><span data-lang-en>About</span></a>
+        <a href="contacts.html" class="nav-button"><span data-lang-it>Contatti</span><span data-lang-en>Contacts</span></a>
         <a href="shop.html" class="nav-button">Shop</a>
     </div>
     <div class="mobile-social">
-        <a href="https://www.instagram.com/torteincielo/" class="social-button" title="Instagram" target="_blank" rel="noopener">
-            <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/IG_symbol.jpg" alt="Instagram">
-        </a>
-        <a href="https://www.facebook.com/torte.incielo" class="social-button" title="Facebook" target="_blank" rel="noopener">
-            <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/FB_symbol.jpg" alt="Facebook">
-        </a>
+        <a href="https://www.instagram.com/torteincielo/" class="social-button" title="Instagram" target="_blank" rel="noopener"><img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/IG_symbol.jpg" alt="Instagram"></a>
+        <a href="https://www.facebook.com/torte.incielo" class="social-button" title="Facebook" target="_blank" rel="noopener"><img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/FB_symbol.jpg" alt="Facebook"></a>
+    </div>
+    <div class="mobile-lang">
+        <button class="lang-btn active" id="btnItMobile" onclick="setLang('it')" aria-label="Versione italiana"><span class="lang-flag">🇮🇹</span> IT</button>
+        <button class="lang-btn" id="btnEnMobile" onclick="setLang('en')" aria-label="English version"><span class="lang-flag">🇬🇧</span> EN</button>
     </div>
 </div>
 
-<a href="portfolio.html" class="back-link">
+<a href="portfolio.html" class="back-link" id="backLink">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
-    Torna al Portfolio
+    <span data-lang-it>Torna al Portfolio</span><span data-lang-en>Back to Portfolio</span>
 </a>
 
 <div class="portfolio-page" id="portfolioPage"></div>
@@ -161,15 +169,34 @@
 
 <div class="sticky-footer-bar">
     <span class="sticky-copyright" id="stickyCopyright"></span>
-    <a href="https://www.instagram.com/torteincielo/" class="social-button" title="Instagram" target="_blank" rel="noopener">
-        <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/IG_symbol.jpg" alt="Instagram">
-    </a>
-    <a href="https://www.facebook.com/torte.incielo" class="social-button" title="Facebook" target="_blank" rel="noopener">
-        <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/FB_symbol.jpg" alt="Facebook">
-    </a>
+    <a href="https://www.instagram.com/torteincielo/" class="social-button" title="Instagram" target="_blank" rel="noopener"><img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/IG_symbol.jpg" alt="Instagram"></a>
+    <a href="https://www.facebook.com/torte.incielo" class="social-button" title="Facebook" target="_blank" rel="noopener"><img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/FB_symbol.jpg" alt="Facebook"></a>
 </div>
 
 <script>
+// ── LANGUAGE SYSTEM ──
+// Inline style for lang elements — CSS-in-JS approach to avoid FOUC
+(function() {
+    const style = document.createElement('style');
+    style.textContent = `
+        [data-lang-en] { display: none; }
+        body.lang-en [data-lang-it] { display: none; }
+        body.lang-en [data-lang-en] { display: inline; }
+    `;
+    document.head.appendChild(style);
+})();
+
+function setLang(lang) {
+    localStorage.setItem('pp_lang', lang);
+    document.documentElement.lang = lang;
+    document.body.classList.toggle('lang-en', lang === 'en');
+    ['btnIt','btnEn','btnItMobile','btnEnMobile'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.classList.toggle('active', el.id.toLowerCase().includes(lang));
+    });
+}
+(function() { setLang(localStorage.getItem('pp_lang') || 'it'); })();
+
 // ── Copyright ──
 const year = new Date().getFullYear();
 const cp = `© Paola Pappacena ${year}`;
@@ -184,22 +211,14 @@ function imgs(p, count, ext) { return Array.from({length: count}, (_, i) => fi(p
 const PORTFOLIOS = {
     1:  { images: imgs(1, 4, 'jpg') },
     2:  { images: imgs(2, 20, 'jpg') },
-    3:  { images: [
-            fi(3,1,'jpg'), fi(3,2,'jpg'), fi(3,3,'jpeg'),
-            fi(3,4,'jpeg'), fi(3,5,'jpeg'), fi(3,6,'jpg')
-        ]},
+    3:  { images: [fi(3,1,'jpg'), fi(3,2,'jpg'), fi(3,3,'jpeg'), fi(3,4,'jpeg'), fi(3,5,'jpeg'), fi(3,6,'jpg')] },
     4:  { images: imgs(4, 3, 'jpg') },
     5:  { images: imgs(5, 5, 'jpg') },
     6:  { images: [
-            // ── BLOCCO 6: ordine della griglia (3 colonne, scorrimento dall'alto verso il basso per colonna) ──
-            // Colonna 0 (sinistra)   Colonna 1 (centro)     Colonna 2 (destra)
-            fi(6,8,'jpg'),            fi(6,9,'jpg'),          fi(6,5,'jpg'),
-            fi(6,1,'png'),            fi(6,2,'png'),          fi(6,6,'png'),
-            fi(6,3,'jpg'),            fi(6,12,'jpg'),         fi(6,7,'jpg'),
-            fi(6,11,'jpg'),           fi(6,13,'png'),		  fi(6,4,'png')
-			
-            // ── Per spostare un'immagine: cambia la sua posizione nella riga corrispondente ──
-            // ── Esempio: per mettere fi(6,5,'jpg') in colonna 0 riga 1, spostala alla prima posizione della seconda riga ──
+            fi(6,8,'jpg'), fi(6,9,'jpg'),  fi(6,5,'jpg'),
+            fi(6,1,'png'), fi(6,2,'png'),  fi(6,6,'png'),
+            fi(6,3,'jpg'), fi(6,12,'jpg'), fi(6,7,'jpg'),
+            fi(6,11,'jpg'),fi(6,13,'png'), fi(6,4,'png')
         ], video: 'Portfolio_6.10.mp4' },
     7:  { images: imgs(7, 8, 'jpg') },
     8:  { images: imgs(8, 5, 'jpg') },
@@ -224,20 +243,19 @@ let currentIndex = 0;
 
 const params = new URLSearchParams(window.location.search);
 const portfolioId = parseInt(params.get('id') || '1');
-document.title = `Portfolio ${portfolioId} – Paola Pappacena`;
 
-// ── Check if we're in "single portfolio" mode or "gallery" mode ──
 const isSingle = !!params.get('id');
 if (!isSingle) {
-    document.querySelector('.back-link').style.display = 'none';
+    document.getElementById('backLink').style.display = 'none';
     showGalleryGrid();
 } else {
     init();
 }
 
-// ── GALLERY GRID (cover thumbnails) ──
+// ── GALLERY GRID ──
 function showGalleryGrid() {
-    document.title = 'Portfolio – Paola Pappacena';
+    const lang = localStorage.getItem('pp_lang') || 'it';
+    document.title = lang === 'en' ? 'Portfolio – Paola Pappacena | Illustrator' : 'Portfolio – Paola Pappacena | Illustratrice';
     const page = document.getElementById('portfolioPage');
     page.style.display = 'block';
     page.style.padding = '0';
@@ -245,17 +263,11 @@ function showGalleryGrid() {
 
     const container = document.createElement('div');
     container.style.cssText = 'padding: 0; margin: 0;';
-
     const grid = document.createElement('div');
     grid.style.cssText = 'display: grid; grid-template-columns: repeat(3, 1fr); gap: 5px;';
 
-    // ── Assegnazione manuale delle colonne per bilanciare le altezze ──
     const cols = [[], [], []];
-    const colAssign = {
-        0: [1, 4, 7, 10, 13],
-        1: [2, 5, 8, 11, 14],
-        2: [3, 6, 9, 12, 15, 16]
-    };
+    const colAssign = { 0: [1,4,7,10,13], 1: [2,5,8,11,14], 2: [3,6,9,12,15,16] };
     Object.entries(colAssign).forEach(([col, portIds]) => {
         portIds.forEach(id => { if (PORTFOLIOS[id]) cols[parseInt(col)].push(id); });
     });
@@ -275,21 +287,18 @@ function showGalleryGrid() {
             wm.textContent = '© Paola Pappacena';
 
             const overlay = document.createElement('span');
-            overlay.style.cssText = 'content:"";position:absolute;inset:0;z-index:2;cursor:pointer;';
+            overlay.style.cssText = 'position:absolute;inset:0;z-index:2;cursor:pointer;';
 
             const img = document.createElement('img');
             img.src = `${BASE}Portfolio_${id}copertina.jpg`;
-            img.alt = `Portfolio ${id}`;
-            img.loading = 'lazy';
-            img.decoding = 'async';
+            img.alt = `Portfolio ${id} – Paola Pappacena`;
+            img.loading = 'lazy'; img.decoding = 'async';
             img.style.cssText = 'width:100%;height:auto;display:block;transition:transform 0.3s;border-radius:3px;background-color:#f0f0f0;-webkit-user-drag:none;pointer-events:none;';
             item.addEventListener('mouseenter', () => { img.style.transform = 'scale(1.02)'; });
             item.addEventListener('mouseleave', () => { img.style.transform = ''; });
             img.onerror = () => { item.style.display = 'none'; };
 
-            item.appendChild(img);
-            item.appendChild(wm);
-            item.appendChild(overlay);
+            item.appendChild(img); item.appendChild(wm); item.appendChild(overlay);
             col.appendChild(item);
         });
         grid.appendChild(col);
@@ -298,7 +307,6 @@ function showGalleryGrid() {
     container.appendChild(grid);
     page.appendChild(container);
 
-    // Responsive
     function setGridCols() {
         grid.style.gridTemplateColumns = window.innerWidth <= 768 ? '1fr' : 'repeat(3, 1fr)';
     }
@@ -325,8 +333,7 @@ function parseDescription(raw) {
     if (!raw || !raw.trim()) return { title: '', body: '' };
     const normalized = raw.replace(/\r\n/g, '\n').replace(/\r/g, '\n');
     const match = normalized.match(/<<(.+?)>>/s);
-    let title = '';
-    let body = normalized;
+    let title = '', body = normalized;
     if (match) {
         title = match[1].trim();
         body = normalized.replace(match[0], '').replace(/^\n+/, '').trimEnd();
@@ -334,7 +341,6 @@ function parseDescription(raw) {
     return { title, body };
 }
 
-// ── Auto-link URLs in plain text ──
 function linkifyText(text) {
     const urlRegex = /(https?:\/\/[^\s]+|www\.[^\s]+)/g;
     const parts = text.split(urlRegex);
@@ -343,13 +349,9 @@ function linkifyText(text) {
         if (urlRegex.test(part)) {
             const a = document.createElement('a');
             a.href = part.startsWith('http') ? part : 'https://' + part;
-            a.textContent = part;
-            a.target = '_blank';
-            a.rel = 'noopener';
+            a.textContent = part; a.target = '_blank'; a.rel = 'noopener';
             frag.appendChild(a);
-        } else {
-            frag.appendChild(document.createTextNode(part));
-        }
+        } else { frag.appendChild(document.createTextNode(part)); }
         urlRegex.lastIndex = 0;
     });
     return frag;
@@ -360,11 +362,15 @@ async function init() {
     const def = PORTFOLIOS[portfolioId];
     if (!def) return;
 
+    const lang = localStorage.getItem('pp_lang') || 'it';
+    document.title = lang === 'en'
+        ? `Portfolio ${portfolioId} – Paola Pappacena | Illustrator`
+        : `Portfolio ${portfolioId} – Paola Pappacena | Illustratrice`;
+
     mediaItems = def.images.map(f => ({ src: BASE + f, type: 'image' }));
     if (def.video) mediaItems.push({ src: BASE + def.video, type: 'video' });
 
     const page = document.getElementById('portfolioPage');
-
     const galleryDiv = document.createElement('div');
     galleryDiv.className = 'portfolio-gallery';
     const grid = document.createElement('div');
@@ -374,15 +380,12 @@ async function init() {
         const cell = document.createElement('div');
         cell.className = 'masonry-item';
         cell.addEventListener('click', () => openModal(idx));
-
         if (item.type === 'video') {
             const badge = document.createElement('span');
-            badge.className = 'video-badge';
-            badge.textContent = '▶ VIDEO';
+            badge.className = 'video-badge'; badge.textContent = '▶ VIDEO';
             cell.appendChild(badge);
             const vid = document.createElement('video');
-            vid.src = item.src;
-            vid.muted = true; vid.loop = true; vid.autoplay = true; vid.playsInline = true;
+            vid.src = item.src; vid.muted = true; vid.loop = true; vid.autoplay = true; vid.playsInline = true;
             vid.setAttribute('playsinline', '');
             cell.appendChild(vid);
         } else {
@@ -407,18 +410,14 @@ async function init() {
         const box = document.createElement('div');
         box.className = 'description-box';
         if (title) {
-            const t = document.createElement('div');
-            t.className = 'description-title';
-            t.textContent = title;
-            box.appendChild(t);
+            const t = document.createElement('div'); t.className = 'description-title';
+            t.textContent = title; box.appendChild(t);
         }
         if (body) {
-            const b = document.createElement('div');
-            b.className = 'description-body';
-            const lines = body.split('\n');
-            lines.forEach((line, i) => {
+            const b = document.createElement('div'); b.className = 'description-body';
+            body.split('\n').forEach((line, i, arr) => {
                 b.appendChild(linkifyText(line));
-                if (i < lines.length - 1) b.appendChild(document.createElement('br'));
+                if (i < arr.length - 1) b.appendChild(document.createElement('br'));
             });
             box.appendChild(b);
         }
@@ -431,8 +430,7 @@ async function init() {
 
 // ── Modal ──
 function openModal(idx) {
-    currentIndex = idx;
-    renderModal(true);
+    currentIndex = idx; renderModal(true);
     document.getElementById('imageModal').style.display = 'block';
 }
 

@@ -3,7 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Paola Pappacena</title>
+    <title>Paola Pappacena – Illustratrice e Narratrice</title>
+    <meta name="description" content="Paola Pappacena – Illustratrice, autrice e conduttrice di workshop creativi. Illustrazione per l'infanzia, libri, laboratori in natura e outdoor education.">
+    <meta name="keywords" content="Paola Pappacena, illustratrice, illustrazione per l'infanzia, workshop illustrazione, outdoor education, laboratori creativi, libri illustrati, illustrazione Italia">
+    <meta name="author" content="Paola Pappacena">
+    <meta property="og:title" content="Paola Pappacena – Illustratrice e Narratrice">
+    <meta property="og:description" content="Illustratrice, autrice e conduttrice di workshop creativi. Illustrazione per l'infanzia, libri, laboratori in natura.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://paolapappacena.it/">
+    <meta property="og:image" content="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/intro.jpg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Paola Pappacena – Illustratrice e Narratrice">
+    <meta name="twitter:description" content="Illustratrice, autrice e conduttrice di workshop creativi.">
+    <link rel="canonical" href="https://paolapappacena.it/">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -47,7 +59,24 @@
         .social-button:hover { transform: scale(1.1); box-shadow: 0 3px 10px rgba(0,0,0,0.22); }
         .social-button img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
 
-        /* hamburger always last, stays visible on mobile */
+        /* ── LANG SWITCHER ── */
+        .lang-switcher {
+            display: flex; align-items: center; gap: 6px;
+            margin-left: 10px; padding-left: 10px;
+            border-left: 1px solid rgba(44,62,80,0.15);
+        }
+        .lang-btn {
+            display: flex; align-items: center; gap: 4px;
+            background: none; border: none; cursor: pointer;
+            font-family: inherit; font-size: 0.78em; font-weight: 600;
+            color: #2c3e50; padding: 4px 7px; border-radius: 4px;
+            letter-spacing: 0.4px; text-transform: uppercase;
+            transition: background 0.2s, opacity 0.2s; opacity: 0.45;
+        }
+        .lang-btn.active { opacity: 1; background: rgba(44,62,80,0.08); }
+        .lang-btn:hover { opacity: 1; }
+        .lang-flag { font-size: 1.2em; line-height: 1; }
+
         .hamburger { display: none; flex-direction: column; cursor: pointer; padding: 5px; gap: 5px; flex-shrink: 0; margin-left: 8px; }
         .hamburger span { width: 24px; height: 2px; background: #2c3e50; border-radius: 1px; transition: all 0.3s; }
         .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(7px,7px); }
@@ -59,6 +88,7 @@
         .mobile-nav-links { display: flex; flex-direction: column; gap: 4px; margin-bottom: 20px; }
         .mobile-nav-links .nav-button { text-align: center; padding: 11px 20px; border-bottom: 1px solid rgba(0,0,0,0.04); font-size: 0.95em; }
         .mobile-social { display: flex; justify-content: center; gap: 16px; padding-top: 16px; border-top: 1px solid rgba(0,0,0,0.05); }
+        .mobile-lang { display: flex; justify-content: center; gap: 8px; margin-top: 14px; padding-top: 14px; border-top: 1px solid rgba(0,0,0,0.05); }
 
         /* ── STICKY FOOTER BAR ── */
         .sticky-footer-bar {
@@ -71,19 +101,19 @@
         .sticky-copyright { font-size: 0.78em; color: #555; font-style: italic; letter-spacing: 0.3px; }
         .sticky-footer-bar .social-button { width: 24px; height: 24px; }
 
-        /* ── SPLASH ── */
+        /* ── SPLASH — cover completo ── */
         .splash {
             width: 100%;
             height: calc(100vh - 60px - 40px);
             overflow: hidden;
+            position: relative;
         }
         .splash img {
             width: 100%;
             height: 100%;
-            object-fit: contain;      /* mostra l'immagine intera, senza tagli */
+            object-fit: cover;         /* riempie tutto, centrata */
             object-position: center;
             display: block;
-            background: white;        /* sfondo per le bande laterali/superiori se presenti */
             -webkit-user-drag: none;
             pointer-events: none;
             user-select: none;
@@ -93,7 +123,7 @@
         @media (max-width: 768px) {
             .navbar { padding: 0 15px; }
             .logo { height: 35px; } .artist-name { height: 22px; }
-            .navbar-right .nav-button, .navbar-right .social-links { display: none; }
+            .navbar-right .nav-button, .navbar-right .social-links, .navbar-right .lang-switcher { display: none; }
             .hamburger { display: flex; }
         }
     </style>
@@ -102,15 +132,15 @@
 
 <nav class="navbar">
     <div class="navbar-left">
-        <a href="index.html"><img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Sigla.png" alt="Logo" class="logo"></a>
-        <a href="index.html"><img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Sigla_2.png" alt="Paola Pappacena" class="artist-name"></a>
+        <a href="index.html"><img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Sigla.png" alt="Logo Paola Pappacena" class="logo"></a>
+        <a href="index.html"><img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Sigla_2.png" alt="Paola Pappacena – Illustratrice" class="artist-name"></a>
     </div>
     <div class="navbar-right">
-        <a href="portfolio.html" class="nav-button">Portfolio</a>
-        <a href="workshop.html" class="nav-button">Workshop</a>
-        <a href="about.html" class="nav-button">About</a>
-        <a href="contacts.html" class="nav-button">Contacts</a>
-        <a href="shop.html" class="nav-button">Shop</a>
+        <a href="portfolio.html" class="nav-button" data-it="Portfolio" data-en="Portfolio">Portfolio</a>
+        <a href="workshop.html" class="nav-button" data-it="Workshop" data-en="Workshop">Workshop</a>
+        <a href="about.html" class="nav-button" data-it="About" data-en="About">About</a>
+        <a href="contacts.html" class="nav-button" data-it="Contatti" data-en="Contacts">Contatti</a>
+        <a href="shop.html" class="nav-button" data-it="Shop" data-en="Shop">Shop</a>
         <div class="social-links">
             <a href="https://www.instagram.com/torteincielo/" class="social-button" title="Instagram" target="_blank" rel="noopener">
                 <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/IG_symbol.jpg" alt="Instagram">
@@ -118,6 +148,14 @@
             <a href="https://www.facebook.com/torte.incielo" class="social-button" title="Facebook" target="_blank" rel="noopener">
                 <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/FB_symbol.jpg" alt="Facebook">
             </a>
+        </div>
+        <div class="lang-switcher">
+            <button class="lang-btn active" id="btnIt" onclick="setLang('it')" aria-label="Versione italiana">
+                <span class="lang-flag">🇮🇹</span> IT
+            </button>
+            <button class="lang-btn" id="btnEn" onclick="setLang('en')" aria-label="English version">
+                <span class="lang-flag">🇬🇧</span> EN
+            </button>
         </div>
         <div class="hamburger" id="hamburger" onclick="toggleMobileMenu()">
             <span></span><span></span><span></span>
@@ -127,11 +165,11 @@
 
 <div class="mobile-menu" id="mobileMenu">
     <div class="mobile-nav-links">
-        <a href="portfolio.html" class="nav-button">Portfolio</a>
-        <a href="workshop.html" class="nav-button">Workshop</a>
-        <a href="about.html" class="nav-button">About</a>
-        <a href="contacts.html" class="nav-button">Contacts</a>
-        <a href="shop.html" class="nav-button">Shop</a>
+        <a href="portfolio.html" class="nav-button" data-it="Portfolio" data-en="Portfolio">Portfolio</a>
+        <a href="workshop.html" class="nav-button" data-it="Workshop" data-en="Workshop">Workshop</a>
+        <a href="about.html" class="nav-button" data-it="About" data-en="About">About</a>
+        <a href="contacts.html" class="nav-button" data-it="Contatti" data-en="Contacts">Contatti</a>
+        <a href="shop.html" class="nav-button" data-it="Shop" data-en="Shop">Shop</a>
     </div>
     <div class="mobile-social">
         <a href="https://www.instagram.com/torteincielo/" class="social-button" title="Instagram" target="_blank" rel="noopener">
@@ -141,11 +179,20 @@
             <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/FB_symbol.jpg" alt="Facebook">
         </a>
     </div>
+    <div class="mobile-lang">
+        <button class="lang-btn active" id="btnItMobile" onclick="setLang('it')" aria-label="Versione italiana">
+            <span class="lang-flag">🇮🇹</span> IT
+        </button>
+        <button class="lang-btn" id="btnEnMobile" onclick="setLang('en')" aria-label="English version">
+            <span class="lang-flag">🇬🇧</span> EN
+        </button>
+    </div>
 </div>
 
-<!-- Splash image -->
+<!-- Splash image — cover completo -->
 <div class="splash">
-    <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/intro.jpg" alt="Paola Pappacena">
+    <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/intro.jpg"
+         alt="Paola Pappacena – Illustratrice e narratrice visiva">
 </div>
 
 <div class="sticky-footer-bar">
@@ -159,9 +206,42 @@
 </div>
 
 <script>
+    // ── LANGUAGE SYSTEM ──
+    const LANG_LINKS = {
+        'portfolio.html': { it: 'portfolio.html', en: 'portfolio.html' },
+        'workshop.html':  { it: 'workshop.html',  en: 'workshop.html' },
+        'about.html':     { it: 'about.html',     en: 'about.html' },
+        'contacts.html':  { it: 'contacts.html',  en: 'contacts.html' },
+        'shop.html':      { it: 'shop.html',       en: 'shop.html' }
+    };
+
+    function setLang(lang) {
+        localStorage.setItem('pp_lang', lang);
+        document.documentElement.lang = lang;
+
+        // Update all nav-button labels
+        document.querySelectorAll('[data-it]').forEach(el => {
+            el.textContent = el.dataset[lang] || el.dataset.it;
+        });
+
+        // Update active state of lang buttons
+        ['btnIt','btnEn','btnItMobile','btnEnMobile'].forEach(id => {
+            const el = document.getElementById(id);
+            if (el) el.classList.toggle('active', el.id.toLowerCase().includes(lang));
+        });
+    }
+
+    // Apply saved language on load
+    (function() {
+        const saved = localStorage.getItem('pp_lang') || 'it';
+        setLang(saved);
+    })();
+
+    // ── COPYRIGHT ──
     const year = new Date().getFullYear();
     document.getElementById('stickyCopyright').textContent = `© Paola Pappacena ${year}`;
 
+    // ── MOBILE MENU ──
     function toggleMobileMenu() {
         document.getElementById('mobileMenu').classList.toggle('active');
         document.getElementById('hamburger').classList.toggle('active');
@@ -174,7 +254,7 @@
         }
     });
 
-    // Image protection
+    // ── IMAGE PROTECTION ──
     document.addEventListener('contextmenu', e => { if (e.target.tagName === 'IMG') e.preventDefault(); });
     document.addEventListener('dragstart', e => { if (e.target.tagName === 'IMG') e.preventDefault(); });
 </script>

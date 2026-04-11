@@ -3,7 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Workshop – Paola Pappacena</title>
+    <title>Workshop e Laboratori – Paola Pappacena | Illustrazione e Outdoor Education</title>
+    <meta name="description" content="Paola Pappacena conduce workshop di illustrazione, cammini illustrati in natura, laboratori per bambini e formazione per educatori. Outdoor education e narrazione visiva.">
+    <meta name="keywords" content="workshop illustrazione, outdoor education, laboratori bambini, cammini illustrati, formazione educatori, disegno in natura, laboratori creativi, Paola Pappacena">
+    <meta name="author" content="Paola Pappacena">
+    <meta property="og:title" content="Workshop e Laboratori – Paola Pappacena">
+    <meta property="og:description" content="Workshop di illustrazione, cammini in natura, laboratori per bambini e formazione per educatori.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Workshop_cover.jpg">
+    <link rel="canonical" href="https://paolapappacena.it/workshop.html">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -23,6 +31,11 @@
         .social-button { width: 30px; height: 30px; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; overflow: hidden; transition: transform 0.2s, box-shadow 0.2s; flex-shrink: 0; }
         .social-button:hover { transform: scale(1.1); box-shadow: 0 3px 10px rgba(0,0,0,0.22); }
         .social-button img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+        .lang-switcher { display: flex; align-items: center; gap: 6px; margin-left: 10px; padding-left: 10px; border-left: 1px solid rgba(44,62,80,0.15); }
+        .lang-btn { display: flex; align-items: center; gap: 4px; background: none; border: none; cursor: pointer; font-family: inherit; font-size: 0.78em; font-weight: 600; color: #2c3e50; padding: 4px 7px; border-radius: 4px; letter-spacing: 0.4px; text-transform: uppercase; transition: background 0.2s, opacity 0.2s; opacity: 0.45; }
+        .lang-btn.active { opacity: 1; background: rgba(44,62,80,0.08); }
+        .lang-btn:hover { opacity: 1; }
+        .lang-flag { font-size: 1.2em; line-height: 1; }
         .hamburger { display: none; flex-direction: column; cursor: pointer; padding: 5px; gap: 5px; flex-shrink: 0; margin-left: 8px; }
         .hamburger span { width: 24px; height: 2px; background: #2c3e50; border-radius: 1px; transition: all 0.3s; }
         .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(7px,7px); }
@@ -33,6 +46,7 @@
         .mobile-nav-links { display: flex; flex-direction: column; gap: 4px; margin-bottom: 20px; }
         .mobile-nav-links .nav-button { text-align: center; padding: 11px 20px; border-bottom: 1px solid rgba(0,0,0,0.04); font-size: 0.95em; }
         .mobile-social { display: flex; justify-content: center; gap: 16px; padding-top: 16px; border-top: 1px solid rgba(0,0,0,0.05); }
+        .mobile-lang { display: flex; justify-content: center; gap: 8px; margin-top: 14px; padding-top: 14px; border-top: 1px solid rgba(0,0,0,0.05); }
 
         /* ── STICKY FOOTER BAR ── */
         .sticky-footer-bar { position: fixed; bottom: 0; left: 0; right: 0; background: rgba(255,255,255,0.93); backdrop-filter: blur(12px); border-top: 1px solid rgba(0,0,0,0.08); height: 40px; display: flex; align-items: center; justify-content: center; gap: 12px; z-index: 900; }
@@ -40,26 +54,13 @@
         .sticky-footer-bar .social-button { width: 24px; height: 24px; }
 
         /* ── PANEL SYSTEM ── */
-        .panel {
-            position: fixed;
-            top: 60px; left: 0; right: 0; bottom: 40px;
-            background: white;
-            transform: translateX(100%);
-            transition: transform 0.38s cubic-bezier(0.4, 0, 0.2, 1);
-            overflow-y: auto;
-            will-change: transform;
-        }
+        .panel { position: fixed; top: 60px; left: 0; right: 0; bottom: 40px; background: white; transform: translateX(100%); transition: transform 0.38s cubic-bezier(0.4, 0, 0.2, 1); overflow-y: auto; will-change: transform; }
         .panel.open { transform: translateX(0); }
         .panel[data-level="1"] { z-index: 100; }
         .panel[data-level="2"] { z-index: 200; }
 
         /* ── BACK BUTTON ── */
-        .back-link {
-            display: inline-flex; align-items: center; gap: 7px;
-            margin: 18px 22px 0; color: #2c3e50; background: none; border: none;
-            font-family: inherit; font-size: 0.87em; font-weight: 500;
-            opacity: 0.65; transition: opacity 0.2s; cursor: pointer; padding: 0;
-        }
+        .back-link { display: inline-flex; align-items: center; gap: 7px; margin: 18px 22px 0; color: #2c3e50; background: none; border: none; font-family: inherit; font-size: 0.87em; font-weight: 500; opacity: 0.65; transition: opacity 0.2s; cursor: pointer; padding: 0; }
         .back-link:hover { opacity: 1; }
         .back-link svg { width: 15px; height: 15px; flex-shrink: 0; }
 
@@ -67,58 +68,68 @@
         .panel-body { max-width: 1100px; margin: 0 auto; padding: 16px 24px 60px; }
 
         /* ── SECTION LABEL ── */
-        .section-label {
-            font-size: 1.1em; font-weight: 600; color: #2c3e50;
-            text-transform: uppercase; letter-spacing: 1.2px;
-            margin-bottom: 24px; padding-bottom: 10px;
-            border-bottom: 1px solid rgba(44,62,80,0.15);
-        }
+        .section-label { font-size: 1.1em; font-weight: 600; color: #2c3e50; text-transform: uppercase; letter-spacing: 1.2px; margin-bottom: 24px; padding-bottom: 10px; border-bottom: 1px solid rgba(44,62,80,0.15); }
 
-        /* ── MAIN PAGE ── */
-        .ws-main { max-width: 1100px; margin: 0 auto; padding: 44px 24px 60px; }
-        .ws-header { margin-bottom: 50px; }
-        .ws-header h1 { font-size: 2.2em; color: #2c3e50; font-weight: 400; letter-spacing: 0.4px; margin-bottom: 14px; }
-        .ws-header p { font-size: 1.05em; color: #555; max-width: 640px; }
-        .ws-intro { display: flex; gap: 44px; align-items: flex-start; margin-bottom: 60px; }
-        .ws-intro-text { flex: 1; }
-        .ws-intro-text p { font-size: 1em; color: #444; margin-bottom: 16px; text-align: justify; }
-        .ws-intro-text a { color: #2c3e50; font-weight: 600; }
-        .ws-intro-image { flex: 0 0 320px; }
-        .ws-intro-image img { width: 100%; border-radius: 6px; box-shadow: 0 4px 18px rgba(0,0,0,0.1); -webkit-user-drag: none; pointer-events: none; }
+        /* ── MAIN PAGE — intro compatta ── */
+        .ws-main { max-width: 1100px; margin: 0 auto; padding: 28px 24px 60px; }
+
+        /* Header compatto */
+        .ws-header { margin-bottom: 20px; }
+        .ws-header h1 { font-size: 2em; color: #2c3e50; font-weight: 400; letter-spacing: 0.4px; margin-bottom: 6px; }
+        .ws-header .ws-tagline { font-size: 0.97em; color: #666; }
+
+        /* Intro banner orizzontale, compatto */
+        .ws-intro-banner {
+            display: flex; gap: 24px; align-items: stretch;
+            background: #fdf8f0; border-radius: 10px;
+            padding: 20px 24px; margin-bottom: 28px;
+            border: 1px solid rgba(44,62,80,0.07);
+        }
+        .ws-intro-banner-img {
+            flex: 0 0 140px; border-radius: 6px; overflow: hidden;
+        }
+        .ws-intro-banner-img img {
+            width: 100%; height: 100%; object-fit: cover;
+            display: block; border-radius: 6px;
+            -webkit-user-drag: none; pointer-events: none;
+        }
+        .ws-intro-banner-text { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+        .ws-intro-banner-text p { font-size: 0.91em; color: #555; line-height: 1.68; margin-bottom: 8px; }
+        .ws-intro-banner-text p:last-child { margin-bottom: 0; }
+        .ws-intro-banner-text a { color: #2c3e50; font-weight: 600; text-decoration: underline; text-underline-offset: 2px; }
 
         /* ── CARD GRIDS ── */
-        .main-grid  { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; margin-bottom: 50px; }
+        .main-grid  { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; margin-bottom: 32px; }
         .sub-grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-bottom: 50px; }
         .sub-grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; margin-bottom: 50px; }
 
         /* ── CARD ── */
         .ws-card { cursor: pointer; border: 1px solid rgba(0,0,0,0.09); border-radius: 10px; overflow: hidden; transition: box-shadow 0.3s, transform 0.3s; background: #fafafa; }
         .ws-card:hover { box-shadow: 0 8px 28px rgba(0,0,0,0.13); transform: translateY(-3px); }
-        .card-thumbs { display: flex; height: 200px; overflow: hidden; }
+        .card-thumbs { display: flex; height: 170px; overflow: hidden; }
         .card-thumbs img { flex: 1; object-fit: cover; height: 100%; border-right: 2px solid white; -webkit-user-drag: none; pointer-events: none; transition: transform 0.4s; }
         .card-thumbs img:last-child { border-right: none; }
         .ws-card:hover .card-thumbs img { transform: scale(1.04); }
-        .card-cover { height: 200px; overflow: hidden; }
+        .card-cover { height: 170px; overflow: hidden; }
         .card-cover img { width: 100%; height: 100%; object-fit: cover; -webkit-user-drag: none; pointer-events: none; transition: transform 0.4s; }
         .ws-card:hover .card-cover img { transform: scale(1.04); }
-        .card-body { padding: 18px 20px 20px; }
-        .card-body h3 { font-size: 1em; color: #2c3e50; font-weight: 600; margin-bottom: 8px; }
-        .card-body p { font-size: 0.86em; color: #666; line-height: 1.65; }
-        .card-caret { display: inline-block; margin-top: 11px; font-size: 0.76em; font-weight: 600; color: #2c3e50; letter-spacing: 0.5px; text-transform: uppercase; }
+        .card-body { padding: 14px 18px 16px; }
+        .card-body h3 { font-size: 0.97em; color: #2c3e50; font-weight: 600; margin-bottom: 6px; }
+        .card-body p { font-size: 0.84em; color: #666; line-height: 1.6; }
+        .card-caret { display: inline-block; margin-top: 9px; font-size: 0.74em; font-weight: 600; color: #2c3e50; letter-spacing: 0.5px; text-transform: uppercase; }
         .card-caret::after { content: ' →'; }
 
         /* ── PROGETTI SU MISURA ── */
-        .ws-custom { background: #fdf8f0; border-radius: 10px; padding: 34px 32px; display: flex; gap: 24px; align-items: center; }
+        .ws-custom { background: #fdf8f0; border-radius: 10px; padding: 28px 28px; display: flex; gap: 22px; align-items: center; }
         .ws-custom-icon { font-size: 2.2em; flex-shrink: 0; }
-        .ws-custom-text h3 { font-size: 1.1em; color: #2c3e50; font-weight: 600; margin-bottom: 8px; }
-        .ws-custom-text p { color: #555; font-size: 0.93em; margin-bottom: 14px; }
-        .cta-link { display: inline-block; background: #2c3e50; color: white; text-decoration: none; padding: 10px 22px; border-radius: 5px; font-size: 0.87em; font-weight: 500; letter-spacing: 0.3px; transition: background 0.25s, transform 0.2s; }
+        .ws-custom-text h3 { font-size: 1.05em; color: #2c3e50; font-weight: 600; margin-bottom: 7px; }
+        .ws-custom-text p { color: #555; font-size: 0.91em; margin-bottom: 13px; }
+        .cta-link { display: inline-block; background: #2c3e50; color: white; text-decoration: none; padding: 9px 20px; border-radius: 5px; font-size: 0.86em; font-weight: 500; letter-spacing: 0.3px; transition: background 0.25s, transform 0.2s; }
         .cta-link:hover { background: #1a2432; transform: translateY(-1px); }
 
         /* ── DETAIL LAYOUT ── */
         .detail-layout { display: flex; gap: 28px; align-items: flex-start; }
         .detail-desc-col { flex: 0 0 270px; position: sticky; top: 78px; }
-        /* Cream box, no left border */
         .description-box { background: #fdf8f0; padding: 20px 22px; border-radius: 6px; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
         .description-title { font-size: 0.98em; font-weight: 700; text-transform: uppercase; color: #2c3e50; margin-bottom: 14px; letter-spacing: 0.5px; line-height: 1.4; }
         .description-body { font-size: 0.92em; line-height: 1.72; color: #444; white-space: pre-wrap; word-break: break-word; }
@@ -160,20 +171,27 @@
         @media (max-width: 768px) {
             .navbar { padding: 0 15px; }
             .logo { height: 35px; } .artist-name { height: 22px; }
-            .navbar-right .nav-button, .navbar-right .social-links { display: none; }
+            .navbar-right .nav-button, .navbar-right .social-links, .navbar-right .lang-switcher { display: none; }
             .hamburger { display: flex; }
-            .ws-intro { flex-direction: column; }
-            .ws-intro-image { flex: none; max-width: 300px; }
-            .ws-header h1 { font-size: 1.8em; }
+            .ws-intro-banner { flex-direction: column; gap: 14px; }
+            .ws-intro-banner-img { flex: none; height: 120px; width: 100%; }
+            .ws-header h1 { font-size: 1.7em; }
             .main-grid { grid-template-columns: 1fr; }
             .sub-grid-2 { grid-template-columns: 1fr; }
-            .ws-custom { flex-direction: column; gap: 16px; padding: 24px 18px; }
+            .ws-custom { flex-direction: column; gap: 14px; padding: 20px 16px; }
             .panel-body { padding: 12px 14px 60px; }
         }
         @media (max-width: 560px) {
             .sub-grid-3 { grid-template-columns: 1fr; }
             .masonry { column-count: 1; }
         }
+
+        /* Language system */
+        [data-lang-en] { display: none; }
+        body.lang-en [data-lang-it] { display: none; }
+        body.lang-en [data-lang-en] { display: block; }
+        body.lang-en span[data-lang-en] { display: inline; }
+        body.lang-en span[data-lang-it] { display: none; }
     </style>
 </head>
 <body>
@@ -181,69 +199,82 @@
 <!-- ═══════════════════════════════ NAVBAR ════════════════════════════════ -->
 <nav class="navbar">
     <div class="navbar-left">
-        <a href="index.html"><img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Sigla.png" alt="Logo" class="logo"></a>
+        <a href="index.html"><img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Sigla.png" alt="Logo Paola Pappacena" class="logo"></a>
         <a href="index.html"><img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Sigla_2.png" alt="Paola Pappacena" class="artist-name"></a>
     </div>
     <div class="navbar-right">
-        <a href="portfolio.html" class="nav-button">Portfolio</a>
-        <a href="workshop.html" class="nav-button active">Workshop</a>
-        <a href="about.html" class="nav-button">About</a>
-        <a href="contacts.html" class="nav-button">Contacts</a>
+        <a href="portfolio.html" class="nav-button"><span data-lang-it>Portfolio</span><span data-lang-en>Portfolio</span></a>
+        <a href="workshop.html" class="nav-button active"><span data-lang-it>Workshop</span><span data-lang-en>Workshop</span></a>
+        <a href="about.html" class="nav-button"><span data-lang-it>About</span><span data-lang-en>About</span></a>
+        <a href="contacts.html" class="nav-button"><span data-lang-it>Contatti</span><span data-lang-en>Contacts</span></a>
         <a href="shop.html" class="nav-button">Shop</a>
         <div class="social-links">
-            <a href="https://www.instagram.com/torteincielo/" class="social-button" title="Instagram" target="_blank" rel="noopener">
-                <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/IG_symbol.jpg" alt="Instagram">
-            </a>
-            <a href="https://www.facebook.com/torte.incielo" class="social-button" title="Facebook" target="_blank" rel="noopener">
-                <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/FB_symbol.jpg" alt="Facebook">
-            </a>
+            <a href="https://www.instagram.com/torteincielo/" class="social-button" title="Instagram" target="_blank" rel="noopener"><img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/IG_symbol.jpg" alt="Instagram"></a>
+            <a href="https://www.facebook.com/torte.incielo" class="social-button" title="Facebook" target="_blank" rel="noopener"><img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/FB_symbol.jpg" alt="Facebook"></a>
         </div>
-        <div class="hamburger" id="hamburger" onclick="toggleMobileMenu()">
-            <span></span><span></span><span></span>
+        <div class="lang-switcher">
+            <button class="lang-btn active" id="btnIt" onclick="setLang('it')" aria-label="Versione italiana"><span class="lang-flag">🇮🇹</span> IT</button>
+            <button class="lang-btn" id="btnEn" onclick="setLang('en')" aria-label="English version"><span class="lang-flag">🇬🇧</span> EN</button>
         </div>
+        <div class="hamburger" id="hamburger" onclick="toggleMobileMenu()"><span></span><span></span><span></span></div>
     </div>
 </nav>
 
 <div class="mobile-menu" id="mobileMenu">
     <div class="mobile-nav-links">
-        <a href="portfolio.html" class="nav-button">Portfolio</a>
-        <a href="workshop.html" class="nav-button active">Workshop</a>
-        <a href="about.html" class="nav-button">About</a>
-        <a href="contacts.html" class="nav-button">Contacts</a>
+        <a href="portfolio.html" class="nav-button"><span data-lang-it>Portfolio</span><span data-lang-en>Portfolio</span></a>
+        <a href="workshop.html" class="nav-button active"><span data-lang-it>Workshop</span><span data-lang-en>Workshop</span></a>
+        <a href="about.html" class="nav-button"><span data-lang-it>About</span><span data-lang-en>About</span></a>
+        <a href="contacts.html" class="nav-button"><span data-lang-it>Contatti</span><span data-lang-en>Contacts</span></a>
         <a href="shop.html" class="nav-button">Shop</a>
     </div>
     <div class="mobile-social">
-        <a href="https://www.instagram.com/torteincielo/" class="social-button" title="Instagram" target="_blank" rel="noopener">
-            <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/IG_symbol.jpg" alt="Instagram">
-        </a>
-        <a href="https://www.facebook.com/torte.incielo" class="social-button" title="Facebook" target="_blank" rel="noopener">
-            <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/FB_symbol.jpg" alt="Facebook">
-        </a>
+        <a href="https://www.instagram.com/torteincielo/" class="social-button" title="Instagram" target="_blank" rel="noopener"><img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/IG_symbol.jpg" alt="Instagram"></a>
+        <a href="https://www.facebook.com/torte.incielo" class="social-button" title="Facebook" target="_blank" rel="noopener"><img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/FB_symbol.jpg" alt="Facebook"></a>
+    </div>
+    <div class="mobile-lang">
+        <button class="lang-btn active" id="btnItMobile" onclick="setLang('it')" aria-label="Versione italiana"><span class="lang-flag">🇮🇹</span> IT</button>
+        <button class="lang-btn" id="btnEnMobile" onclick="setLang('en')" aria-label="English version"><span class="lang-flag">🇬🇧</span> EN</button>
     </div>
 </div>
 
 
-<!-- ═══════════════════════ MAIN PAGE (livello 0) ════════════════════════ -->
+<!-- ═══════════════════════ MAIN PAGE ════════════════════════ -->
 <div class="ws-main">
 
     <div class="ws-header">
-        <h1>Workshop e Laboratori</h1>
-        <p>Pratiche creative per adulti, bambini ed educatori — in studio, all'aperto, in natura.</p>
+        <h1>
+            <span data-lang-it>Workshop e Laboratori</span>
+            <span data-lang-en>Workshops & Creative Labs</span>
+        </h1>
+        <p class="ws-tagline">
+            <span data-lang-it>Pratiche creative per adulti, bambini ed educatori — in studio, all'aperto, in natura.</span>
+            <span data-lang-en>Creative practices for adults, children and educators — indoors, outdoors, in nature.</span>
+        </p>
     </div>
 
-    <div class="ws-intro">
-        <div class="ws-intro-text">
-            <p>Da anni conduco laboratori di illustrazione e narrazione visiva, rivolti a persone di ogni età. Il filo conduttore è la curiosità: osservare il mondo, tradurre ciò che si vede in segno, raccontare con le immagini.</p>
-            <p>Organizzo camminate in natura durante le quali si disegna, si osserva, si sperimenta il racconto <em>en plein air</em>. Collaboro con scuole, biblioteche e centri culturali per progettare percorsi su misura.</p>
-            <p>Per informazioni su date, costi e disponibilità scrivimi <a href="mailto:paola.pappacena@yahoo.it">paola.pappacena@yahoo.it</a></p>
-        </div>
-        <div class="ws-intro-image">
+    <!-- Intro banner compatto -->
+    <div class="ws-intro-banner">
+        <div class="ws-intro-banner-img">
             <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Workshop_cover.jpg"
-                 onerror="this.style.display='none'" alt="Workshop Paola Pappacena">
+                 onerror="this.parentElement.style.display='none'" alt="Workshop Paola Pappacena">
+        </div>
+        <div class="ws-intro-banner-text">
+            <div data-lang-it>
+                <p>Da anni conduco laboratori di illustrazione e narrazione visiva per persone di ogni età. Il filo conduttore è la curiosità: osservare il mondo, tradurre ciò che si vede in segno, raccontare con le immagini. Organizzo camminate in natura durante le quali si disegna, si osserva, si sperimenta il racconto <em>en plein air</em>.</p>
+                <p>Per informazioni su date, costi e disponibilità <a href="contacts.html">scrivimi</a>.</p>
+            </div>
+            <div data-lang-en>
+                <p>For years I have been leading illustration and visual storytelling workshops for people of all ages. The common thread is curiosity: observing the world, translating what you see into mark-making, and telling stories through images. I organise outdoor walks in nature where participants draw, observe and explore storytelling <em>en plein air</em>.</p>
+                <p>For information on dates, costs and availability, <a href="contacts.html">write to me</a>.</p>
+            </div>
         </div>
     </div>
 
-    <div class="section-label">Le mie proposte</div>
+    <div class="section-label">
+        <span data-lang-it>Le mie proposte</span>
+        <span data-lang-en>What I offer</span>
+    </div>
 
     <div class="main-grid">
 
@@ -255,21 +286,21 @@
                 <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/WS1.3_Copertina.jpg"  alt="Sentieri Bambini">
             </div>
             <div class="card-body">
-                <h3>Cammini Illustrati</h3>
-                <p>Esperienze creative en plein air: osservare, camminare, disegnare in natura con il taccuino da campo.</p>
-                <span class="card-caret">Scopri i percorsi</span>
+                <h3><span data-lang-it>Cammini Illustrati</span><span data-lang-en>Illustrated Walks</span></h3>
+                <p><span data-lang-it>Esperienze creative en plein air: osservare, camminare, disegnare in natura con il taccuino da campo.</span><span data-lang-en>Creative experiences en plein air: observing, walking, drawing in nature with a field sketchbook.</span></p>
+                <span class="card-caret"><span data-lang-it>Scopri i percorsi</span><span data-lang-en>Explore</span></span>
             </div>
         </div>
 
         <!-- WS2 — Formazione -->
         <div class="ws-card" onclick="openDetail('ws2')">
             <div class="card-cover">
-                <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/WS2_Copertina.jpg" alt="Formazione">
+                <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/WS2_Copertina.jpg" alt="Formazione educatori">
             </div>
             <div class="card-body">
-                <h3>Formazione</h3>
-                <p>Seminari e workshop per insegnanti ed educatori, con focus su outdoor education e didattica creativa in natura.</p>
-                <span class="card-caret">Scopri di più</span>
+                <h3><span data-lang-it>Formazione</span><span data-lang-en>Teacher Training</span></h3>
+                <p><span data-lang-it>Seminari e workshop per insegnanti ed educatori, con focus su outdoor education e didattica creativa in natura.</span><span data-lang-en>Seminars and workshops for teachers and educators, focused on outdoor education and creative teaching in nature.</span></p>
+                <span class="card-caret"><span data-lang-it>Scopri di più</span><span data-lang-en>Learn more</span></span>
             </div>
         </div>
 
@@ -280,9 +311,9 @@
                 <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/WS3.2_Copertina.jpg" alt="Laboratori Bambini">
             </div>
             <div class="card-body">
-                <h3>Workshop e Laboratori</h3>
-                <p>Laboratori di illustrazione per adulti e percorsi creativi per bambini e bambine, in studio e non solo.</p>
-                <span class="card-caret">Scopri i laboratori</span>
+                <h3><span data-lang-it>Workshop e Laboratori</span><span data-lang-en>Workshops & Labs</span></h3>
+                <p><span data-lang-it>Laboratori di illustrazione per adulti e percorsi creativi per bambini e bambine, in studio e non solo.</span><span data-lang-en>Illustration workshops for adults and creative paths for children, in the studio and beyond.</span></p>
+                <span class="card-caret"><span data-lang-it>Scopri i laboratori</span><span data-lang-en>Explore</span></span>
             </div>
         </div>
 
@@ -292,21 +323,30 @@
                 <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/WS4_Copertina.jpeg" alt="Atelier, Nidi e Materne">
             </div>
             <div class="card-body">
-                <h3>Atelier, Nidi e Materne</h3>
-                <p>Percorsi pensati per la primissima infanzia, in collaborazione con nidi, scuole dell'infanzia e atelier creativi.</p>
-                <span class="card-caret">Scopri di più</span>
+                <h3><span data-lang-it>Atelier, Nidi e Materne</span><span data-lang-en>Ateliers, Nurseries & Kindergartens</span></h3>
+                <p><span data-lang-it>Percorsi pensati per la primissima infanzia, in collaborazione con nidi, scuole dell'infanzia e atelier creativi.</span><span data-lang-en>Paths designed for early childhood, in collaboration with nurseries, infant schools and creative ateliers.</span></p>
+                <span class="card-caret"><span data-lang-it>Scopri di più</span><span data-lang-en>Learn more</span></span>
             </div>
         </div>
 
     </div>
 
-    <div class="section-label">Collaborazioni speciali</div>
+    <div class="section-label">
+        <span data-lang-it>Collaborazioni speciali</span>
+        <span data-lang-en>Special collaborations</span>
+    </div>
     <div class="ws-custom">
-        <div class="ws-custom-icon"><img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Sigla.png" alt="Sigla" style="height:54px;width:auto;opacity:0.7;"></div>
+        <div class="ws-custom-icon"><img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Sigla.png" alt="Sigla" style="height:52px;width:auto;opacity:0.7;"></div>
         <div class="ws-custom-text">
-            <h3>Progetti su misura</h3>
-            <p>Collaborazioni personalizzate con biblioteche, musei, festival e associazioni culturali per eventi e progetti speciali. Ogni contesto ha la sua storia: parliamone e troviamo insieme la formula più adatta.</p>
-            <a href="contacts.html" class="cta-link">Scrivimi</a>
+            <h3><span data-lang-it>Progetti su misura</span><span data-lang-en>Tailored projects</span></h3>
+            <div data-lang-it>
+                <p>Collaborazioni personalizzate con biblioteche, musei, festival e associazioni culturali per eventi e progetti speciali. Ogni contesto ha la sua storia: parliamone e troviamo insieme la formula più adatta.</p>
+                <a href="contacts.html" class="cta-link">Scrivimi</a>
+            </div>
+            <div data-lang-en>
+                <p>Tailored collaborations with libraries, museums, festivals and cultural associations for special events and projects. Every context has its own story: let's talk and find the right approach together.</p>
+                <a href="contacts.html" class="cta-link">Write to me</a>
+            </div>
         </div>
     </div>
 
@@ -322,43 +362,42 @@
     <div class="panel-body">
         <button class="back-link" onclick="closePanel('panel-ws1')">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
-            Workshop
+            <span data-lang-it>Workshop</span><span data-lang-en>Workshop</span>
         </button>
         <div style="margin-top:28px;">
-            <div class="section-label">Cammini Illustrati</div>
-            <p style="color:#555;font-size:1em;margin-bottom:32px;max-width:620px;">Camminare, osservare, disegnare. Esperienze creative en plein air per adulti, bambini e famiglie.</p>
+            <div class="section-label">
+                <span data-lang-it>Cammini Illustrati</span><span data-lang-en>Illustrated Walks</span>
+            </div>
+            <p style="color:#555;font-size:1em;margin-bottom:32px;max-width:620px;">
+                <span data-lang-it>Camminare, osservare, disegnare. Esperienze creative en plein air per adulti, bambini e famiglie.</span>
+                <span data-lang-en>Walk, observe, draw. Creative en plein air experiences for adults, children and families.</span>
+            </p>
             <div class="sub-grid-3">
 
                 <div class="ws-card" onclick="openDetail('ws1_1')">
-                    <div class="card-cover">
-                        <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/WS1.1_Copertina.jpeg" alt="Disegni in Cammino">
-                    </div>
+                    <div class="card-cover"><img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/WS1.1_Copertina.jpeg" alt="Disegni in Cammino"></div>
                     <div class="card-body">
-                        <h3>Disegni in Cammino</h3>
-                        <p>Illustrare il paesaggio passo dopo passo, con il taccuino come compagno di viaggio.</p>
-                        <span class="card-caret">Scopri</span>
+                        <h3><span data-lang-it>Disegni in Cammino</span><span data-lang-en>Drawing on the Path</span></h3>
+                        <p><span data-lang-it>Illustrare il paesaggio passo dopo passo, con il taccuino come compagno di viaggio.</span><span data-lang-en>Illustrating the landscape step by step, with the sketchbook as travelling companion.</span></p>
+                        <span class="card-caret"><span data-lang-it>Scopri</span><span data-lang-en>Explore</span></span>
                     </div>
                 </div>
 
                 <div class="ws-card" onclick="openDetail('ws1_2')">
-                    <div class="card-cover">
-                        <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/WS1.2_Copertina.jpeg" alt="Ora Blu">
-                    </div>
+                    <div class="card-cover"><img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/WS1.2_Copertina.jpeg" alt="Ora Blu"></div>
                     <div class="card-body">
-                        <h3>Ora Blu</h3>
-                        <p>Disegnare all'imbrunire: la luce cambia, i colori si fondono, il tempo si dilata.</p>
-                        <span class="card-caret">Scopri</span>
+                        <h3><span data-lang-it>Ora Blu</span><span data-lang-en>Blue Hour</span></h3>
+                        <p><span data-lang-it>Disegnare all'imbrunire: la luce cambia, i colori si fondono, il tempo si dilata.</span><span data-lang-en>Drawing at dusk: the light shifts, colours merge, time expands.</span></p>
+                        <span class="card-caret"><span data-lang-it>Scopri</span><span data-lang-en>Explore</span></span>
                     </div>
                 </div>
 
                 <div class="ws-card" onclick="openDetail('ws1_3')">
-                    <div class="card-cover">
-                        <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/WS1.3_Copertina.jpg" alt="Sentieri Bambini">
-                    </div>
+                    <div class="card-cover"><img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/WS1.3_Copertina.jpg" alt="Sentieri Bambini"></div>
                     <div class="card-body">
-                        <h3>Sentieri Bambini</h3>
-                        <p>Cammini illustrati pensati per i più piccoli, tra natura, storie e disegno dal vero.</p>
-                        <span class="card-caret">Scopri</span>
+                        <h3><span data-lang-it>Sentieri Bambini</span><span data-lang-en>Children's Trails</span></h3>
+                        <p><span data-lang-it>Cammini illustrati pensati per i più piccoli, tra natura, storie e disegno dal vero.</span><span data-lang-en>Illustrated walks designed for young children, weaving nature, stories and observational drawing.</span></p>
+                        <span class="card-caret"><span data-lang-it>Scopri</span><span data-lang-en>Explore</span></span>
                     </div>
                 </div>
 
@@ -373,32 +412,33 @@
     <div class="panel-body">
         <button class="back-link" onclick="closePanel('panel-ws3')">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
-            Workshop
+            <span data-lang-it>Workshop</span><span data-lang-en>Workshop</span>
         </button>
         <div style="margin-top:28px;">
-            <div class="section-label">Workshop e Laboratori</div>
-            <p style="color:#555;font-size:1em;margin-bottom:32px;max-width:620px;">Laboratori di illustrazione per adulti e percorsi creativi per bambini e bambine.</p>
+            <div class="section-label">
+                <span data-lang-it>Workshop e Laboratori</span><span data-lang-en>Workshops & Labs</span>
+            </div>
+            <p style="color:#555;font-size:1em;margin-bottom:32px;max-width:620px;">
+                <span data-lang-it>Laboratori di illustrazione per adulti e percorsi creativi per bambini e bambine.</span>
+                <span data-lang-en>Illustration workshops for adults and creative paths for children.</span>
+            </p>
             <div class="sub-grid-2">
 
                 <div class="ws-card" onclick="openDetail('ws3_1')">
-                    <div class="card-cover">
-                        <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/WS3.1_Copertina.jpg" alt="Workshop Illustrazione">
-                    </div>
+                    <div class="card-cover"><img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/WS3.1_Copertina.jpg" alt="Workshop Illustrazione"></div>
                     <div class="card-body">
-                        <h3>Workshop Illustrazione</h3>
-                        <p>Percorsi di disegno e illustrazione per adulti: dall'osservazione al racconto visivo.</p>
-                        <span class="card-caret">Scopri</span>
+                        <h3><span data-lang-it>Workshop Illustrazione</span><span data-lang-en>Illustration Workshop</span></h3>
+                        <p><span data-lang-it>Percorsi di disegno e illustrazione per adulti: dall'osservazione al racconto visivo.</span><span data-lang-en>Drawing and illustration paths for adults: from observation to visual storytelling.</span></p>
+                        <span class="card-caret"><span data-lang-it>Scopri</span><span data-lang-en>Explore</span></span>
                     </div>
                 </div>
 
                 <div class="ws-card" onclick="openDetail('ws3_2')">
-                    <div class="card-cover">
-                        <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/WS3.2_Copertina.jpg" alt="Laboratori Bambini e Bambine">
-                    </div>
+                    <div class="card-cover"><img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/WS3.2_Copertina.jpg" alt="Laboratori Bambini e Bambine"></div>
                     <div class="card-body">
-                        <h3>Laboratori Bambini e Bambine</h3>
-                        <p>Storie, colori e segni per esplorare il mondo attraverso la creatività.</p>
-                        <span class="card-caret">Scopri</span>
+                        <h3><span data-lang-it>Laboratori Bambini e Bambine</span><span data-lang-en>Children's Labs</span></h3>
+                        <p><span data-lang-it>Storie, colori e segni per esplorare il mondo attraverso la creatività.</span><span data-lang-en>Stories, colours and marks to explore the world through creativity.</span></p>
+                        <span class="card-caret"><span data-lang-it>Scopri</span><span data-lang-en>Explore</span></span>
                     </div>
                 </div>
 
@@ -425,28 +465,35 @@
     <span class="modal-close" onclick="closeModal()">&times;</span>
     <span class="modal-nav modal-prev" onclick="navigateModal(-1)">&#8249;</span>
     <span class="modal-nav modal-next" onclick="navigateModal(1)">&#8250;</span>
-    <div class="modal-inner">
-        <img id="modalImage" src="" alt="">
-    </div>
+    <div class="modal-inner"><img id="modalImage" src="" alt=""></div>
 </div>
 
 
 <!-- ── STICKY FOOTER BAR ── -->
 <div class="sticky-footer-bar">
     <span class="sticky-copyright" id="stickyCopyright"></span>
-    <a href="https://www.instagram.com/torteincielo/" class="social-button" title="Instagram" target="_blank" rel="noopener">
-        <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/IG_symbol.jpg" alt="Instagram">
-    </a>
-    <a href="https://www.facebook.com/torte.incielo" class="social-button" title="Facebook" target="_blank" rel="noopener">
-        <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/FB_symbol.jpg" alt="Facebook">
-    </a>
+    <a href="https://www.instagram.com/torteincielo/" class="social-button" title="Instagram" target="_blank" rel="noopener"><img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/IG_symbol.jpg" alt="Instagram"></a>
+    <a href="https://www.facebook.com/torte.incielo" class="social-button" title="Facebook" target="_blank" rel="noopener"><img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/FB_symbol.jpg" alt="Facebook"></a>
 </div>
 
 
 <!-- ═══════════════════════════════════ JS ═══════════════════════════════ -->
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 const RAW = 'https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img';
 
+// ── LANGUAGE SYSTEM ──
+function setLang(lang) {
+    localStorage.setItem('pp_lang', lang);
+    document.documentElement.lang = lang;
+    document.body.classList.toggle('lang-en', lang === 'en');
+    ['btnIt','btnEn','btnItMobile','btnEnMobile'].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.classList.toggle('active', el.id.toLowerCase().includes(lang));
+    });
+}
+(function() { setLang(localStorage.getItem('pp_lang') || 'it'); })();
+
+// ── DESCRIPTION LOADER ──
 async function loadDescription(txtFile) {
     try {
         const r = await fetch(`${RAW}/${txtFile}`);
@@ -456,8 +503,7 @@ async function loadDescription(txtFile) {
         const buf  = await r.arrayBuffer();
         const utf8 = new TextDecoder('utf-8', { fatal: false }).decode(buf);
         if (!utf8.includes('\uFFFD')) return utf8;
-        try { return new TextDecoder('windows-1252').decode(buf); }
-        catch { return utf8; }
+        try { return new TextDecoder('windows-1252').decode(buf); } catch { return utf8; }
     } catch { return null; }
 }
 
@@ -466,13 +512,9 @@ function parseDescription(raw) {
     const n = raw.replace(/\r\n/g, '\n').replace(/\r/g, '\n');
     const m = n.match(/<<(.+?)>>/s);
     if (!m) return { title: '', body: n.trimEnd() };
-    return {
-        title: m[1].trim(),
-        body:  n.replace(m[0], '').replace(/^\n+/, '').trimEnd()
-    };
+    return { title: m[1].trim(), body: n.replace(m[0], '').replace(/^\n+/, '').trimEnd() };
 }
 
-// Auto-link URLs in plain text
 function linkifyText(text) {
     const urlRegex = /(https?:\/\/[^\s]+|www\.[^\s]+)/g;
     const parts = text.split(urlRegex);
@@ -481,105 +523,39 @@ function linkifyText(text) {
         if (/^(https?:\/\/|www\.)/.test(part)) {
             const a = document.createElement('a');
             a.href = part.startsWith('http') ? part : 'https://' + part;
-            a.textContent = part;
-            a.target = '_blank';
-            a.rel = 'noopener';
+            a.textContent = part; a.target = '_blank'; a.rel = 'noopener';
             frag.appendChild(a);
-        } else {
-            frag.appendChild(document.createTextNode(part));
-        }
+        } else { frag.appendChild(document.createTextNode(part)); }
     });
     return frag;
 }
 
 function renderBody(el, body) {
     el.innerHTML = '';
-    const lines = body.split('\n');
-    lines.forEach((line, i) => {
+    body.split('\n').forEach((line, i, arr) => {
         el.appendChild(linkifyText(line));
-        if (i < lines.length - 1) el.appendChild(document.createElement('br'));
+        if (i < arr.length - 1) el.appendChild(document.createElement('br'));
     });
 }
 
-/* ── CATALOGO WORKSHOP ── (title field removed — comes from .txt <<tag>>) */
+// ── WORKSHOP DATA ──
 const WS_DATA = {
-
-    ws1_1: {
-        parentPanel: 'panel-ws1',
-        parentLabel: 'Cammini Illustrati',
-        txtFile:     'WS1.1.txt',
-        images: [
-            'WS1.1.1.jpeg',  'WS1.1.2.jpeg',  'WS1.1.3.jpeg',  'WS1.1.4.jpeg',  'WS1.1.5.jpeg',
-            'WS1.1.6.jpg',   'WS1.1.7.jpg',   'WS1.1.8.jpg',   'WS1.1.9.jpg',   'WS1.1.10.jpg',
-            'WS1.1.11.jpg',  'WS1.1.12.jpg',  'WS1.1.13.jpg',  'WS1.1.14.jpg',  'WS1.1.15.jpg'
-        ]
-    },
-
-    ws1_2: {
-        parentPanel: 'panel-ws1',
-        parentLabel: 'Cammini Illustrati',
-        txtFile:     'WS1.2.txt',
-        images: ['WS1.2.1.jpg', 'WS1.2.2.jpeg', 'WS1.2.3.jpeg', 'WS1.2.4.jpg', 'WS1.2.5.png']
-    },
-
-    ws1_3: {
-        parentPanel: 'panel-ws1',
-        parentLabel: 'Cammini Illustrati',
-        txtFile:     'WS1.3.txt',
-        images: [
-            'WS1.3.1.jpg', 'WS1.3.2.jpg', 'WS1.3.3.jpg', 'WS1.3.4.jpg', 'WS1.3.5.jpg',
-            'WS1.3.6.jpg', 'WS1.3.7.jpg', 'WS1.3.8.jpg', 'WS1.3.9.jpg'
-        ]
-    },
-
-    ws2: {
-        parentPanel: null,
-        parentLabel: 'Workshop',
-        txtFile:     'WS2.txt',
-        images: [
-            'WS2.1.jpg', 'WS2.2.jpg', 'WS2.3.jpg', 'WS2.4.jpg', 'WS2.5.jpg',
-            'WS2.6.jpg', 'WS2.7.jpg', 'WS2.8.jpg', 'WS2.9.jpg'
-        ]
-    },
-
-    ws3_1: {
-        parentPanel: 'panel-ws3',
-        parentLabel: 'Workshop e Laboratori',
-        txtFile:     'WS3.1.txt',
-        images: [
-            'WS3.1.1.jpeg', 'WS3.1.2.jpg',  'WS3.1.3.jpg',  'WS3.1.4.jpeg',
-            'WS3.1.5.jpeg', 'WS3.1.6.jpeg', 'WS3.1.7.jpeg', 'WS3.1.8.jpeg'
-        ]
-    },
-
-    ws3_2: {
-        parentPanel: 'panel-ws3',
-        parentLabel: 'Workshop e Laboratori',
-        txtFile:     'WS3.2.txt',
-        images: [
-            'WS3.2.1.jpg',  'WS3.2.2.jpg',  'WS3.2.3.jpg',  'WS3.2.4.jpg',  'WS3.2.5.jpg',
-            'WS3.2.6.jpg',  'WS3.2.7.jpeg', 'WS3.2.8.jpeg', 'WS3.2.9.jpeg', 'WS3.2.10.jpeg'
-        ]
-    },
-
-    ws4: {
-        parentPanel: null,
-        parentLabel: 'Workshop',
-        txtFile:     'WS4.txt',
-        images: ['WS4.1.jpeg', 'WS4.2.jpeg', 'WS4.3.jpeg', 'WS4.4.jpeg', 'WS4.5.jpg']
-    }
+    ws1_1: { parentPanel: 'panel-ws1', parentLabel: { it: 'Cammini Illustrati', en: 'Illustrated Walks' }, txtFile: 'WS1.1.txt', images: ['WS1.1.1.jpeg','WS1.1.2.jpeg','WS1.1.3.jpeg','WS1.1.4.jpeg','WS1.1.5.jpeg','WS1.1.6.jpg','WS1.1.7.jpg','WS1.1.8.jpg','WS1.1.9.jpg','WS1.1.10.jpg','WS1.1.11.jpg','WS1.1.12.jpg','WS1.1.13.jpg','WS1.1.14.jpg','WS1.1.15.jpg'] },
+    ws1_2: { parentPanel: 'panel-ws1', parentLabel: { it: 'Cammini Illustrati', en: 'Illustrated Walks' }, txtFile: 'WS1.2.txt', images: ['WS1.2.1.jpg','WS1.2.2.jpeg','WS1.2.3.jpeg','WS1.2.4.jpg','WS1.2.5.png'] },
+    ws1_3: { parentPanel: 'panel-ws1', parentLabel: { it: 'Cammini Illustrati', en: 'Illustrated Walks' }, txtFile: 'WS1.3.txt', images: ['WS1.3.1.jpg','WS1.3.2.jpg','WS1.3.3.jpg','WS1.3.4.jpg','WS1.3.5.jpg','WS1.3.6.jpg','WS1.3.7.jpg','WS1.3.8.jpg','WS1.3.9.jpg'] },
+    ws2:   { parentPanel: null, parentLabel: { it: 'Workshop', en: 'Workshop' }, txtFile: 'WS2.txt', images: ['WS2.1.jpg','WS2.2.jpg','WS2.3.jpg','WS2.4.jpg','WS2.5.jpg','WS2.6.jpg','WS2.7.jpg','WS2.8.jpg','WS2.9.jpg'] },
+    ws3_1: { parentPanel: 'panel-ws3', parentLabel: { it: 'Workshop e Laboratori', en: 'Workshops & Labs' }, txtFile: 'WS3.1.txt', images: ['WS3.1.1.jpeg','WS3.1.2.jpg','WS3.1.3.jpg','WS3.1.4.jpeg','WS3.1.5.jpeg','WS3.1.6.jpeg','WS3.1.7.jpeg','WS3.1.8.jpeg'] },
+    ws3_2: { parentPanel: 'panel-ws3', parentLabel: { it: 'Workshop e Laboratori', en: 'Workshops & Labs' }, txtFile: 'WS3.2.txt', images: ['WS3.2.1.jpg','WS3.2.2.jpg','WS3.2.3.jpg','WS3.2.4.jpg','WS3.2.5.jpg','WS3.2.6.jpg','WS3.2.7.jpeg','WS3.2.8.jpeg','WS3.2.9.jpeg','WS3.2.10.jpeg'] },
+    ws4:   { parentPanel: null, parentLabel: { it: 'Workshop', en: 'Workshop' }, txtFile: 'WS4.txt', images: ['WS4.1.jpeg','WS4.2.jpeg','WS4.3.jpeg','WS4.4.jpeg','WS4.5.jpg'] }
 };
 
-/* ── STATE ── */
 let panelStack  = [];
 let modalImages = [];
 let modalIndex  = 0;
 
-/* ── PANEL OPEN / CLOSE (livello 1) ── */
 function openPanel(panelId) {
     const el = document.getElementById(panelId);
-    el.classList.add('open');
-    el.scrollTop = 0;
+    el.classList.add('open'); el.scrollTop = 0;
     panelStack.push({ type: 'panel', id: panelId });
 }
 
@@ -593,76 +569,61 @@ function closePanel(panelId) {
     }
 }
 
-/* ── DETAIL PANEL OPEN (livello 2) ── */
 async function openDetail(wsKey) {
     const data = WS_DATA[wsKey];
     if (!data) return;
-
-    document.getElementById('detail-back-label').textContent = data.parentLabel;
+    const lang = localStorage.getItem('pp_lang') || 'it';
+    document.getElementById('detail-back-label').textContent = data.parentLabel[lang] || data.parentLabel.it;
 
     const layout = document.getElementById('detail-layout');
     layout.innerHTML = '';
 
-    // Colonna galleria
     const gallCol = document.createElement('div');
     gallCol.className = 'detail-gallery-col';
     const masonry = document.createElement('div');
     masonry.className = 'masonry';
     gallCol.appendChild(masonry);
 
-    // Colonna descrizione (cream, no border)
     const descCol = document.createElement('div');
     descCol.className = 'detail-desc-col';
-    const box     = document.createElement('div');
+    const box = document.createElement('div');
     box.className = 'description-box';
     const titleEl = document.createElement('div');
     titleEl.className = 'description-title';
-    titleEl.textContent = '';   // filled async from .txt
     const bodyEl  = document.createElement('div');
     bodyEl.className = 'description-body';
-    box.appendChild(titleEl);
-    box.appendChild(bodyEl);
+    box.appendChild(titleEl); box.appendChild(bodyEl);
     descCol.appendChild(box);
 
-    layout.appendChild(gallCol);
-    layout.appendChild(descCol);
+    layout.appendChild(gallCol); layout.appendChild(descCol);
 
-    // Open panel immediately
     const detailPanel = document.getElementById('panel-detail');
-    detailPanel.classList.add('open');
-    detailPanel.scrollTop = 0;
+    detailPanel.classList.add('open'); detailPanel.scrollTop = 0;
     panelStack.push({ type: 'detail', wsKey });
 
-    // Build masonry
     modalImages = data.images.map(f => `${RAW}/${f}`);
     data.images.forEach((filename, idx) => {
         const item = document.createElement('div');
         item.className = 'masonry-item';
         item.addEventListener('click', () => openModal(idx));
         const img = document.createElement('img');
-        img.src     = `${RAW}/${filename}`;
-        img.alt     = `${idx + 1}`;
-        img.loading = 'lazy';
+        img.src = `${RAW}/${filename}`; img.alt = `${idx + 1}`; img.loading = 'lazy';
         img.onerror = () => { item.style.display = 'none'; };
-        item.appendChild(img);
-        masonry.appendChild(item);
+        item.appendChild(img); masonry.appendChild(item);
     });
 
-    // Load description async
     const raw = await loadDescription(data.txtFile);
     const { title: pt, body } = parseDescription(raw);
     if (pt) titleEl.textContent = pt;
     if (body) renderBody(bodyEl, body);
 }
 
-/* ── DETAIL PANEL CLOSE ── */
 function closeDetail() {
     document.getElementById('panel-detail').classList.remove('open');
-    panelStack  = panelStack.filter(p => p.type !== 'detail');
+    panelStack = panelStack.filter(p => p.type !== 'detail');
     modalImages = [];
 }
 
-/* ── LIGHTBOX ── */
 function openModal(idx) {
     modalIndex = idx;
     document.getElementById('modalImage').src = modalImages[modalIndex];
@@ -680,7 +641,6 @@ document.getElementById('imageModal').addEventListener('click', function(e) {
     if (e.target === this) closeModal();
 });
 
-/* ── KEYBOARD ── */
 document.addEventListener('keydown', e => {
     const modal = document.getElementById('imageModal');
     if (modal.style.display === 'block') {
@@ -697,13 +657,11 @@ document.addEventListener('keydown', e => {
     if (e.key === 'PrintScreen') navigator.clipboard?.writeText('');
 });
 
-/* ── COPYRIGHT ── */
 const year = new Date().getFullYear();
 const cp = `© Paola Pappacena ${year}`;
 document.getElementById('stickyCopyright').textContent = cp;
 document.getElementById('footerCopyright').textContent = cp;
 
-/* ── MOBILE MENU ── */
 function toggleMobileMenu() {
     document.getElementById('mobileMenu').classList.toggle('active');
     document.getElementById('hamburger').classList.toggle('active');
@@ -716,9 +674,8 @@ document.addEventListener('click', e => {
     }
 });
 
-/* ── IMAGE PROTECTION ── */
 document.addEventListener('contextmenu', e => { if (e.target.tagName === 'IMG') e.preventDefault(); });
-document.addEventListener('dragstart',   e => { if (e.target.tagName === 'IMG') e.preventDefault(); });
+document.addEventListener('dragstart', e => { if (e.target.tagName === 'IMG') e.preventDefault(); });
 </script>
 </body>
 </html>
