@@ -10,13 +10,13 @@
     <meta property="og:type" content="website">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             background: white;
-            font-family: Arial, sans-serif;
+            font-family: 'Avenir', 'Avenir Next', 'Nunito Sans', Arial, sans-serif;
             padding-top: 60px;
             padding-bottom: 40px;
             line-height: 1.6;
@@ -40,6 +40,7 @@
             color: #2c3e50; text-decoration: none; font-weight: 500;
             font-size: 0.88em; padding: 7px 11px; border-radius: 5px;
             letter-spacing: 0.3px; transition: background 0.25s;
+            font-family: inherit;
         }
         .nav-button:hover, .nav-button.active { background: rgba(44,62,80,0.09); }
         .social-links { display: flex; gap: 8px; margin-left: 14px; }
@@ -98,7 +99,6 @@
 
         .about-header { margin-bottom: 48px; }
         .about-header h1 {
-            font-family: 'Lora', Georgia, serif;
             font-size: 2.4em; color: #2c3e50;
             font-weight: 400; letter-spacing: 0.3px;
         }
@@ -118,31 +118,11 @@
         .about-text { flex: 1; }
 
         .about-text p {
-            font-family: 'Lora', Georgia, serif;
             font-size: 1.05em;
             line-height: 1.82;
             color: #3a3a3a;
             text-align: justify;
             margin-bottom: 20px;
-        }
-
-        /* Prima riga: nome in evidenza */
-        .about-text p.lead {
-            font-size: 1.0em;
-            font-weight: 500;
-            color: #2c3e50;
-            letter-spacing: 0.1px;
-            border-left: 3px solid rgba(44,62,80,0.18);
-            padding-left: 16px;
-            text-align: left;
-        }
-
-        /* Ultima riga: nota personale, italics */
-        .about-text p.note {
-            font-style: italic;
-            color: #666;
-            font-size: 1.0em;
-            margin-top: 8px;
         }
 
         .about-text em { font-style: italic; }
@@ -191,7 +171,7 @@
         <a href="index.html"><img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/Sigla_2.png" alt="Paola Pappacena" class="artist-name"></a>
     </div>
     <div class="navbar-right">
-        <a href="index.html" class="nav-button">Portfolio</a>
+        <a href="portfolio.html" class="nav-button">Portfolio</a>
         <a href="shop.html" class="nav-button">Shop</a>
         <a href="workshop.html" class="nav-button">Workshop</a>
         <a href="about.html" class="nav-button active">About</a>
@@ -212,7 +192,7 @@
 
 <div class="mobile-menu" id="mobileMenu">
     <div class="mobile-nav-links">
-        <a href="index.html" class="nav-button">Portfolio</a>
+        <a href="portfolio.html" class="nav-button">Portfolio</a>
         <a href="shop.html" class="nav-button">Shop</a>
         <a href="workshop.html" class="nav-button">Workshop</a>
         <a href="about.html" class="nav-button active">About</a>
@@ -240,19 +220,17 @@
 
         <div class="about-text">
 
-            <p class="lead">Paola Pappacena si è diplomata in illustrazione per l'infanzia alla Scuola del Fumetto di Milano nel 2004.</p>
+            <p>Paola Pappacena si è diplomata in illustrazione per l'infanzia alla Scuola del Fumetto di Milano nel 2004. Ha avviato il suo percorso artistico collaborando con compagnie di teatro ragazzi, per le quali ha realizzato scenografie, locandine, percorsi didattici e laboratori creativi nelle scuole e nelle pinacoteche.</p>
 
-            <p>Ha avviato il suo percorso artistico collaborando con compagnie di teatro ragazzi, per le quali ha realizzato scenografie, locandine, percorsi didattici e laboratori creativi nelle scuole e nelle pinacoteche.</p>
-
-            <p>Come illustratrice ha collaborato con diverse case editrici — tra cui Gribaudo, NoBorders Publishing, Fulmìno Edizioni, <em>La maison est en carton</em> e Terre di mezzo — e ha sviluppato progetti illustrati con RaiPlaySound, Museo civico di Morbegno e Legambiente. Le sue opere sono state esposte anche presso la Galleria Robillard di Parigi.</p>
+            <p>Come illustratrice ha lavorato con diverse case editrici — tra cui Gribaudo, NoBorders Publishing, Fulmìno Edizioni, <em>La maison est en carton</em> e Terre di mezzo — e ha sviluppato progetti con RaiPlaySound, il Museo civico di Morbegno e Legambiente. Le sue opere sono state esposte anche presso la Galleria Robillard di Parigi.</p>
 
             <div class="about-divider"></div>
 
-            <p>Da anni intreccia il proprio lavoro con quello di artisti, musicisti, pedagogisti e teatranti, accomunati dall'interesse per la didattica rivolta alla primissima infanzia. In collaborazione con l'associazione Musicali si Cresce ha ideato laboratori e materiali illustrati dedicati a bambini, genitori ed educatori.</p>
+            <p>Da anni intreccia il proprio lavoro con quello di artisti, musicisti, pedagogisti e teatranti, accomunati dall'interesse per la didattica rivolta alla primissima infanzia. In collaborazione con l'associazione Musicali si Cresce ha ideato laboratori e materiali illustrati per bambini, genitori ed educatori.</p>
 
-            <p>Appassionata di natura e didattica, organizza camminate all'aria aperta in cui sperimentare pratiche artistiche e narrative. Da queste esperienze sono nati corsi di formazione rivolti agli insegnanti, incentrati sulla progettazione di attività di outdoor education e su percorsi di illustrazione e narrazione in natura per adulti e bambini.</p>
+            <p>Appassionata di natura e didattica, organizza camminate all'aria aperta in cui sperimentare pratiche artistiche e narrative. Da queste esperienze sono nati corsi di formazione per insegnanti, incentrati su outdoor education e su percorsi di illustrazione e narrazione in natura per adulti e bambini.</p>
 
-            <p class="note">Ama stare nel bosco e disegnare all'aria aperta. Appena può cammina in montagna e osserva il mondo da lassù.</p>
+            <p>Ama stare nel bosco e disegnare all'aria aperta. Appena può cammina in montagna e osserva il mondo da lassù.</p>
 
         </div>
     </div>
@@ -290,7 +268,6 @@
         }
     });
 
-    // Image protection
     document.addEventListener('contextmenu', e => { if (e.target.tagName === 'IMG') e.preventDefault(); });
     document.addEventListener('dragstart',   e => { if (e.target.tagName === 'IMG') e.preventDefault(); });
     document.addEventListener('keydown', e => {
