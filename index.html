@@ -47,6 +47,7 @@
         .social-button:hover { transform: scale(1.1); box-shadow: 0 3px 10px rgba(0,0,0,0.22); }
         .social-button img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
 
+        /* hamburger always last, stays visible on mobile */
         .hamburger { display: none; flex-direction: column; cursor: pointer; padding: 5px; gap: 5px; flex-shrink: 0; margin-left: 8px; }
         .hamburger span { width: 24px; height: 2px; background: #2c3e50; border-radius: 1px; transition: all 0.3s; }
         .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(7px,7px); }
@@ -72,18 +73,17 @@
 
         /* ── SPLASH ── */
         .splash {
-            min-height: calc(100vh - 60px - 40px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            width: 100%;
+            height: calc(100vh - 60px - 40px);
             overflow: hidden;
         }
         .splash img {
             width: 100%;
-            height: calc(100vh - 60px - 40px);
-            object-fit: cover;
+            height: 100%;
+            object-fit: contain;      /* mostra l'immagine intera, senza tagli */
             object-position: center;
             display: block;
+            background: white;        /* sfondo per le bande laterali/superiori se presenti */
             -webkit-user-drag: none;
             pointer-events: none;
             user-select: none;
@@ -91,7 +91,7 @@
 
         /* ── RESPONSIVE ── */
         @media (max-width: 768px) {
-            .navbar { padding: 0 15px; display: grid; grid-template-columns: auto 1fr auto; gap: 10px; }
+            .navbar { padding: 0 15px; }
             .logo { height: 35px; } .artist-name { height: 22px; }
             .navbar-right .nav-button, .navbar-right .social-links { display: none; }
             .hamburger { display: flex; }
@@ -107,10 +107,10 @@
     </div>
     <div class="navbar-right">
         <a href="portfolio.html" class="nav-button">Portfolio</a>
-        <a href="shop.html" class="nav-button">Shop</a>
         <a href="workshop.html" class="nav-button">Workshop</a>
         <a href="about.html" class="nav-button">About</a>
         <a href="contacts.html" class="nav-button">Contacts</a>
+        <a href="shop.html" class="nav-button">Shop</a>
         <div class="social-links">
             <a href="https://www.instagram.com/torteincielo/" class="social-button" title="Instagram" target="_blank" rel="noopener">
                 <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/IG_symbol.jpg" alt="Instagram">
@@ -128,10 +128,10 @@
 <div class="mobile-menu" id="mobileMenu">
     <div class="mobile-nav-links">
         <a href="portfolio.html" class="nav-button">Portfolio</a>
-        <a href="shop.html" class="nav-button">Shop</a>
         <a href="workshop.html" class="nav-button">Workshop</a>
         <a href="about.html" class="nav-button">About</a>
         <a href="contacts.html" class="nav-button">Contacts</a>
+        <a href="shop.html" class="nav-button">Shop</a>
     </div>
     <div class="mobile-social">
         <a href="https://www.instagram.com/torteincielo/" class="social-button" title="Instagram" target="_blank" rel="noopener">
