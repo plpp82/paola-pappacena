@@ -111,8 +111,8 @@
         .splash img {
             width: 100%;
             height: 100%;
-            object-fit: cover;         /* riempie tutto, centrata */
-            object-position: center;
+            object-fit: cover;
+            object-position: center bottom; /* zoom ancorato alla base centrata */
             display: block;
             -webkit-user-drag: none;
             pointer-events: none;
@@ -191,8 +191,11 @@
 
 <!-- Splash image — cover completo -->
 <div class="splash">
-    <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/intro.jpg"
-         alt="Paola Pappacena – Illustratrice e narratrice visiva">
+    <picture>
+        <source media="(max-width: 768px)" srcset="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/intro_mobile.jpg">
+        <img src="https://raw.githubusercontent.com/plpp82/paola-pappacena/main/img/intro.jpg"
+             alt="Paola Pappacena – Illustratrice e narratrice visiva">
+    </picture>
 </div>
 
 <div class="sticky-footer-bar">

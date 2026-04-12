@@ -315,9 +315,9 @@ function showGalleryGrid() {
 }
 
 // ── Load description ──
-async function loadDescription(id) {
+async function loadDescription(filename) {
     try {
-        const r = await fetch(BASE + `Portfolio_${id}.txt`);
+        const r = await fetch(BASE + filename);
         if (!r.ok) return null;
         const contentType = r.headers.get('content-type') || '';
         if (contentType.toLowerCase().includes('charset=')) return await r.text();
@@ -327,6 +327,11 @@ async function loadDescription(id) {
         try { return new TextDecoder('windows-1252').decode(buf); }
         catch { return utf8; }
     } catch { return null; }
+}
+
+function getTxtFile(id) {
+    const lang = localStorage.getItem('pp_lang') || 'it';
+    return lang === 'en' ? `Portfolio_${id}_ENG.txt` : `Portfolio_${id}.txt`;
 }
 
 function parseDescription(raw) {
@@ -403,7 +408,7 @@ async function init() {
 
     const descDiv = document.createElement('div');
     descDiv.className = 'portfolio-description';
-    const rawText = await loadDescription(portfolioId);
+    const rawText = await loadDescription(getTxtFile(portfolioId));
     const { title, body } = parseDescription(rawText);
 
     if (title || body) {
